@@ -15,3 +15,6 @@ Route::get('/', function () {
     return view('principal.layout');
 });
 
+Route::get('/', function () {
+    return "hola esto es un nuevo saludo";
+});
