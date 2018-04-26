@@ -15,9 +15,3 @@ Route::get('/', function () {
     return view('principal.layout');
 });
 
-Route::get('/', function () {
-    return "hola";
-});
-Route::get('/', function () {
-    return "saludo";
-});
