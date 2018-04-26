@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('principal.layout');
+Route::get('/include', function () {
+    return 'ruta incluida';
 });
-
-Route::get('/', function () {
-    return "hola esto es un nuevo saludo";
-});
-
-require_once "rutas.php";
