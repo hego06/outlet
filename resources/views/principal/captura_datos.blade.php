@@ -1,6 +1,10 @@
 @extends('principal.layout')
 @section('title', 'CAPTURA DE DATOS')
 @section('content')
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
     <section class="content">
         <div class="row">
             <form role="form" action="" method="post">
@@ -45,7 +49,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            <input type="text" class="form-control" id="Tel" placeholder="Teléfono" required="required">
+                            <input type="tel" class="form-control" id="Tel" placeholder="Teléfono" required="required">
                             </div>
                         </div>
                     </div><br><br>
@@ -124,7 +128,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="date" class="form-control pull-right" id="Fsalida" required="required">
+                                        <input type="text" class="input-sm form-control" id="Fsalida" min="{{$fecha}}" value="{{$fecha}}">
                                     </div>
                                 </div>
                                 <!-- /.input group -->
@@ -132,7 +136,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">No. Pasajeros</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" id="Nopas" placeholder="No. Pasajeros" required="required">
+                                    <input type="number" class="form-control" id="Nopas" placeholder="No. Pasajeros" min="1" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -197,7 +201,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." id="Letra"></textarea>
+                                    <input type="text" class="form-control" id="Letra" placeholder="" hidden="hidden">
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -215,4 +219,12 @@
             </form>
         </div>
     </section>
+
+    <script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $('#datepicker').datepicker({
+            startDate: 'd/n/Y',
+            autoclose: true
+        });
+    </script>
 @endsection

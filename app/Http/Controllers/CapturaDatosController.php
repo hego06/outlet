@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 class CapturaDatosController extends Controller
 {
     public function captura(){
-        return view('principal.captura_datos');
+        $now = new \DateTime();
+      $fecha=$now->format('Y-n-d');
+        return view('principal.captura_datos', compact('fecha'));
     }
 }
