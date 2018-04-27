@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('principal.layout');
-});
+Route::get('Registros','RegistrosCapturadosController@registros')->name('RegistrosCapturados');
+Route::get('Captura','CapturaDatosController@captura')->name('CapturaDatos');

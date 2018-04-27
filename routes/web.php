@@ -15,9 +15,5 @@ Route::get('/', function () {
     return view('principal.layout');
 });
 
-Route::get('/', function () {
-    return "hola esto es un nuevo saludo";
-});
-
 require_once "rutas.php";
 require_once "ruta2.php";
