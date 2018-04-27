@@ -446,6 +446,9 @@ desired effect
 <!-- Bootstrap 3.3.7 -->
 <script src="adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
+<!-- DataTables -->
+<script src="adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="adminlte/dist/js/adminlte.min.js"></script>
 <script>
     $(document).ready(function () {
