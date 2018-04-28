@@ -29,8 +29,8 @@ class CreateTableMovexpo extends Migration
             $table->string('cmail'); 
             $table->string('cid_destin'); 
             $table->string('destino'); 
-            $table->integer('nid_depto');
-            $table->integer('nid_area');
+                $table->integer('nid_depto');
+                $table->integer('nid_area');
             $table->date('fsalida');
             $table->integer('numpax');
             $table->text('observa');
@@ -43,18 +43,18 @@ class CreateTableMovexpo extends Migration
             $table->string('cid_emplea'); 
             $table->string('ciniciales'); 
             $table->string('nvendedor'); 
-            $table->string('mailejec'); 
-            $table->string('status'); 
-            $table->string('motivocanc');  
-            $table->string('quiencancela'); 
-            $table->string('cid_cotiza'); 
-            $table->string('cid_expedi'); 
-            $table->string('baja');
-            $table->date('tproceso');
-            $table->date('fecha');
-            $table->string('aplic');
-            $table->integer('archivo');
-            $table->string('lamm');
+            $table->string('mailejec');
+            $table->string('status');
+            $table->string('motivocanc')->nullable();
+            $table->string('quiencancela')->nullable(); 
+            $table->string('cid_cotiza')->nullable(); 
+            $table->string('cid_expedi')->nullable(); 
+            $table->string('baja')->nullable();
+            $table->date('tproceso')->nullable();
+            $table->date('fecha')->nullable();
+            $table->string('aplic')->nullable();
+            $table->integer('archivo')->nullable();
+            $table->string('lamm')->nullable();
         });
     }
 

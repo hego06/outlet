@@ -266,8 +266,8 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="{{route('CapturaDatos')}}"><i class="fa fa-link"></i> <span>Registro de Información</span></a></li>
-        <li><a href="{{route('RegistrosCapturados')}}"><i class="fa fa-link"></i> <span>Registros Capturados</span></a></li>
+        <li class="active"><a href="{{route('clientes_expo.store')}}"><i class="fa fa-link"></i> <span>Registro de Información</span></a></li>
+        <li><a href="{{route('clientes_expo.index')}}"><i class="fa fa-link"></i> <span>Registros Capturados</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">

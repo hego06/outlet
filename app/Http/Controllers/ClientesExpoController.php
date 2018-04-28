@@ -14,7 +14,9 @@ class ClientesExpoController extends Controller
      */
     public function index()
     {
-        //
+        $registros = ClientesExpo::all();
+
+        return view('principal.registros_capturados',compact('$registros'));
     }
 
     /**
@@ -24,7 +26,9 @@ class ClientesExpoController extends Controller
      */
     public function create()
     {
-        //
+        $now = new \DateTime();
+        $fecha=$now->format('Y-n-d');
+        return view('principal.captura_datos', compact('fecha'));
     }
 
     /**
@@ -35,7 +39,23 @@ class ClientesExpoController extends Controller
      */
     public function store(Request $request)
     {
-        $post = ClientesExpo::create($request->all());
+        $datos = $request->all();
+        $datos['folexpo'] = "0001";
+        $datos['fechahora'] = "2017-05-11 10:18:56";
+        $datos['hora'] = "10:18:56";
+        $datos['fecha'] = "2017-05-11";
+        $datos['ftc'] = "2017-05-11";
+        $datos['nid_depto'] = "2";
+        $datos['nid_area'] = "1";
+        $datos['ftc'] = "2017-05-11";
+        $datos['tc'] = "18.90";
+        $datos['status'] = "x";
+        $datos['cid_emplea'] = "1";
+        $datos['ciniciales'] = "mx";
+        $datos['nvendedor'] = "nombre del vendedor";
+        $datos['mailejec'] = "email ejecutivo";
+
+        $cliente = ClientesExpo::create($datos);
 
         return "nuevo cliente registrado";
     }
