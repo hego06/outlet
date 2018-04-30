@@ -40,6 +40,11 @@ class ClientesExpoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->all();
+        if(isset($datos['status'])){
+            $datos['status'] = "X";
+        }else{
+            $datos['status'] = "E";
+        }
         $datos['folexpo'] = "0001";
         $datos['fechahora'] = "2017-05-11 10:18:56";
         $datos['hora'] = "10:18:56";
@@ -49,7 +54,6 @@ class ClientesExpoController extends Controller
         $datos['nid_area'] = "1";
         $datos['ftc'] = "2017-05-11";
         $datos['tc'] = "18.90";
-        $datos['status'] = "x";
         $datos['cid_emplea'] = "1";
         $datos['ciniciales'] = "mx";
         $datos['nvendedor'] = "nombre del vendedor";
@@ -57,7 +61,8 @@ class ClientesExpoController extends Controller
 
         $cliente = ClientesExpo::create($datos);
 
-        return "nuevo cliente registrado";
+        return redirect()->action('ClientesExpoController@index')->with('flash_message', 'Registro Capturado');
+
     }
 
     /**
