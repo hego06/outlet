@@ -1,6 +1,12 @@
 @extends('principal.layout')
-@section('title', 'CAPTURA DE DATOS')
+@section('title', 'TIPO DE CAMBIO')
 @section('content')
+    @if(Session::has('mensaje1'))
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> {{Session::get('mensaje1')}}
+        </div>
+    @endif
     <script
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
