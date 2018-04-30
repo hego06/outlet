@@ -1,5 +1,9 @@
 @extends('principal.layout')
 @section('title', 'REGISTROS CAPTURADOS')
+@push('styles')
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    @endpush
 @section('content')
     @if(Session::has('flash_message'))
         <div class="alert alert-success alert-dismissible fade in">
@@ -14,20 +18,41 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <!-- Date range -->
+                <div class="form-group col-sm-6">
+                    <label>Rango de Fechas: </label>
+
+                    <div class="input-group ">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="text" class="form-control pull-right" id="rangofechas">
+                    </div>
+                    <!-- /.input group -->
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Ejecutivo: </label>
+
+                        <select class="form-control" id="ejecutivo" name="ejecutivo">
+                            <option value="0">Selecciona Ejecutivo</option>
+                            @foreach($ejecutivos as $ejecutivo)
+                                $ide=$ejecutivo->id;
+                                $ej=$ejecutivo->name;
+                            <option value="{{$ide}}">{{$ej}}</option>
+                                @endforeach
+                        </select>
+
+                </div>
+            </div>
+        </div>
     <div class="box">
             <!-- <div class="box-header">
               <h3 class="box-title">Data Table With Full Features</h3>
             </div> -->
             <!-- /.box-header -->
             <div class="box-body">
-            <div class="row">
-              <div class="col-xs-6">
-                <h1>Calendario</h1>
-              </div>
-              <div class="col-xs-6">
-                <h1>Agente de ventas</h1>
-              </div>
-            </div>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -83,7 +108,12 @@
               "next": "Siguiente"
             }
         }
-    })
+    });
+    $('#rangofechas').daterangepicker()
   });
+
 </script>
+<!-- date-range-picker -->
+<script src="adminlte/bower_components/moment/min/moment.min.js"></script>
+<script src="adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 @endpush
