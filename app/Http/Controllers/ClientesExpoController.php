@@ -57,7 +57,6 @@ class ClientesExpoController extends Controller
         $datos['ciniciales'] = "mx";
         $datos['nvendedor'] = "nombre del vendedor";
         $datos['mailejec'] = "email ejecutivo";
-
         $cliente = ClientesExpo::create($datos);
 
         return redirect()->action('ClientesExpoController@index')->with('flash_message', 'Registro Capturado');
