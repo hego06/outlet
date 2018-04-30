@@ -30,7 +30,7 @@
 
                     <div class="box-footer">
                     <div>
-                        <button>Guardar</button>
+                        <button class="btn btn-primary">Guardar</button>
                     </div>
                     </div>
                 </div>

@@ -33,12 +33,12 @@ class TipoCambioController extends Controller
         if(!$tc_actual->isEmpty())
         {
             TipoCambio::create($datos);
-            return 'crado';
+            return redirect()->back()->with('mensaje1', 'Tipo de Cambio Creado') ;
         }
         else
         {
             TipoCambio::where('fecha',$fechaHoy)->update(['t_cambio'=>$datos['t_cambio']]);
-            return 'actualizado';
+            return redirect()->back()->with('mensaje1', 'Tipo de Cambio Actualizado') ;
         }
     }
 
