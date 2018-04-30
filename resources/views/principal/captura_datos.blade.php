@@ -1,5 +1,65 @@
 @extends('principal.layout')
 @section('title', 'CAPTURA DE DATOS')
+@push('styles')
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            top: 10px;
+            width: 45px;
+            height: 23px;
+        }
+
+        .switch input {display:none;}
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0px;
+            left: 0px;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+    @endpush
 @section('content')
     <script
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
@@ -10,15 +70,33 @@
         <form role="form" action="{{route('clientes_expo.store')}}" method="post">
             @csrf
                 <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-danger">
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="form-group">
+                        <label class="col-sm-5">Tipo de Cambio: </label>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input type="checkbox" id="cotizacion" name="status" checked>
+                                <span class="slider round"></span>
+                            </label>
+                            <label>GUARDAR REGISTRO COMO COTIZACIÓN</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-5">
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Datos del Cliente</h3>
                 </div>
-                <!-- /.box-header -->
-                <!-- form start -->
-
                 <div class="box-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" >Nombre(s)</label>
@@ -64,8 +142,11 @@
                         <label for="exampleInputPassword1" class="col-sm-4">Tipo</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="Tipo" name="ctipotel">
-                                <option>option 1</option>
-                                <option>option 2</option>
+                                <option value="CELULAR">	CELULAR	</option>
+                                <option value="HOGAR">		HOGAR	</option>
+                                <option value="OFICINA">	OFICINA	</option>
+                                <option value="RADIO">		RADIO	</option>
+                                <option value="RECADOS">	RECADOS	</option>
                                
                             </select>
                         </div>
@@ -176,7 +257,8 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" >Moneda del Paquete</label>
-                                            <input type="text" class="form-control" id="MonedaPack" name="monedap" placeholder="USD">
+                                            <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD">
+                                            <input type="text" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -191,8 +273,8 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
                                             <select class="form-control" id="MonedaAnt" name="moneda">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
+                                                <option value="MXN">PESOS - MXN</option>
+                                                <option value="USD">DÓLARES - USD</option>
                                             </select>
                                     </div>
                                 </div>
@@ -201,7 +283,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="Letra" name="letras" placeholder="" hidden="hidden" value="importe con letra">
+                                    <input type="text" readonly  class="form-control" id="Letra" name="letras" value="letra">
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -211,7 +293,7 @@
                         </div>
                      </div>
                 <div>
-                    <button>Guardar</button>
+                    <button class="btn btn-primary">Guardar</button>
                 </div>
             </div>
 
@@ -219,3 +301,17 @@
         </div>
     </section>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function(){
+
+            $('#Anticipo').click(function () {
+
+                var num = $('input:text[name=impteapag]').val();
+
+
+                $('#Letras').val($("#Anticipo").val());
+            })
+        });
+    </script>
+    @endpush

@@ -396,9 +396,10 @@ desired effect
      user experience. -->
 <script>
   $(function () {
-  $('#datepicker').datepicker({
-      startDate: 'd/n/Y',
-      autoclose: true
+      $('#Fsalida').datepicker({
+          startDate: 'd/n/Y',
+          autoclose: true
+      })
   });
 </script>
 @stack('scripts')

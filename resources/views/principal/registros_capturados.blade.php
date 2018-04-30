@@ -1,6 +1,12 @@
 @extends('principal.layout')
 @section('title', 'REGISTROS CAPTURADOS')
 @section('content')
+    @if(Session::has('flash_message'))
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> {{Session::get('flash_message')}}
+        </div>
+    @endif
 <div class="row">
   <div class="col-xs-12">
     
