@@ -219,12 +219,4 @@
             </form>
         </div>
     </section>
-
-    <script src="../../bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript">
-        $('#datepicker').datepicker({
-            startDate: 'd/n/Y',
-            autoclose: true
-        });
-    </script>
 @endsection
