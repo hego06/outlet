@@ -1,5 +1,19 @@
 @extends('principal.layout')
-@section('title', 'CAPTURA DE DATOS')
+@switch($action)
+    @case (1)
+    {{$titulo="CAPTURA DE DATOS"}}
+    {{$estado=" "}}
+    @break;
+    @case (2)
+    {{$titulo="EDITAR DATOS"}}
+
+    @break;
+    @case (3)
+    {{$titulo="VER DATOS"}}
+    {{$estado="readonly"}}
+    @break;
+    @endswitch
+@section('title', $titulo)
 @push('styles')
     <style>
         .switch {
@@ -101,7 +115,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" >Nombre(s)</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="norberto">
+                            <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="norberto" {{$estado}}>
                         </div>
                     </div>
                     <br><br>

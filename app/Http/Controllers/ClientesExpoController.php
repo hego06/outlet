@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ClientesExpo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientesExpoController extends Controller
 {
@@ -15,7 +16,8 @@ class ClientesExpoController extends Controller
     public function index()
     {
         $registros = ClientesExpo::all();
-        return view('principal.registros_capturados',compact('registros'));
+        $ejecutivos= DB::table('users')->get();
+        return view('principal.registros_capturados',compact('registros','ejecutivos'));
     }
 
     /**
@@ -27,7 +29,8 @@ class ClientesExpoController extends Controller
     {
         $now = new \DateTime();
         $fecha=$now->format('Y-n-d');
-        return view('principal.captura_datos', compact('fecha'));
+        $action=1;
+        return view('principal.captura_datos', compact('fecha','action'));
     }
 
     /**
@@ -61,6 +64,21 @@ class ClientesExpoController extends Controller
 
         return redirect()->action('ClientesExpoController@index')->with('flash_message', 'Registro Capturado');
 
+    }
+
+    public function create2($id)
+    {
+        $action=3;
+        $now = new \DateTime();
+        $fecha=$now->format('Y-n-d');
+        return view('principal.captura_datos', compact('fecha','action', 'id'));
+    }
+    public function verRegistro($id){
+        $now = new \DateTime();
+        $fecha=$now->format('Y-n-d');
+        $action=3;
+
+        return view('principal.captura_datos', compact('fecha','action'));
     }
 
     /**

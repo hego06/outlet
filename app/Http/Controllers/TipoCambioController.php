@@ -30,15 +30,15 @@ class TipoCambioController extends Controller
         $tc_actual = TipoCambio::where('fecha', Carbon::now())->get();
         $datos = $request->all();
         $datos['fecha'] = $fechaHoy;
-        if(!$tc_actual->isEmpty())
+        if($tc_actual->isEmpty())
         {
             TipoCambio::create($datos);
-            return 'crado';
+            return redirect()->back()->with('mensaje1', 'Tipo de Cambio Creado') ;
         }
         else
         {
             TipoCambio::where('fecha',$fechaHoy)->update(['t_cambio'=>$datos['t_cambio']]);
-            return 'actualizado';
+            return redirect()->back()->with('mensaje1', 'Tipo de Cambio Actualizado') ;
         }
     }
 
