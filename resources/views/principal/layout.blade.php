@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="adminlte/dist/css/skins/skin-blue.min.css">
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-
+    @stack('styles')
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -418,24 +418,11 @@ desired effect
      user experience. -->
 <script>
   $(function () {
-    $('#example1').DataTable({
-      "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron registros",
-            "info": "Pagina _PAGE_ de _PAGES_",
-            "infoFiltered": "(filtered from _MAX_ total records)",
-            "sSearch": "Buscar",
-            "paginate": {
-              "previous": "Anterior",
-              "next": "Siguiente"
-            }
-        }
-    })
-  });
   $('#datepicker').datepicker({
       startDate: 'd/n/Y',
       autoclose: true
   });
 </script>
+@stack('scripts')
 </body>
 </html>

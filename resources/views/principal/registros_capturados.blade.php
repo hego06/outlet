@@ -58,3 +58,22 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+  $(function () {
+    $('#example1').DataTable({
+      "language": {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontraron registros",
+            "info": "Pagina _PAGE_ de _PAGES_",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "sSearch": "Buscar",
+            "paginate": {
+              "previous": "Anterior",
+              "next": "Siguiente"
+            }
+        }
+    })
+  });
+</script>
+@endpush
