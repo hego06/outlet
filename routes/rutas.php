@@ -12,3 +12,9 @@ Route::get('nuevo-tipo-cambio','TipoCambioController@create')->name('tipo_cambio
 Route::post('nuevo-tipo-cambio','TipoCambioController@store')->name('tipo_cambio.store');
 Route::post('update-tipo-cambio','TipoCambioController@update')->name('tipo_cambio.update');
 Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.show');
+
+//rutas procesa pago
+
+
+Route::get('procesa-pago/{cliente}','ProcesaPagoController@show')->name('procesa_pago.show');
+
