@@ -15,8 +15,7 @@ class ClientesExpoController extends Controller
     public function index()
     {
         $registros = ClientesExpo::all();
-
-        return view('principal.registros_capturados',compact('$registros'));
+        return view('principal.registros_capturados',compact('registros'));
     }
 
     /**

@@ -15,7 +15,7 @@ class CrateTipocambioTable extends Migration
     {
         Schema::create('tipocambio', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestap('fecha');
+            $table->date('fecha');
             $table->float('t_cambio');
         });
     }

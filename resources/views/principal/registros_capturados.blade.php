@@ -37,19 +37,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                @foreach($registros as $registro)
+                  <tr>
+                    <td>{{$registro->id}}</td>
+                    <td></td>
+                    <td>{{Auth()->User()->name}}</td>
+                    <td>{{$registro->fechahora}}</td>
+                    <td>{{$registro->monedap}}</td>
+                    <td>{{$registro->status}}</td>
+                    <td>{{$registro->cnombre}} {{$registro->capellidop}} {{$registro->capellidom}}</td>
+                    <td>{{$registro->destino}}</td>
+                    <td>
+                        <a href="{{route('clientes_expo.edit', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
+                        <a href="{{route('clientes_expo.show',$registro)}}" class="btn btn-xs btn-info" target="_blank"><i class="fa fa-eye"></i></a>
+                    </td>
+
+                  </tr>
+                @endforeach
                 </tbody>
               </table>
             </div>

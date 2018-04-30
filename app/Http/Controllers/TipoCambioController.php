@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\TipoCambio;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class TipoCambioController extends Controller
      */
     public function create()
     {
-        //
+        return view('principal.captura_tipo_cambio');
     }
 
     /**
@@ -25,7 +26,20 @@ class TipoCambioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fechaHoy = Carbon::now()->toDateString();
+        $tc_actual = TipoCambio::where('fecha', Carbon::now())->get();
+        $datos = $request->all();
+        $datos['fecha'] = $fechaHoy;
+        if(!$tc_actual->isEmpty())
+        {
+            TipoCambio::create($datos);
+            return 'crado';
+        }
+        else
+        {
+            TipoCambio::where('fecha',$fechaHoy)->update(['t_cambio'=>$datos['t_cambio']]);
+            return 'actualizado';
+        }
     }
 
     /**
@@ -36,7 +50,8 @@ class TipoCambioController extends Controller
      */
     public function show(TipoCambio $tipoCambio)
     {
-        //
+        $tipoCambio = TipoCambio::where('fecha',Carbon::now())->get();
+        return $tipoCambio;
     }
 
     /**

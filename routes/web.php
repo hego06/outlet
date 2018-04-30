@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('principal.layout');
+
+Route::group(['middleware' => 'auth'],function(){
+    require_once "rutas.php";
+    require_once "ruta2.php";
+
+    Route::get('/', function () {
+        return view('principal.layout');
+    });
 });
 
-require_once "rutas.php";
-require_once "ruta2.php";
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
