@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ClientesExpo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientesExpoController extends Controller
 {
@@ -15,7 +16,8 @@ class ClientesExpoController extends Controller
     public function index()
     {
         $registros = ClientesExpo::all();
-        return view('principal.registros_capturados',compact('registros'));
+        $ejecutivos= DB::table('users')->get();
+        return view('principal.registros_capturados',compact('registros','ejecutivos'));
     }
 
     /**

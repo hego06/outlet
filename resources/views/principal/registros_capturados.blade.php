@@ -38,9 +38,7 @@
                         <select class="form-control" id="ejecutivo" name="ejecutivo">
                             <option value="0">Selecciona Ejecutivo</option>
                             @foreach($ejecutivos as $ejecutivo)
-                                $ide=$ejecutivo->id;
-                                $ej=$ejecutivo->name;
-                            <option value="{{$ide}}">{{$ej}}</option>
+                            <option value="{{$ejecutivo->id}}">{{$ejecutivo->name}}</option>
                                 @endforeach
                         </select>
 
