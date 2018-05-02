@@ -12,16 +12,17 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $users = array(
-            ['Norberto Hernandez','norberto@examle.com'],
-            ['Laura Hernandez','laura@examle.com'],
-            ['admin','admin@example.com']
+            ['Norberto Hernandez','NHG','norberto@examle.com'],
+            ['Laura Hernandez','LHG','laura@examle.com'],
+            ['admin','AAA','admin@example.com']
         );
 
         foreach($users as $user)
         {
             DB::table('users')->insert([
-                'name' => $user[0],
-                'email' => $user[1],
+                'nvendedor' => $user[0],
+                'ciniciales' => $user[1],
+                'email' => $user[2],
                 'password' => bcrypt('123')
             ]);
         }
