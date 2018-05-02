@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClientesExpo extends Model
 {
-    protected $table = 'expo_mov';
+    protected $table = 'mov_expo';
     protected $guarded = []; 
 
     public $timestamps = false;

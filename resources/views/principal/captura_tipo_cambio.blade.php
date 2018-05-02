@@ -25,7 +25,7 @@
                         <label for="exampleInputPassword1" class="col-sm-4">Tipo de cambio</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                            <input type="number" class="form-control" id="tipocambio" name="tcambio" placeholder="Tipo de cambio actual" required="required" value="18.90">
+                            <input type="number" class="form-control" id="tipocambio" name="t_cambio" placeholder="Tipo de cambio actual" required="required" value="18.90">
                             </div>
                         </div>
                     </div><br><br>

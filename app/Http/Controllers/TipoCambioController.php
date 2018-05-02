@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Tcambio;
 use Carbon\Carbon;
+use App\TipoCambio;
 use Illuminate\Http\Request;
 
 class TipoCambioController extends Controller
@@ -27,17 +27,17 @@ class TipoCambioController extends Controller
     public function store(Request $request)
     {
         $fechaHoy = Carbon::now()->toDateString();
-        $tc_actual = Tcambio::where('fecha', Carbon::now())->get();
+        $tc_actual = TipoCambio::where('fecha', Carbon::now())->get();
         $datos = $request->all();
         $datos['fecha'] = $fechaHoy;
         if($tc_actual->isEmpty())
         {
-            Tcambio::create($datos);
+            TipoCambio::create($datos);
             return redirect()->back()->with('mensaje1', 'Tipo de Cambio Creado') ;
         }
         else
         {
-            Tcambio::where('fecha',$fechaHoy)->update(['tcambio'=>$datos['tcambio']]);
+            TipoCambio::where('fecha',$fechaHoy)->update(['t_cambio'=>$datos['t_cambio']]);
             return redirect()->back()->with('mensaje1', 'Tipo de Cambio Actualizado') ;
         }
     }
