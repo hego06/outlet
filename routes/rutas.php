@@ -17,4 +17,4 @@ Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.sh
 
 
 Route::get('procesa-pago/{cliente}','ProcesaPagoController@show')->name('procesa_pago.show');
-
+Route::get('solicitudes-pago','ProcesaPagoController@index')->name('solicitudes_pago.index');
