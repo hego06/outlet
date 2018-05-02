@@ -1,13 +1,11 @@
 @extends('principal.layout')
-@section('title', 'PROCESA PAGOS')
+@section('title', 'PROCESAR RECIBOS DE PAGOS')
 @section('content')
-    @if($cliente->cid_expedi=='' and $cliente->status !='L')
 
-    @endif
 <section class="content">
     <div class="row">
         <div class="col-md-6">
-            <div class="box box-primary">
+            <div class="box box-info">
                 <div class="box-header">
                     <h3 class="box-title">Datos del cliente</h3>
                 </div>
@@ -91,19 +89,26 @@
                 <div class="box-body no-padding">
                 <table class="table table-condensed">
                     <tbody>
-                    <tr>
-                        <td>
-                            <button class="btn btn-warning">Generar liga bancaria</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-info">Generar expediente</button>
-                        </td>
-                    </tr>
+
                     <tr>
                         <th>Folio:</th>
                         <td>{{$cliente->folexpo}}</td>
-                        <th>Expediente:</th>
-                        <td>{{$cliente->cid_expedi}}</td>
+                        @if($cliente->cid_expedi=='' and $cliente->status !='L')
+                            <td>
+                                <button class="btn btn-warning btn-sm">Generar liga bancaria</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-info btn-sm">Generar expediente</button>
+                            </td>
+                            @endif
+                        @if($cliente->cid_expedi=='' and $cliente->status =='L')
+                            <td><span class='text-danger'>LIGA BANCARIA</span></td>
+                            @endif
+                        @if($cliente->cid_expedi!='')
+                            <th>Expediente:</th>
+                            <td>{{$cliente->cid_expedi}}</td>
+                            @endif
+
                     </tr>
                     <tr>
                         <th>Tipo cambio:</th>
@@ -115,53 +120,58 @@
                 </table>
                 </div>
             </div>
-            <div class="box box-info">
-                <div class="box-header">
-                    <h3 class="box-title">Detalles movimiento</h3>
+            @if($cliente->cid_expedi!='')
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Detalles movimiento</h3>
+                    </div>
+                    <div class="box-body no-padding">
+                        <table class="table table-condensed">
+                            <tbody>
+                            <tr>
+                                <th>Solicitud</th>
+                                <th>Emitida</th>
+                                <th>Recibo</th>
+                                <th>Importe</th>
+                                <th>Moneda</th>
+                                <th>Descargar</th>
+                                <th>Cancelar</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="box-body no-padding">
-                    <table class="table table-condensed">
-                        <tbody>
-                        <tr>
-                            <th>Solicitud</th>
-                            <th>Emitida</th>
-                            <th>Recibo</th>
-                            <th>Importe</th>
-                            <th>Moneda</th>
-                            <th>Descargar</th>
-                            <th>Cancelar</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    </table>
+            @endif
+            @if($cliente->cid_expedi=='' and $cliente->status !='L')
+                @else
+                <div class="row">
+                    <div class="col-sm-6">
+                    <div class="box box-success">
+                    <div class="box-body no-padding">
+                        <table class="table table-condensed">
+                            <tbody>
+                            <tr>
+                                <th>Modo de pago</th>
+                            </tr>
+                            <tr>
+                                <td><a href=""><i class="fa fa-money fa-3x fa-lg" aria-hidden="true"></i></a></td>
+                                <td><a href=""><i class="fa fa-credit-card fa-3x fa-lg" aria-hidden="true"></i></a></td>
+                            </tr>
+
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                <div class="box box-success">
-                <div class="box-body no-padding">
-                    <table class="table table-condensed">
-                        <tbody>
-                        <tr>
-                            <th>Modo de pago</th>
-                        </tr>
-                        <tr>
-                            <td><a href=""><i class="fa fa-money fa-3x fa-lg" aria-hidden="true"></i></a></td>
-                            <td><a href=""><i class="fa fa-credit-card fa-3x fa-lg" aria-hidden="true"></i></a></td>
-                        </tr>
-                        
-                    </tbody>
-                    </table>
-                </div>
-            </div>
+            @endif
                 </div>
                 <div class="col-sm-6">
                 <div class="box box-danger">
