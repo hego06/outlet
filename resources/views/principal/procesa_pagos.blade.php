@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="box box-info">
-                <div class="box-header">
+                <div class="box-header with-border">
                     <h3 class="box-title">Datos del cliente</h3>
                 </div>
                 <div class="box-body no-padding">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="box box-info">
-                <div class="box-header">
+                <div class="box-header with-border">
                     <h3 class="box-title">Datos del paquete</h3>
                 </div>
                 <div class="box-body no-padding">
@@ -70,7 +70,7 @@
 
         <div class="col-md-6">
             <div class="box box-warning">
-                <div class="box-header">
+                <div class="box-header with-border">
                     <h3 class="box-title">A pagar</h3>
                 </div>
                 <div class="box-body no-padding">
@@ -152,7 +152,7 @@
                                     <tr>
                                         <td align="center">
                                             <div class="col-sm-6">
-                                                <a href=""><i class="fa fa-money fa-2x fa-sm" aria-hidden="true"></i></a>
+                                                <a href="{{route('efectivo_pago.create',$cliente->folexpo)}}"><i class="fa fa-money fa-2x fa-sm" aria-hidden="true"></i></a>
                                             </div>
                                             <div class="col-sm-6">
                                                 <a href=""><i class="fa fa-credit-card fa-2x fa-sm" aria-hidden="true"></i></a>
