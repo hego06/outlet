@@ -50,7 +50,7 @@ class ClientesExpoController extends Controller
         }else{
             $datos['status'] = "E";
         }
-        
+
         $datos['folexpo'] = Tnumeracion::select('nnumero')->where('cconcepto','FOLIO')->get()->pluck('nnumero')[0]+1;
         $datos['fechahora'] =  date('Y-m-d h:i:s', time());
         $datos['hora'] = date('h:i:s', time());
@@ -77,8 +77,10 @@ class ClientesExpoController extends Controller
      * @param  \App\ClientesExpo  $clientesExpo
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientesExpo $cliente)
+    public function show($fol)
     {
+        $cliente = ClientesExpo::where('folexpo',$fol)->first();
+
         return view('principal.show_cliente', compact('cliente'));
     }
 
