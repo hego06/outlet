@@ -2,8 +2,8 @@
 @section('title', 'PROCESA PAGOS')
 @section('content')
     @if($cliente->cid_expedi=='' and $cliente->status !='L')
-        
-        @endif
+
+    @endif
 <section class="content">
     <div class="row">
         <div class="col-md-6">
