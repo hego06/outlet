@@ -16,5 +16,12 @@ Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.sh
 //rutas procesa pago
 
 
-Route::get('procesa-pago','ProcesaPagoController@show')->name('procesa_pago.show');
+Route::get('procesa-pago/{registro}','ProcesaPagoController@show')->name('procesa_pago.show');
 Route::get('solicitudes-pago','ProcesaPagoController@index')->name('solicitudes_pago.index');
+
+//rutas pago en efectivo
+Route::get('efectivo-pago/{registro}','PagoEfectivoController@create')->name('efectivo_pago.create');
+Route::post('efectivo-pagos','PagoEfectivoController@store')->name('pago_efectivo.store');
+
+//rutas pago con tarjeta
+Route::get('tarjeta-pago/{registro}','PagoTarjetaController@create')->name('tarjeta_pago.create');

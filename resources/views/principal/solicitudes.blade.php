@@ -72,7 +72,7 @@
                                 <td>{{$registro->cnombre}} {{$registro->capellidop}} {{$registro->capellidom}}</td>
                                 <td>{{$registro->destino}}</td>
                                 <td>
-                                    <a href="{{route('procesa_pago.show', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-suitcase"></i></a>
+                                    <a href="{{route('procesa_pago.show', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-suitcase"></i></a>
                                     </td>
 
                             </tr>
