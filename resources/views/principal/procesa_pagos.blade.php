@@ -1,6 +1,9 @@
 @extends('principal.layout')
 @section('title', 'PROCESA PAGOS')
 @section('content')
+    @if($cliente->cid_expedi=='' and $cliente->status !='L')
+        
+        @endif
 <section class="content">
     <div class="row">
         <div class="col-md-6">
@@ -32,7 +35,7 @@
                 </tbody></table>
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="box box-info">
                 <div class="box-header">
                     <h3 class="box-title">Datos del paquete</h3>
                 </div>
@@ -63,7 +66,7 @@
                     </table>
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="box box-info">
                 <div class="box-body no-padding">
                     <table class="table table-condensed">
                         <tbody>
@@ -81,13 +84,21 @@
         </div>
 
         <div class="col-md-6">
-            <div class="box box-primary">
+            <div class="box box-warning">
                 <div class="box-header">
                     <h3 class="box-title">A pagar</h3>
                 </div>
                 <div class="box-body no-padding">
                 <table class="table table-condensed">
                     <tbody>
+                    <tr>
+                        <td>
+                            <button class="btn btn-warning">Generar liga bancaria</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-info">Generar expediente</button>
+                        </td>
+                    </tr>
                     <tr>
                         <th>Folio:</th>
                         <td>{{$cliente->folexpo}}</td>
@@ -104,7 +115,7 @@
                 </table>
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="box box-info">
                 <div class="box-header">
                     <h3 class="box-title">Detalles movimiento</h3>
                 </div>
@@ -135,7 +146,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                <div class="box box-primary">
+                <div class="box box-success">
                 <div class="box-body no-padding">
                     <table class="table table-condensed">
                         <tbody>
@@ -153,7 +164,7 @@
             </div>
                 </div>
                 <div class="col-sm-6">
-                <div class="box box-primary">
+                <div class="box box-danger">
                 <div class="box-body no-padding">
                     <table class="table table-condensed">
                         <tbody>
