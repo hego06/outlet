@@ -16,8 +16,7 @@ class ProcesaPagoController extends Controller
     public function index()
     {
         $registros = ClientesExpo::all();
-        $cliente= DB::table('users')->get();
-        return view('principal.solicitudes',compact('registros','ejecutivos'));
+        return view('principal.solicitudes',compact('registros'));
     }
     public function create()
     {

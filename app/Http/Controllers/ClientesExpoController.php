@@ -47,7 +47,7 @@ class ClientesExpoController extends Controller
         }else{
             $datos['status'] = "E";
         }
-        $datos['folexpo'] = "0001";
+        $datos['folexpo'] = "1001";
         $datos['fechahora'] = "2017-05-11 10:18:56";
         $datos['hora'] = "10:18:56";
         $datos['fecha'] = "2017-05-11";

@@ -68,8 +68,8 @@
                 <tbody>
                 @foreach($registros as $registro)
                   <tr>
-                    <td>{{$registro->id}}</td>
-                    <td></td>
+                    <td>{{$registro->folexpo}}</td>
+                    <td>{{$registro->cid_expedi}}</td>
                     <td>{{Auth()->User()->name}}</td>
                     <td>{{$registro->fechahora}}</td>
                     <td>{{$registro->monedap}}</td>
