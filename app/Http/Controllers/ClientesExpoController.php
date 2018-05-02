@@ -50,6 +50,7 @@ class ClientesExpoController extends Controller
         }else{
             $datos['status'] = "E";
         }
+<<<<<<< HEAD
         $datos['folexpo'] = Tnumeracion::select('nnumero')->where('cconcepto','FOLIO')->get()->pluck('nnumero')[0]+1;
         $datos['fechahora'] =  date('Y-m-d h:i:s', time());
         $datos['hora'] = date('h:i:s', time());
@@ -64,6 +65,21 @@ class ClientesExpoController extends Controller
         $datos['nvendedor'] = Auth()->user()->nvendedor;
         $datos['mailejec'] = Auth()->user()->email;
 
+=======
+        $datos['folexpo'] = "1001";
+        $datos['fechahora'] = "2017-05-11 10:18:56";
+        $datos['hora'] = "10:18:56";
+        $datos['fecha'] = "2017-05-11";
+        $datos['ftc'] = "2017-05-11";
+        $datos['nid_depto'] = "2";
+        $datos['nid_area'] = "1";
+        $datos['ftc'] = "2017-05-11";
+        $datos['tc'] = "18.90";
+        $datos['cid_emplea'] = "1";
+        $datos['ciniciales'] = "mx";
+        $datos['nvendedor'] = "nombre del vendedor";
+        $datos['mailejec'] = "email ejecutivo";
+>>>>>>> 225c722731177e1f50756f24fbb8624ed1f18e11
         $cliente = ClientesExpo::create($datos);
 
         Tnumeracion::where('cconcepto','FOLIO')->update(['nnumero'=>$datos['folexpo']]);
@@ -72,30 +88,15 @@ class ClientesExpoController extends Controller
 
     }
 
-    public function create2($id)
-    {
-        $action=3;
-        $now = new \DateTime();
-        $fecha=$now->format('Y-n-d');
-        return view('principal.captura_datos', compact('fecha','action', 'id'));
-    }
-    public function verRegistro($id){
-        $now = new \DateTime();
-        $fecha=$now->format('Y-n-d');
-        $action=3;
-
-        return view('principal.captura_datos', compact('fecha','action'));
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\ClientesExpo  $clientesExpo
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientesExpo $clientesExpo)
+    public function show(ClientesExpo $cliente)
     {
-        //
+        return view('principal.show_cliente', compact('cliente'));
     }
 
     /**

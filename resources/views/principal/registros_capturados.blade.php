@@ -68,8 +68,8 @@
                 <tbody>
                 @foreach($registros as $registro)
                   <tr>
-                    <td>{{$registro->id}}</td>
-                    <td></td>
+                    <td>{{$registro->folexpo}}</td>
+                    <td>{{$registro->cid_expedi}}</td>
                     <td>{{Auth()->User()->name}}</td>
                     <td>{{$registro->fechahora}}</td>
                     <td>{{$registro->monedap}}</td>
@@ -78,7 +78,7 @@
                     <td>{{$registro->destino}}</td>
                     <td>
                         <a href="{{route('clientes_expo.edit', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
-                        <a href="{{route('clientes_expo.show',$registro)}}" class="btn btn-xs btn-info" target="_blank"><i class="fa fa-eye"></i></a>
+                        <a href="{{route('clientes_expo.show',$registro)}}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
                         <a href="{{route('procesa_pago.show', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-folder-open"></i></a>
                     </td>
 

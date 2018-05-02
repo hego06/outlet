@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ClientesExpo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProcesaPagoController extends Controller
 {
@@ -12,6 +13,11 @@ class ProcesaPagoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $registros = ClientesExpo::all();
+        return view('principal.solicitudes',compact('registros'));
+    }
     public function create()
     {
         //

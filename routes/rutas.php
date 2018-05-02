@@ -3,7 +3,7 @@
 Route::get('registros','ClientesExpoController@index')->name('clientes_expo.index');
 Route::get('nuevo-registro','ClientesExpoController@create')->name('clientes_expo.create');
 Route::post('nuevo-registro','ClientesExpoController@store')->name('clientes_expo.store');
-Route::get('show-registro/{id}','ClientesExpoController@create2')->name('clientes_expo.show');
+Route::get('show-registro/{registro}','ClientesExpoController@show')->name('clientes_expo.show');
 Route::post('edit-registro','ClientesExpoController@store')->name('clientes_expo.edit');
 
 //Rutas tipo de cambio 
@@ -16,5 +16,5 @@ Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.sh
 //rutas procesa pago
 
 
-Route::get('procesa-pago/{cliente}','ProcesaPagoController@show')->name('procesa_pago.show');
-
+Route::get('procesa-pago','ProcesaPagoController@show')->name('procesa_pago.show');
+Route::get('solicitudes-pago','ProcesaPagoController@index')->name('solicitudes_pago.index');

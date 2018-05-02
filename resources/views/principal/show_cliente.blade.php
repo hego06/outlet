@@ -1,5 +1,5 @@
 @extends('principal.layout')
-@section('title', 'CAPTURA DE DATOS')
+@section('title', 'VER DATOS')
 @push('styles')
     <style>
         .switch {
@@ -101,26 +101,26 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" >Nombre(s)</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="norberto">
+                            <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="{{$cliente->cnombre}}" readonly>
                         </div>
                     </div>
                     <br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" name="capellidop">Apellido Paterno</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="AP" name="capellidop" placeholder="Apellido Paterno" required="required" value="hernandez">
+                            <input type="text" class="form-control" id="AP" name="capellidop" placeholder="Apellido Paterno" required="required" value="{{$cliente->capellidop}}" readonly>
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" >Apellido Materno</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="AM" name="capellidom" placeholder="Apellido Materno" value="gonzalez">
+                            <input type="text" class="form-control" id="AM" name="capellidom" placeholder="Apellido Materno" value="{{$cliente->capellidom}}" readonly>
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4">Lada</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Lada" name="clada" placeholder="Lada" required="required" value="044">
+                            <input type="text" class="form-control" id="Lada" name="clada" placeholder="Lada" required="required" value="{{$cliente->clada}}" readonly>
                         </div>
                     </div><br><br>
                     <div class="form-group">
@@ -128,20 +128,20 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            <input type="tel" class="form-control" id="Tel" name="ctelefono" placeholder="Teléfono" required="required" value="09090">
+                            <input type="tel" class="form-control" id="Tel" name="ctelefono" placeholder="Teléfono" required="required" value="{{$cliente->ctelefono}}" readonly>
                             </div>
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4">Ext.</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="Ext" name="cext" placeholder="Ext" value="89">
+                            <input type="number" class="form-control" id="Ext" name="cext" placeholder="Ext" value="{{$cliente->cext}}" readonly>
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputPassword1" class="col-sm-4">Tipo</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="Tipo" name="ctipotel">
+                            <select class="form-control" id="Tipo" name="ctipotel"  readonly>
                                 <option value="CELULAR">	CELULAR	</option>
                                 <option value="HOGAR">		HOGAR	</option>
                                 <option value="OFICINA">	OFICINA	</option>
@@ -156,7 +156,7 @@
                         <div class="col-sm-8" >
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" id="Email" name="cmail" placeholder="Email" required="required" value="example@ex.com">
+                                <input type="email" class="form-control" id="Email" name="cmail" placeholder="Email" required="required" value="{{$cliente->cmail}}" readonly>
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Clave MT</label>
                                        <div class="input-group">
-                                        <input type="text" class="form-control" id="MT" name="cid_destin" placeholder="MT" value="mt01">
+                                        <input type="text" class="form-control" id="MT" name="cid_destin" placeholder="MT" value="{{$cliente->cid_destin}}" readonly>
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-info btn-flat">
                                                     <i class="fa fa-search"></i>
@@ -196,7 +196,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Destino</label>
 
-                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino" value="malasia">
+                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino" value="{{$cliente->destino}}" readonly>
 
                                 </div>
                             </div>
@@ -210,7 +210,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
-                                        <input type="text" class="input-sm form-control" id="Fsalida" name="fsalida" min="{{$fecha}}" value="{{$fecha}}">
+                                        <input type="text" class="input-sm form-control" id="Fsalida" name="fsalida" value="{{$cliente->fsalida}}" readonly>
                                     </div>
                                 </div>
                                 <!-- /.input group -->
@@ -218,13 +218,13 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">No. Pasajeros</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" id="Nopas" name="numpax" placeholder="No. Pasajeros" min="1" required="required" value="3">
+                                    <input type="number" class="form-control" id="Nopas" name="numpax" placeholder="No. Pasajeros" min="1" required="required" value="{{$cliente->numpax}}" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Comentarios</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa">Esto es un comentario</textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa" value="{{$cliente->observa}}" readonly>Esto es un comentario</textarea>
                                 </div>
                             </div>
                         </div>
@@ -257,12 +257,8 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" >Moneda del Paquete</label>
-                                            <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="USD">
-<<<<<<< HEAD
-                                            <input type="text" class="form-control" placeholder="USD" value="DÓLARES-USD" disabled>
-=======
-                                            <input type="text" class="form-control"  placeholder="USD" value="DÓLARES-USD" disabled>
->>>>>>> 225c722731177e1f50756f24fbb8624ed1f18e11
+                                            <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" readonly>
+                                            <input type="text" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -270,13 +266,13 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe del Anticipo</label>
-                                            <input type="text" class="form-control" id="Anticipo" name="impteapag" placeholder="Anticipo" value="100">
+                                            <input type="text" class="form-control" id="Anticipo" name="impteapag" placeholder="Anticipo" value="100" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
-                                            <select class="form-control" id="MonedaAnt" name="moneda">
+                                            <select class="form-control" id="MonedaAnt" name="moneda" readonly>
                                                 <option value="MXN">PESOS - MXN</option>
                                                 <option value="USD">DÓLARES - USD</option>
                                             </select>
@@ -287,7 +283,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly  class="form-control" id="Letra" name="letras" value="letra">
+                                    <input type="text" readonly  class="form-control" id="Letra" name="letras" value="letra" readonly>
                                 </div>
                             </div>
                             <!-- /.box-body -->
