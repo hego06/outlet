@@ -66,30 +66,15 @@ class ClientesExpoController extends Controller
 
     }
 
-    public function create2($id)
-    {
-        $action=3;
-        $now = new \DateTime();
-        $fecha=$now->format('Y-n-d');
-        return view('principal.captura_datos', compact('fecha','action', 'id'));
-    }
-    public function verRegistro($id){
-        $now = new \DateTime();
-        $fecha=$now->format('Y-n-d');
-        $action=3;
-
-        return view('principal.captura_datos', compact('fecha','action'));
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\ClientesExpo  $clientesExpo
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientesExpo $clientesExpo)
+    public function show(ClientesExpo $cliente)
     {
-        //
+        return view('principal.show_cliente', compact('cliente'));
     }
 
     /**
