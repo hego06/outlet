@@ -50,7 +50,7 @@ class ClientesExpoController extends Controller
         }else{
             $datos['status'] = "E";
         }
-<<<<<<< HEAD
+        
         $datos['folexpo'] = Tnumeracion::select('nnumero')->where('cconcepto','FOLIO')->get()->pluck('nnumero')[0]+1;
         $datos['fechahora'] =  date('Y-m-d h:i:s', time());
         $datos['hora'] = date('h:i:s', time());
@@ -64,23 +64,6 @@ class ClientesExpoController extends Controller
         $datos['ciniciales'] = Auth()->user()->ciniciales;
         $datos['nvendedor'] = Auth()->user()->nvendedor;
         $datos['mailejec'] = Auth()->user()->email;
-
-=======
-        $datos['folexpo'] = "1001";
-        $datos['fechahora'] = "2017-05-11 10:18:56";
-        $datos['hora'] = "10:18:56";
-        $datos['fecha'] = "2017-05-11";
-        $datos['ftc'] = "2017-05-11";
-        $datos['nid_depto'] = "2";
-        $datos['nid_area'] = "1";
-        $datos['ftc'] = "2017-05-11";
-        $datos['tc'] = "18.90";
-        $datos['cid_emplea'] = "1";
-        $datos['ciniciales'] = "mx";
-        $datos['nvendedor'] = "nombre del vendedor";
-        $datos['mailejec'] = "email ejecutivo";
->>>>>>> 225c722731177e1f50756f24fbb8624ed1f18e11
-        $cliente = ClientesExpo::create($datos);
 
         Tnumeracion::where('cconcepto','FOLIO')->update(['nnumero'=>$datos['folexpo']]);
 
