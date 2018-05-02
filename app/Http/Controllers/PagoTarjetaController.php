@@ -5,23 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ClientesExpo;
 use Carbon\Carbon;
-use App\Tcambio;
 use Illuminate\Support\Facades\DB;
-setlocale(LC_TIME, 'es');
 
-class PagoEfectivoController extends Controller
+class PagoTarjetaController extends Controller
 {
     public function create($fol)
     {
         $now = new Carbon();
-        $fecha =strtoupper($now->formatLocalized('%d de %B del %Y, %r hrs'));
         $fecha2 =strtoupper($now->formatLocalized('%d de %B del %Y'));
-
         $cliente = ClientesExpo::where('folexpo',$fol)->first();
-        return view('principal.pago_efectivo',compact('cliente','fecha','fecha2'));
-    }
-    public function store(Request $request)
-    {
-        return view('principal.solicitudes');
+
+        $terminales=DB::table('terminalpv')->where('activo','=','1')->get();
+        $ckbancos=DB::table('ckbancos')->get();
+        return view('principal.pago_tarjeta',compact('cliente','terminales','fecha2','ckbancos'));
     }
 }

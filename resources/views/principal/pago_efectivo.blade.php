@@ -45,6 +45,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="box box-info">
@@ -134,7 +135,7 @@
                 </div>
             </div>
         </div></form>
-    </div>
+
 @endsection
 @push('scripts')
 @endpush

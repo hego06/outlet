@@ -155,7 +155,7 @@
                                                 <a href="{{route('efectivo_pago.create',$cliente->folexpo)}}"><i class="fa fa-money fa-2x fa-sm" aria-hidden="true"></i></a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href=""><i class="fa fa-credit-card fa-2x fa-sm" aria-hidden="true"></i></a>
+                                                <a href="{{route('tarjeta_pago.create',$cliente->folexpo)}}"><i class="fa fa-credit-card fa-2x fa-sm" aria-hidden="true"></i></a>
                                             </div>
                                         </td>
                                     </tr>
