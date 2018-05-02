@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TArea;
 use App\Tcambio;
 use App\Tdestpack;
 use App\Tnumeracion;
@@ -50,20 +51,27 @@ class ClientesExpoController extends Controller
         }else{
             $datos['status'] = "E";
         }
-
         $datos['folexpo'] = Tnumeracion::select('nnumero')->where('cconcepto','FOLIO')->get()->pluck('nnumero')[0]+1;
         $datos['fechahora'] =  date('Y-m-d h:i:s', time());
         $datos['hora'] = date('h:i:s', time());
         $datos['fecha'] = date('Y-m-d', time());
         $datos['ftc'] = date('Y-m-d', time());
-        $datos['cid_destin'] = '10000';
-        $datos['nid_depto'] = '00000';
+
+        $cdestpack 		= explode("§", strtoupper($datos['destino']));
+        $datos['destino'] = trim($cdestpack[0]);
+        $datos['cid_destin'] = trim($cdestpack[1]);
+        
         $datos['nid_area'] = Tdestpack::select('nid_area')->where('cid_destpack',$datos['cid_destin'])->get()->pluck('nid_area')[0];
+        $datos['nid_depto'] = TArea::select('nid_depto')->where('nid_area',$datos['nid_area'])->get()->pluck('nid_depto')[0];
+
+        
         $datos['tc'] = Tcambio::select('tcambio')->where('fecha',$datos['fecha'])->get()->pluck('tcambio')[0];
         $datos['cid_emplea'] = Auth()->user()->id;
         $datos['ciniciales'] = Auth()->user()->ciniciales;
         $datos['nvendedor'] = Auth()->user()->nvendedor;
         $datos['mailejec'] = Auth()->user()->email;
+
+        ClientesExpo::create($datos);
 
         Tnumeracion::where('cconcepto','FOLIO')->update(['nnumero'=>$datos['folexpo']]);
 

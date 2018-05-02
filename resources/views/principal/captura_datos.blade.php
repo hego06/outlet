@@ -183,9 +183,9 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Clave MT</label>
                                        <div class="input-group">
-                                        <input type="text" class="form-control" id="MT" name="cid_destin" placeholder="MT" value="mt01">
+                                        <input type="text" class="form-control" id="mt" name="cid_destin" placeholder="MT" value="mt01">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-info btn-flat">
+                                                <button id="buscaMT" name="buscaMT" onclick="BuscaMT(2)" type="button" class="btn btn-info btn-flat">
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </span>
@@ -196,8 +196,10 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Destino</label>
 
-                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino" value="malasia">
-
+                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino" 
+                                        required list="cid_destino" onkeyup="BuscaMT(1)" autocomplete="off"  
+                                        onpaste="return false;" onblur="verificaDest(this); monedaP();">
+                                        <datalist id="cid_destino"></datalist>
                                 </div>
                             </div>
                         </div>
@@ -304,7 +306,6 @@
 @push('scripts')
     <script>
         $(document).ready(function(){
-
             $('#Anticipo').click(function () {
 
                 var num = $('input:text[name=impteapag]').val();
@@ -312,6 +313,65 @@
 
                 $('#Letras').val($("#Anticipo").val());
             })
+
+
+
+            
         });
+
+
+    //BUSCA MT 
+    function BuscaMT(tipo){
+        var mt;
+        var destino;
+        if(tipo == 2){ //BUSCA CLAVE MT
+            mt = $("#mt").val();
+            alert(mt);
+            if(mt!=''){
+                $.ajax({
+                    type: "POST",
+                    url: "busqueda-paquete",
+                    data: {
+                    "_token": "{{ csrf_token() }}",
+                    "mt": mt,
+                    "busqueda": tipo
+                    },
+                    success: function(data){
+                        if(data == 'NO'){
+                            alert('MT NO ENCONTRADO');
+                            $("#destino").val('');
+                            $("#mt").val('');
+                            $("#mt").focus();
+                        }else{
+                            $("#destino").focus();
+                            $("#destino").val(data);
+                        }
+                            console.log(data);
+                    }
+                });
+            }else{
+                alert('INGRESE CLAVE MT PARA REALIZAR LA BÚSQUEDA DEL DESTINO');
+                $("#mt").focus();
+            }
+        }
+        if(tipo == 1){ //BUSCA DESTINO INGRESADO 
+            destino = $("#destino").val();
+            $.ajax({
+                type: "POST",
+                url: "busqueda-paquete",
+                data: {
+                "_token": "{{ csrf_token() }}",
+                "destino": destino,
+                "busqueda":tipo
+                },
+                success: function(data){
+                    $("#cid_destino").empty();
+                    $("#cid_destino").append(data);
+                }
+            });
+        }
+    }
     </script>
-    @endpush
+
+    
+@endpush
