@@ -16,5 +16,6 @@ Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.sh
 //rutas procesa pago
 
 
-Route::get('procesa-pago','ProcesaPagoController@show')->name('procesa_pago.show');
+Route::get('procesa-pago/{registro}','ProcesaPagoController@show')->name('procesa_pago.show');
 Route::get('solicitudes-pago','ProcesaPagoController@index')->name('solicitudes_pago.index');
+Route::get('efectivo-pago/{registro}','ProcesaPagoController@index')->name('efectivo_pago.index');

@@ -40,8 +40,10 @@ class ProcesaPagoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientesExpo $cliente)
+    public function show($fol)
     {
+        $cliente = ClientesExpo::where('folexpo',$fol)->first();
+
         return view('principal.procesa_pagos',compact('cliente'));
     }
 
