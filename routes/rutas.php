@@ -25,3 +25,6 @@ Route::post('efectivo-pagos','PagoEfectivoController@store')->name('pago_efectiv
 
 //rutas pago con tarjeta
 Route::get('tarjeta-pago/{registro}','PagoTarjetaController@create')->name('tarjeta_pago.create');
+
+//ruta genera expediente
+Route::post('genera-expediente','ExpedienteController@generaExpediente')->name('expediente.genera');

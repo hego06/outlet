@@ -19,7 +19,7 @@ class ClientesExpoController extends Controller
      */
     public function index()
     {
-        $registros = ClientesExpo::all();
+        $registros = ClientesExpo::all()->sortByDesc('folexpo');
         $ejecutivos= DB::table('users')->get();
         return view('principal.registros_capturados',compact('registros','ejecutivos'));
     }
@@ -31,6 +31,11 @@ class ClientesExpoController extends Controller
      */
     public function create()
     {
+        $tc= Tcambio::select('tcambio')->where('fecha',date("y-m-d"))->get();
+        if($tc->isEmpty())
+        {
+            return view('principal.no_tipo_cambio');
+        }
         $now = new \DateTime();
         $fecha=$now->format('Y-n-d');
         $action=1;

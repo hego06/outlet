@@ -26,7 +26,7 @@
                         <label>&nbsp;&nbsp;Ext.:&nbsp;</label>{{$cliente->cext}}<label>&nbsp;Tipo:&nbsp;</label>{{$cliente->ctipotel}}
                     </div>
                     <div class="form-group">
-                        <label>&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;</label>{{$cliente->cmail}}
+                        <label id="email_">&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;</label>{{$cliente->cmail}}
                     </div>
                 </div>
             </div>
@@ -88,13 +88,13 @@
 
                     <tr>
                         <th>Folio:</th>
-                        <td>{{$cliente->folexpo}}</td>
+                        <td id='folexpo'>{{$cliente->folexpo}}</td>
                         @if($cliente->cid_expedi=='' and $cliente->status !='L')
                             <td>
-                                <button class="btn btn-warning btn-sm">Generar liga bancaria</button>
+                                <button class="btn btn-warning btn-sm g_liga" id='g_liga' name="g_liga">Generar liga bancaria</button>
                             </td>
                             <td>
-                                <button class="btn btn-info btn-sm">Generar expediente</button>
+                                <button class="btn btn-info btn-sm" id="generar_exp">Generar expediente</button>
                             </td>
                             @endif
                         @if($cliente->cid_expedi=='' and $cliente->status =='L')
@@ -211,3 +211,61 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script>
+	$("#generar_exp").click(function (e) {
+		var confirma = confirm("SE GENERARÁ EXPEDIENTE \n¿DESEA CONTINUAR? *ESTE PROCESO NO PODRÁ SER REVERTIDO*");
+		if(confirma){ 
+			$.ajax({
+				type: "POST",
+				url: "{{route('expediente.genera')}}", 
+				data: {
+                    "_token": "{{ csrf_token() }}",
+                    "folExpo": {{$cliente->folexpo}}
+                },
+				success: function(data){
+                    console.log(data);
+					if(data == 'HECHO'){ 
+						alert('EXPEDIENTE GENERADO');
+						location.reload();
+					}else{
+						alert('ERROR AL GENERAR EXPEDIENTE, PONGASE EN CONTACTO CON EL ADMINISTRADOR DEL SISTEMA.');
+						console.log(data);
+					}
+				}	
+			});
+		}else{
+			return;
+		}
+	});
+
+
+    //Genera Liga Bancaria
+	$(".g_liga").click(function (e) {//Objeto con clase g_liga
+		var folio 	= $("#folexpo").text(); //Obtenemos folexpo
+		var email_	= $("#email_").text(); //Obtenemos email
+		//MENSAJE PARA CONFIRMAR
+		var confirma = confirm("SE ENVIARÁ LIGA DE PAGO BANCARIA AL CORREO "+email_+"\n¿DESEA CONTINUAR?");
+		if(confirma){
+			$.ajax({
+				type: "GET",
+				url: "php/ligaB.php",
+				data: "folio="+folio,
+				dataType: "html",
+				success: function(data){
+					if(data == 'HECHO'){
+						alert('LIGA BANCARIA ENVÍADA');
+						location.reload();
+					}else{
+						alert('ERROR AL ENVIAR LIGA BANCARIA, PONGASE EN CONTACTO CON EL ADMINISTRADOR DEL SISTEMA.');
+						console.log(data);
+					}
+				}	
+			});
+		}else{
+			return;
+		}
+	});
+</script>
+@endpush
