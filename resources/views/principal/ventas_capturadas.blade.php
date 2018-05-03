@@ -37,6 +37,7 @@
                         </select>
 
                     </div>
+
                 </div>
             </div>
             <div class="box">
@@ -45,7 +46,7 @@
                 </div> -->
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped table-responsive">
+                    <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>FECHA</th>
@@ -74,6 +75,7 @@
                                 <td>{{$registro->fsalida}}</td>
                                 <td>{{$registro->totpaquete}}</td>
                                 <td>{{$registro->moneda}}</td>
+                                <td> <a href="{{route('ventas_reporte.show', $registro->cid_expedi)}}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a></td>
                             </tr>
                         @endforeach
                         </tbody>
