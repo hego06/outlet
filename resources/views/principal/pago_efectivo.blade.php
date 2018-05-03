@@ -110,9 +110,9 @@
                             </tr>
                             <tr>
                                 <th>Fecha de Tipo de Cambio</th>
-                                <td colspan="2"></td>
+                                <td colspan="2"><input type="hidden" name="fechatc" value="{{$tc->fecha}}">{{$tc->fecha}}</td>
                                 <th colspan="2">Tipo de Cambio</th>
-                                <td id="tc_e" name="tc_e"></td>
+                                <td><input type="hidden" name="intercam" value="{{$tc->tcambio}}">{{$tc->tcambio}}</td>
                             </tr>
                             <tr>
                                 <th>Importe a Pagar</th>
