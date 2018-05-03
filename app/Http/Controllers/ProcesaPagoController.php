@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ClientesExpo;
+use App\Solicitudes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,8 @@ class ProcesaPagoController extends Controller
     public function index()
     {
         $registros = ClientesExpo::all();
-        return view('principal.solicitudes',compact('registros'));
+        $solicitudes=Solicitudes::all();
+        return view('principal.solicitudes',compact('registros','solicitudes'));
     }
     public function create()
     {
@@ -43,8 +45,13 @@ class ProcesaPagoController extends Controller
     public function show($fol)
     {
         $cliente = ClientesExpo::where('folexpo',$fol)->first();
-
-        return view('principal.procesa_pagos',compact('cliente'));
+        $exp=$cliente->cid_expedi;
+        $solicitudes=Solicitudes::where('cid_expediente',$exp)->get();
+        $totalMXN=Solicitudes::where('cid_expediente',$exp)->where('moneda','MXN')->sum('importe');
+        $totalMXN=number_format($totalMXN,2);
+        $totalUSD=Solicitudes::where('cid_expediente',$exp)->where('moneda','USD')->sum('importe');
+        $totalUSD=number_format($totalUSD,2);
+        return view('principal.procesa_pagos',compact('cliente','solicitudes','totalMXN','totalUSD'));
     }
 
     /**
