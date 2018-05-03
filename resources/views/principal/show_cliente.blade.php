@@ -251,7 +251,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe Total del Paquete</label>
-                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="1000">
+                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="1000" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
@@ -292,9 +292,6 @@
                             </div>
                         </div>
                      </div>
-                <div>
-                    <button class="btn btn-primary">Guardar</button>
-                </div>
             </div>
 
         </form>

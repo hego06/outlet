@@ -92,7 +92,7 @@
                     <table class="table table-condensed">
                         <tbody>
                         <tr>
-                            <th>Totales por Forma de Pago</th>
+                            <th colspan="2">Totales por Forma de Pago</th>
                         </tr>
                         <tr>
                             <th>Efectivo:</th>

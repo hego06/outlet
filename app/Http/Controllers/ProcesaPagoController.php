@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\ClientesExpo;
 use App\Solicitudes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class ProcesaPagoController extends Controller
 {
