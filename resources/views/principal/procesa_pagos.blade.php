@@ -1,5 +1,14 @@
 @extends('principal.layout')
 @section('title', 'PROCESAR RECIBOS DE PAGOS')
+@push('styles')
+    <style type="text/css">
+        #div1 {
+            overflow:scroll;
+            height:150px;
+        }
+    </style>
+    @endpush
+
 @section('content')
 <section class="content">
     <div class="row">
@@ -113,7 +122,7 @@
                         <h3 class="box-title">Detalles movimiento</h3>
                     </div>
                     <div class="box-body no-padding">
-                        <div class="table-responsive" id="div1">
+
                             <table class="table table-hover table-striped">
                             <tbody>
                             <tr>
@@ -125,7 +134,12 @@
                                 <th>Descargar</th>
                                 <th>Cancelar</th>
                             </tr>
-
+                            </tbody>
+                            </table>
+                        <div class="table-responsive" id="div1">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                <tr>
                                 @foreach($solicitudes as $solicitud)
                             <tr>
                                 <td>{{$solicitud->cid_solicitud}}</td>
