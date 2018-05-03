@@ -104,7 +104,7 @@
                         <tr>
                             <th>Fecha Op.</th>
                             <td>
-                                <input type="text" name="" value="" readonly>
+                                <input type="hidden" name="foperacion" value="{{$fecha2}}">{{$fecha2}}
                             </td>
                             <th>No. Cuenta</th>
                             <td>
@@ -139,7 +139,7 @@
                                 <input class="form-control input-sm" id="codigo" name="codigo" type="text" value="****"  readonly></td>
                             <th>Fecha de Tipo de Cambio</th>
                             <td>
-                                <input class="form-control input-sm" id="ftc" name="ftc" type="text" value="" readonly>
+                                <input class="form-control input-sm" id="ftc" name="ftc" type="text" value="{{$tc->fecha}}" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -158,7 +158,7 @@
                             </td>
                             <th>Tipo de Cambio $</th>
                             <td>
-                                <input class="form-control input-sm" id="tc_b" name="tc_b" type="text" value="" readonly>
+                                <input class="form-control input-sm" id="tc_b" name="tc_b" type="text" value="{{$tc->tcambio}}" readonly>
                             </td>
                         </tr>
                         <tr>

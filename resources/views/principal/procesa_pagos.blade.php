@@ -1,5 +1,14 @@
 @extends('principal.layout')
 @section('title', 'PROCESAR RECIBOS DE PAGOS')
+@push('styles')
+    <style type="text/css">
+        #div1 {
+            overflow:scroll;
+            height:150px;
+        }
+    </style>
+    @endpush
+
 @section('content')
 <section class="content">
     <div class="row">
@@ -113,7 +122,8 @@
                         <h3 class="box-title">Detalles movimiento</h3>
                     </div>
                     <div class="box-body no-padding">
-                        <table class="table table-condensed">
+
+                            <table class="table table-hover table-striped">
                             <tbody>
                             <tr>
                                 <th>Solicitud</th>
@@ -124,15 +134,24 @@
                                 <th>Descargar</th>
                                 <th>Cancelar</th>
                             </tr>
+                            </tbody>
+                            </table>
+                        <div class="table-responsive" id="div1">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                <tr>
+                                @foreach($solicitudes as $solicitud)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{$solicitud->cid_solicitud}}</td>
+                                <td>{{$solicitud->fechaemitido}}</td>
+                                <td>{{$solicitud->folio}}</td>
+                                <td>{{$solicitud->importe}}</td>
+                                <td>{{$solicitud->moneda}}</td>
+                                <td align="center"> <a href=""><i class="fa fa-cloud-download fa-2x" aria-hidden="true"></i></a></td>
+                                <td align="center"><a href=""><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
+                                    @endforeach
+
                         </tbody>
                         </table>
                     </div>
@@ -176,9 +195,9 @@
                                 </tr>
                                 <tr>
                                     <th>MXN:</th>
-                                    <td></td>
+                                    <td>{{$totalMXN}}</td>
                                     <th>USD:</th>
-                                    <td></td>
+                                    <td>{{$totalUSD}}</td>
                                 </tr>
 
                             </tbody>

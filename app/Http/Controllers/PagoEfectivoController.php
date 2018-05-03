@@ -16,9 +16,11 @@ class PagoEfectivoController extends Controller
         $now = new Carbon();
         $fecha =strtoupper($now->formatLocalized('%d de %B del %Y, %r hrs'));
         $fecha2 =strtoupper($now->formatLocalized('%d de %B del %Y'));
+        $fecha3 =strtoupper($now->formatLocalized('%Y-%m-%d'));
+        $tc=Tcambio::where('fecha',$fecha3)->first();
 
         $cliente = ClientesExpo::where('folexpo',$fol)->first();
-        return view('principal.pago_efectivo',compact('cliente','fecha','fecha2'));
+        return view('principal.pago_efectivo',compact('cliente','fecha','fecha2','tc'));
     }
     public function store(Request $request)
     {
