@@ -13,3 +13,4 @@
 
 
 Route::post('busqueda-paquete','TdestpackController@busqueda')->name('paquete.busqueda');
+Route::post('convertidor', 'ConvertidorNumeroLetra@convertidor')->name('numeroLetra.convertidor');

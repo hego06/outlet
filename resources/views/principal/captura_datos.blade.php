@@ -183,7 +183,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Clave MT</label>
                                        <div class="input-group">
-                                        <input type="text" class="form-control" id="mt" name="cid_destin" placeholder="MT" value="mt01">
+                                        <input type="text" class="form-control" id="mt" name="cid_destin" placeholder="MT">
                                             <span class="input-group-btn">
                                                 <button id="buscaMT" name="buscaMT" onclick="BuscaMT(2)" type="button" class="btn btn-info btn-flat">
                                                     <i class="fa fa-search"></i>
@@ -268,13 +268,13 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe del Anticipo</label>
-                                            <input type="text" class="form-control" id="Anticipo" name="impteapag" placeholder="Anticipo" value="100">
+                                            <input type="text" class="form-control" id="anticipo" name="impteapag" placeholder="Anticipo">
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
-                                            <select class="form-control" id="MonedaAnt" name="moneda">
+                                            <select class="form-control" id="monedaAnt" name="moneda">
                                                 <option value="MXN">PESOS - MXN</option>
                                                 <option value="USD">DÓLARES - USD</option>
                                             </select>
@@ -285,7 +285,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly  class="form-control" id="Letra" name="letras" value="letra">
+                                    <input type="text" readonly class="form-control" id="impteletra" name="letras">
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -313,10 +313,6 @@
 
                 $('#Letras').val($("#Anticipo").val());
             })
-
-
-
-            
         });
 
 
@@ -371,7 +367,41 @@
             });
         }
     }
-    </script>
 
-    
+    $(document).on('change','#anticipo, #monedaAnt', function() { 
+        ajaxConvertir(); 
+        });
+
+    $("#anticipo").bind('keyup keypress change',function (e) {
+        ajaxConvertir();
+    });
+
+    function ajaxConvertir()
+    {
+        var anticipo	= $("#anticipo").val();
+		var destino 	= $("#destino").val();
+        var moneda = $("#monedaAnt").val();
+		if(anticipo!='' || destino !=''){
+			$.ajax({
+				type: "POST",
+				url: "convertidor",
+				data: {
+                    "_token": "{{ csrf_token() }}",
+                    "anticipo": anticipo,
+                    "moneda": moneda
+                },
+				success: function(data){
+					$('#impteletra').val(data);
+                    console.log(data);
+				}
+			});
+		}else{
+			alert('PRIMERO INGRESE UN DESTINO');
+			$("#destino").focus();
+			$("#impteletra").text('');
+			$("#anticipo").empty();
+			return false;
+		}
+    }
+    </script>
 @endpush
