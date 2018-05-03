@@ -249,6 +249,8 @@ desired effect
         <li><a href="{{route('clientes_expo.index')}}"><i class="fa fa-link"></i> <span>Registros Capturados</span></a></li>
         <li><a href="{{route('tipo_cambio.create')}}"><i class="fa fa-link"></i> <span>Tipo de cambio</span></a></li>
         <li><a href="{{route('solicitudes_pago.index')}}"><i class="fa fa-link"></i> <span>Solicitudes de Pago</span></a></li>
+        <li><a href="{{route('ventas_reporte.index')}}"><i class="fa fa-link"></i> <span>Ventas</span></a></li>
+        <li><a href="{{route('ingresos_reporte.index')}}"><i class="fa fa-link"></i> <span>Ingresos</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
