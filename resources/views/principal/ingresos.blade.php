@@ -60,7 +60,7 @@
                                     <th>MXN</th>
                                     <th>USD</th>
                                 </tr>
-                               
+
                                 </tbody>
                             </table>
                         </div>

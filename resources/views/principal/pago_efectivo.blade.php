@@ -3,11 +3,14 @@
 @push('styles')
 @endpush
 @section('content')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <div class="row">
         <div class="col-xs-12">
             <form role="form" action="{{route('pago_efectivo.store')}}" method="post">
+                @csrf
                 <input type="hidden" name="folexpo" id="folexpo" value="{{$cliente->folexpo}}">
-                <input type="hidden" name="pax_principal" id="pax_principal" value="{{$cliente->folexpo}}">
+                <input type="hidden" name="pax_principal" id="pax_principal" value="{{$cliente->cnombre}} {{$cliente->capellidop}} {{$cliente->capellidom}} x {{$cliente->numpax}}">
                 <input type="hidden" name="expediente" id="expediente" value="{{$cliente->cid_expedi}}">
                 <input type="hidden" name="cid_emplea" id="cid_emplea" value="{{$cliente->cid_emplea}}">
                 <input type="hidden" name="ctelefono" id="ctelefono" value="{{$cliente->ctelefono}}">
@@ -96,8 +99,7 @@
                             <tr>
                                 <th>Seleccionar Moneda</th>
                                 <td colspan="2">
-                                    <select class="form-control input-sm" id="moneda_e" name="moneda_e" required>
-                                        <option value=""></option>
+                                    <select class="form-control input-sm" id="monedaAnt" name="moneda_e" required>
                                         <option value="MXN">PESOS - MXN</option>
                                         <option value="USD">DÓLARES - USD</option>
                                     </select>
@@ -116,11 +118,11 @@
                             </tr>
                             <tr>
                                 <th>Importe a Pagar</th>
-                                <td><input class="form-control input-sm soloN" type="text" name="imptepag_e" id="imptepag_e" required="required" value="" autocomplete="off"></td>
+                                <td><input class="form-control input-sm soloN" type="text" name="imptepag_e" id="anticipo" required="required" value="" autocomplete="off"></td>
                                 <td colspan="4">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td colspan="6"> <input type="text" readonly  class="form-control" id="Letra" name="letras" value="letras"></td>
+                                <td colspan="6"> <input type="text" readonly  class="form-control" id="impteletra" name="letras_e"></td>
                             </tr>
                         </table>
                     </div>
@@ -138,4 +140,43 @@
 
 @endsection
 @push('scripts')
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <script>
+
+        $(document).on('change','#anticipo, #monedaAnt', function() {
+            ajaxConvertir();
+        });
+
+        $("#anticipo").bind('keyup keypress change',function (e) {
+            ajaxConvertir();
+        });
+
+        function ajaxConvertir()
+        {
+            var anticipo	= $("#anticipo").val();
+            var moneda = $("#monedaAnt").val();
+
+                $.ajax({
+                    type: "post",
+                    url: "{{route('numeroLetra.convertidor')}}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "anticipo": anticipo,
+                        "moneda": moneda
+                    },
+                    success: function (data) {
+                        $('#impteletra').val(data);
+                        console.log(data);
+                    }
+                });
+
+
+
+
+
+        }
+        </script>
 @endpush
