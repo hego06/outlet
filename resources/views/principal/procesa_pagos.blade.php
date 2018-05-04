@@ -10,6 +10,18 @@
     @endpush
 
 @section('content')
+    @if(Session::has('message1'))
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> {{Session::get('message1')}}
+        </div>
+    @endif
+    @if(Session::has('message2'))
+        <div class="alert alert-danger alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> {{Session::get('message2')}}
+        </div>
+    @endif
 <section class="content">
     <div class="row">
         <div class="col-md-6">
@@ -122,7 +134,7 @@
                         <h3 class="box-title">Detalles movimiento</h3>
                     </div>
                     <div class="box-body no-padding">
-
+                        <div class="table-responsive" id="div1">
                             <table class="table table-hover table-striped">
                             <tbody>
                             <tr>
@@ -134,11 +146,6 @@
                                 <th>Descargar</th>
                                 <th>Cancelar</th>
                             </tr>
-                            </tbody>
-                            </table>
-                        <div class="table-responsive" id="div1">
-                            <table class="table table-hover table-striped">
-                                <tbody>
                                 <tr>
                                 @foreach($solicitudes as $solicitud)
                             <tr>

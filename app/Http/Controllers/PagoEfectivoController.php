@@ -26,8 +26,8 @@ class PagoEfectivoController extends Controller
     public function store(Request $request)
     {
         $now = new Carbon();
-        $fecha=strtoupper($now->formatLocalized('H:i:s'));
-        $fecha3 =strtoupper($now->formatLocalized('%Y-%m-%d'));
+        $fecha=date('H:i:s');
+        $fecha3 =date('Y-m-d');
         $cliente = ClientesExpo::where('folexpo',$request->folexpo)->first();
         $solicitud = $this->numeracion('SOLICITUD');
         $nrecibo= $this->numeracion('RECIBO');
@@ -41,8 +41,8 @@ class PagoEfectivoController extends Controller
         $pasajero=strtoupper(trim($request->pax_principal));
         $idejec=trim($request->cid_emplea);
         $ctelefono=trim($request->ctelefono);
-        $destino=trim($request->ctelefono);
-        $fsalida =trim($request->destino);
+        $destino=trim($request->destino);
+        $fsalida =trim($request->fsalida);
         $tcambio=trim($request->intercam);
         $dfecha	= $fecha3;
         $chora	=$fecha;
@@ -54,13 +54,18 @@ class PagoEfectivoController extends Controller
         $documento='EF';
         $tipo='RE';
         $estatus='EM';
-        $encrip=encrip($moneda, $dfecha, $nrecibo, $monto, $tcambio, $ftc, '0');
+        $encrip=$this->encrip($moneda, $dfecha, $nrecibo, $monto, $tcambio, $ftc, '0');
         if($moneda=='MXN'){
             $importeusd=($monto)*($tcambio);
         }
         else{
             $importeusd=$monto;
         }
+
+
+        $error = null;
+        DB::beginTransaction();
+        try {
 
         //Tabla solicitudes
         DB::table('solicitudes')->insert(
@@ -111,9 +116,10 @@ class PagoEfectivoController extends Controller
                 'encrip'=>$encrip,
                 'legvar1'=>'',
                 'legvar2'=>'',
-                'cid_empleado'=>'',
+                'cid_empleado'=>Auth()->user()->id,
                 'cancelado'=>0,
-                'elaboro'=>''
+                'elaboro'=>Auth()->user()->nvendedor,
+                'aplic'=>'S'
             ]
         );
 
@@ -137,16 +143,27 @@ class PagoEfectivoController extends Controller
                 'pcargoad'=>'0',
                 'cargoad'=>'0',
                 'referencia'=>'',
+                'aplic'=>'S'
             ]
-        );
+        );DB::commit();
+            $success = true;
+        }
+        catch (\Exception $e) {
+            $success = false;
+            $error = $e->getMessage();
+            DB::rollback();
+            return  redirect()->action('ProcesaPagoController@show', compact('folexpo'))->with('message2', 'Error al crear el Recibo');
 
+        }
+        if ($success) {
+
+
+            return  redirect()->action('ProcesaPagoController@show', compact('folexpo'))->with('message1', 'Recibo creado');
+
+        }
         //imprimir
        // $foliorecibo	= encode_this("folio=".$nrecibo."&folexpo=".$folexpo);
 
-
-
-
-        return view('principal.solicitudes');
     }
 
     function numeracion($concepto){
