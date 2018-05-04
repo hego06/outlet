@@ -22,3 +22,10 @@ Route::get('ventas_ver/{registro}','VentasController@show')->name('ventas_report
 
 //rutas ingresos
 Route::get('ingresos_reporte','IngresosController@index')->name('ingresos_reporte.index');
+
+//rutas PDF
+Route::get('genera_pdf/{folio}','ProcesaPagocontroller@PDF')->name('crear.PDF');
+Route::get('descargar_pdf/{folio}','ProcesaPagocontroller@descargarPDF')->name('descargar_Pdf.descargarPDF');
+
+//ruta cancelar solicitud
+Route::get('cancelar_pago/{folio}','ProcesaPagocontroller@cancelarSolicitud')->name('cancelar_pago.cancelarSolicitud');

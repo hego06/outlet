@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Recibodig;
+
 use Illuminate\Http\Request;
 use App\Tnumeracion;
 use App\ClientesExpo;
 use Carbon\Carbon;
 use App\Tcambio;
 use Illuminate\Support\Facades\DB;
+
+
 setlocale(LC_TIME, 'es');
 
 class PagoEfectivoController extends Controller
@@ -119,6 +123,7 @@ class PagoEfectivoController extends Controller
                 'cid_empleado'=>Auth()->user()->id,
                 'cancelado'=>0,
                 'elaboro'=>Auth()->user()->nvendedor,
+                'pdf'=>'S',
                 'aplic'=>'S'
             ]
         );
@@ -152,17 +157,14 @@ class PagoEfectivoController extends Controller
             $success = false;
             $error = $e->getMessage();
             DB::rollback();
-            return  redirect()->action('ProcesaPagoController@show', compact('folexpo'))->with('message2', 'Error al crear el Recibo');
-
+            return  redirect()->action('ProcesaPagoController@show', compact('nrecibo'))->with('message2', 'Error al crear el Recibo');
         }
         if ($success) {
+            return  redirect()->route('crear.PDF',array('expediente'=>$nrecibo));
 
-
-            return  redirect()->action('ProcesaPagoController@show', compact('folexpo'))->with('message1', 'Recibo creado');
 
         }
-        //imprimir
-       // $foliorecibo	= encode_this("folio=".$nrecibo."&folexpo=".$folexpo);
+
 
     }
 

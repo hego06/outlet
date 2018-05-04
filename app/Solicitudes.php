@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class Solicitudes extends Model
 {
     protected $table = 'solicitudes';
+    public $timestamps = false;
 
     public function getDfechaAttribute($dfecha){
         $tiempo= new Carbon($dfecha);

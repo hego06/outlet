@@ -149,13 +149,19 @@
                                 <tr>
                                 @foreach($solicitudes as $solicitud)
                             <tr>
-                                <td>{{$solicitud->cid_solicitud}}</td>
-                                <td>{{$solicitud->fechaemitido}}</td>
-                                <td>{{$solicitud->folio}}</td>
-                                <td>{{$solicitud->importe}}</td>
-                                <td>{{$solicitud->moneda}}</td>
-                                <td align="center"> <a href=""><i class="fa fa-cloud-download fa-2x" aria-hidden="true"></i></a></td>
-                                <td align="center"><a href=""><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></a></td>
+
+                                <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->cid_solicitud}}</a></td>
+                                <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->fechaemitido}}</a></td>
+                                <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->folio}}</a></td>
+                                <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->importe}}</a></td>
+                                <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->moneda}}</a></td>
+                                <td align="center"> <a href="{{route('descargar_Pdf.descargarPDF',$solicitud->folio)}}"><i class="fa fa-cloud-download fa-2x" aria-hidden="true"></i></a></td>
+                                @if($solicitud->estatus=='EM')
+                                <td align="center"><i class="fa fa-times-circle fa-2x" aria-hidden="true" onclick='cancelaR(solicitud,)'></i></td>
+
+                                    <a href="{{route('cancelar_pago.cancelarSolicitud',$solicitud->folio)}}"></a>
+                                @endif
+
                             </tr>
                                     @endforeach
 
@@ -274,5 +280,15 @@
 			return;
 		}
 	});
+    function cancelaR(recibo,folexpo,solicitud){
+        var answer = confirm("Se cancelará el recibo con\n»No. Folio:  "+recibo+"\n\n×Este proceso no se puede revertir.×\n¿Desea continuar?")
+        if (answer){
+            var motivo	= prompt("Motivo de cancelación(Obligatorio): ");
+            if(motivo!=undefined && motivo){
+                var datos = "folexpo="+folexpo+"&recibo="+recibo+"&motivo="+motivo+"&solicitud="+solicitud;
+                window.location=('php/cancela_recibo.php?'+datos);
+            }
+        }
+    }
 </script>
 @endpush
