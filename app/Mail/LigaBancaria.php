@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\ClientesExpo;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,8 +12,8 @@ class LigaBancaria extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $ligaBancaria;
-
+    public $cliente;
+    public $referencia;
     /**
      * Create a new message instance.
      *
@@ -23,9 +24,10 @@ class LigaBancaria extends Mailable
     //     $this->ligaBancaria = $ligaBancaria;
     // }
 
-        public function __construct()
+        public function __construct(ClientesExpo $cliente, $referencia)
     {
-        
+        $this->cliente = $cliente;
+        $this->referencia = $referencia;
     }
 
     /**
@@ -35,6 +37,6 @@ class LigaBancaria extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.ligaBancaria');
+        return $this->view('mail.ligaBancaria',compact('cliente','referencia'));
     }
 }

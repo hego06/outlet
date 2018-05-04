@@ -32,4 +32,4 @@ Route::post('genera-expediente','ExpedienteController@generaExpediente')->name('
 
 //ruta Liga bancaria
 
-Route::get('mail/send', 'EnviaEmailController@send');
+Route::post('mail/send', 'EnviaEmailController@send')->name('ligaBancaria.envia');
