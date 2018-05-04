@@ -28,3 +28,8 @@ Route::get('tarjeta-pago/{registro}','PagoTarjetaController@create')->name('tarj
 
 //ruta genera expediente
 Route::post('genera-expediente','ExpedienteController@generaExpediente')->name('expediente.genera');
+
+
+//ruta Liga bancaria
+
+Route::get('mail/send', 'EnviaEmailController@send');
