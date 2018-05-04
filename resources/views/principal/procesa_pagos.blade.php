@@ -38,7 +38,7 @@
                         <label>&nbsp;&nbsp;Ext.:&nbsp;</label>{{$cliente->cext}}<label>&nbsp;Tipo:&nbsp;</label>{{$cliente->ctipotel}}
                     </div>
                     <div class="form-group">
-                        <label id="email_">&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;</label>{{$cliente->cmail}}
+                        <label>&nbsp;&nbsp;&nbsp;&nbsp;Email:&nbsp;</label><span  id="email_">{{$cliente->cmail}}</span>
                     </div>
                 </div>
             </div>
@@ -262,10 +262,12 @@
 		var confirma = confirm("SE ENVIARÁ LIGA DE PAGO BANCARIA AL CORREO "+email_+"\n¿DESEA CONTINUAR?");
 		if(confirma){
 			$.ajax({
-				type: "GET",
-				url: "php/ligaB.php",
-				data: "folio="+folio,
-				dataType: "html",
+				type: "POST",
+				url: "{{route('ligaBancaria.envia')}}",
+				data: {
+                    "_token": "{{ csrf_token() }}",
+                    "folio":folio
+                },
 				success: function(data){
 					if(data == 'HECHO'){
 						alert('LIGA BANCARIA ENVÍADA');

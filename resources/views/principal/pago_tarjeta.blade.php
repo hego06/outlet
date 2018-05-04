@@ -63,9 +63,10 @@
                             </td>
                             <th>Terminal Bancaria</th>
                             <td>
-                                <select class="form-control input-sm" id="terminal_t" name="terminal_t"  required>
+                                <select class="form-control input-sm" id="terminal_t" name="terminal_t" required onchange="CargosB(this.value)">
+                                    <option value=''> SELECCIONE LA TERMINAL </option>
                                     @foreach($terminales as $terminal)
-                                        <option value="{{$terminal->cid_tpv}}">{{$terminal->terminalpv}}</option>
+                                        <option value="{{$terminal->cid_tpv}}|{{$terminal->numint}}">{{$terminal->terminalpv}}</option>
                                         @endforeach
                                 </select>
                             </td>
@@ -88,7 +89,7 @@
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="box">
+            <div id="datos_terminal"class="box">
                 <div class="box-body">
                     <table class="table">
                         <tr>
@@ -211,4 +212,53 @@
 
 @endsection
 @push('scripts')
+<script>
+function CargosB(terminal){
+	$.ajax({
+		type: "POST",
+		url: "{{route('cargos_b')}}",
+		data: {
+            '_token': '{{ csrf_token() }}',
+            'terminal':terminal
+        },
+		success: function(data){
+			$("#cargos").empty();
+			$("#cargos").append(data);
+            console.log(data);
+			bancoA(terminal);
+			
+		}
+	});
+}
+
+function bancoA(terminal){
+	$.ajax({
+		type: "POST",
+		url: "{{route('banco_a')}}",
+		data: {
+            '_token': '{{ csrf_token() }}',
+            'terminal':terminal
+        },
+		success: function(data){
+			$("#bancoaplic").empty();
+			$("#bancoaplic").append(data);
+            console.log(data);
+		}
+	});
+}
+//MUESTRA DATOS BANCARIOS
+// function datosB(terminal){
+// 	$.ajax({
+// 		type: "GET",
+// 		url: "php/datosB.php",
+// 		data: "terminal="+terminal,
+// 		dataType: "html",
+// 		success: function(data){
+// 			$("#datosBanco").empty();
+// 			$("#datosBanco").append(data);
+// 			$("#datosBanco").show('slow');
+// 		}
+// 	});
+// }
+</script>
 @endpush
