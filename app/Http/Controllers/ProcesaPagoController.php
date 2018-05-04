@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\ClientesExpo;
+use App\Recibodig;
 use App\Solicitudes;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 class ProcesaPagoController extends Controller
@@ -47,9 +51,9 @@ class ProcesaPagoController extends Controller
         $cliente = ClientesExpo::where('folexpo',$fol)->first();
         $exp=$cliente->cid_expedi;
         $solicitudes=Solicitudes::where('cid_expediente',$exp)->get();
-        $totalMXN=Solicitudes::where('cid_expediente',$exp)->where('moneda','MXN')->sum('importe');
+        $totalMXN=Solicitudes::where('cid_expediente',$exp)->where('moneda','MXN')->where('estatus','EM')->sum('importe');
         $totalMXN=number_format($totalMXN,2);
-        $totalUSD=Solicitudes::where('cid_expediente',$exp)->where('moneda','USD')->sum('importe');
+        $totalUSD=Solicitudes::where('cid_expediente',$exp)->where('moneda','USD')->where('estatus','EM')->sum('importe');
         $totalUSD=number_format($totalUSD,2);
         return view('principal.procesa_pagos',compact('cliente','solicitudes','totalMXN','totalUSD'));
     }
@@ -87,4 +91,59 @@ class ProcesaPagoController extends Controller
     {
         //
     }
+    public function PDF($folio){
+        $recibo = Recibodig::where('folio', $folio)->first();
+
+        $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
+
+        $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
+        $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
+        return $pdf->stream($folio.'.pdf');
+    }
+
+    public function descargarPDF($folio){
+        return response()->download(public_path('pdf/'.$folio.'.pdf'));
+    }
+    public function cancelarSolicitud($folio){
+        $now = new \DateTime();
+        $fecha=$now->format('Y-n-d');
+        $error = null;
+
+        DB::beginTransaction();
+        try {
+        Solicitudes::where('folio',$folio)->update(
+            [
+                'estatus'=>'CA',
+                'comentario'=>'cancelado',
+                'fechacan'=> $fecha
+            ]
+        );
+
+        Recibodig::where('folio',$folio)->update(
+        [
+            'cancelado'	=> 1,
+            'motivocanc'=> 'cancelado',
+            'quiencancela'=> Auth()->user()->id,
+            'fcancela'=> $fecha
+
+        ]
+        );
+            DB::commit();
+            $success = true;
+        }
+        catch (\Exception $e) {
+            $success = false;
+            $error = $e->getMessage();
+            DB::rollback();
+            return  redirect()->action('ProcesaPagoController@show', compact('folexp'))->with('message2', $error);
+        }
+        if ($success) {
+
+            return  redirect()->route('crear.PDF',$folio);
+        }
+
+
+
+    }
+
 }
