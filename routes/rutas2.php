@@ -28,4 +28,5 @@ Route::get('genera_pdf/{folio}','ProcesaPagocontroller@PDF')->name('crear.PDF');
 Route::get('descargar_pdf/{folio}','ProcesaPagocontroller@descargarPDF')->name('descargar_Pdf.descargarPDF');
 
 //ruta cancelar solicitud
-Route::get('cancelar_pago/{folio}','ProcesaPagocontroller@cancelarSolicitud')->name('cancelar_pago.cancelarSolicitud');
+Route::post('cancelar_pago','ProcesaPagocontroller@cancelarSolicitud')->name('cancelar_pago.cancelarSolicitud');
+//Route::get('cancelar_pago/{data}','ProcesaPagocontroller@cancelarSolicitudMotivo')->name('cancelar_pago.cancelarSolicitudMotivo');

@@ -93,36 +93,35 @@ class ProcesaPagoController extends Controller
     }
     public function PDF($folio){
         $recibo = Recibodig::where('folio', $folio)->first();
-
+        $cli=ClientesExpo::where('cid_expedi',$recibo->cid_expediente)->first();
         $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
-
         $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
-        $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
         return $pdf->stream($folio.'.pdf');
+
     }
 
     public function descargarPDF($folio){
         return response()->download(public_path('pdf/'.$folio.'.pdf'));
     }
-    public function cancelarSolicitud($folio){
+    public function cancelarSolicitud(Request $request){
         $now = new \DateTime();
         $fecha=$now->format('Y-n-d');
         $error = null;
 
         DB::beginTransaction();
         try {
-        Solicitudes::where('folio',$folio)->update(
+        Solicitudes::where('folio',$request->recibo)->update(
             [
                 'estatus'=>'CA',
-                'comentario'=>'cancelado',
+                'comentario'=>$request->motivo,
                 'fechacan'=> $fecha
             ]
         );
 
-        Recibodig::where('folio',$folio)->update(
+        Recibodig::where('folio',$request->recibo)->update(
         [
             'cancelado'	=> 1,
-            'motivocanc'=> 'cancelado',
+            'motivocanc'=> $request->motivo,
             'quiencancela'=> Auth()->user()->id,
             'fcancela'=> $fecha
 
@@ -135,11 +134,11 @@ class ProcesaPagoController extends Controller
             $success = false;
             $error = $e->getMessage();
             DB::rollback();
-            return  redirect()->action('ProcesaPagoController@show', compact('folexp'))->with('message2', $error);
+            return  redirect()->action('ProcesaPagoController@show', compact($request->folexpo))->with('message2', $error);
         }
         if ($success) {
-
-            return  redirect()->route('crear.PDF',$folio);
+            return  redirect()->route('crear.PDF',$request->recibo);
+            //return  redirect()->action('ProcesaPagoController@show', compact($request->folexpo))->with('message2', $error);
         }
 
 
