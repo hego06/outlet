@@ -38,8 +38,8 @@ class ClientesExpoController extends Controller
         }
         $now = new \DateTime();
         $fecha=$now->format('Y-n-d');
-        $action=1;
-        return view('principal.captura_datos', compact('fecha','action'));
+        $tcambio=Tcambio::where('fecha',date("y-m-d"))->first();
+        return view('principal.captura_datos', compact('fecha','tcambio'));
     }
 
     /**
@@ -103,9 +103,11 @@ class ClientesExpoController extends Controller
      * @param  \App\ClientesExpo  $clientesExpo
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClientesExpo $clientesExpo)
+    public function edit($fol)
     {
-        //
+        $cliente = ClientesExpo::where('folexpo',$fol)->first();
+
+        return view('principal.edit_cliente', compact('cliente'));
     }
 
     /**
