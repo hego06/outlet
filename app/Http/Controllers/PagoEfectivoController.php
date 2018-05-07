@@ -143,10 +143,11 @@ class PagoEfectivoController extends Controller
                 'fechatc'=>$ftc,
                 'fechaop'=>$dfecha,
                 'pcombanc'=>'0',
-                'piva'=>'0',
-                'iva'=>'0',
-                'pcargoad'=>'0',
-                'cargoad'=>'0',
+                'combanc'=>'0.00',
+                'piva'=>'0.00',
+                'iva'=>'0.00',
+                'pcargoad'=>'0.00',
+                'cargoad'=>'0.00',
                 'referencia'=>'',
                 'aplic'=>'S'
             ]
@@ -157,7 +158,7 @@ class PagoEfectivoController extends Controller
             $success = false;
             $error = $e->getMessage();
             DB::rollback();
-            return  redirect()->action('ProcesaPagoController@show', compact('nrecibo'))->with('message2', 'Error al crear el Recibo');
+            return  redirect()->action('ProcesaPagoController@show', compact('folexpo'))->with('message2', 'Error al crear el Recibo'.$error.'');
         }
         if ($success) {
             return  redirect()->route('crear.PDF',array('expediente'=>$nrecibo));

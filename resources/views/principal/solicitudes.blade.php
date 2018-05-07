@@ -46,7 +46,7 @@
                 </div> -->
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example2" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>FOLIO</th>
@@ -65,7 +65,7 @@
                             <tr>
                                 <td>{{$registro->folexpo}}</td>
                                 <td>{{$registro->cid_expedi}}</td>
-                                <td>{{Auth()->User()->name}}</td>
+                                <td>{{$registro->nvendedor}}</td>
                                 <td>{{$registro->fechahora}}</td>
                                 <td>{{$registro->monedap}}</td>
                                 <td>{{$registro->status}}</td>
@@ -103,6 +103,30 @@
             });
             $('#rangofechas').daterangepicker()
         });
+        $(document).ready(function() {
+            $('#example2').DataTable( {
+                initComplete: function () {
+                    this.api().columns().every( function () {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo( $(column.footer()).empty() )
+                            .on( 'change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search( val ? '^'+val+'$' : '', true, false )
+                                    .draw();
+                            } );
+
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    } );
+                }
+            } );
+        } );
 
     </script>
     <!-- date-range-picker -->

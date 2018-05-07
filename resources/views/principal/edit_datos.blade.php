@@ -200,7 +200,7 @@
 
                                         <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino"
                                                required list="cid_destino" onkeyup="BuscaMT(1)" autocomplete="off"
-                                               onpaste="return false;" onblur="verificaDest(this); monedaP();" value="{{$cliente->destino}}">
+                                               onpaste="return false;" onblur="verificaDest(this); monedaP();" value="{{$cliente->destino}} § {{$cliente->cid_destin}}">
                                         <datalist id="cid_destino"></datalist>
                                     </div>
                                 </div>

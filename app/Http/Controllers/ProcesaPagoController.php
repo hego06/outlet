@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\ClientesExpo;
 use App\Recibodig;
 use App\Solicitudes;
-use Carbon\Carbon;
+use App\Tcambio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -20,6 +20,11 @@ class ProcesaPagoController extends Controller
      */
     public function index()
     {
+        $tc= Tcambio::select('tcambio')->where('fecha',date("y-m-d"))->get();
+        if($tc->isEmpty())
+        {
+            return view('principal.no_tipo_cambio');
+        }
         $registros = ClientesExpo::all();
         $solicitudes=Solicitudes::all();
         return view('principal.solicitudes',compact('registros','solicitudes'));
@@ -96,7 +101,8 @@ class ProcesaPagoController extends Controller
         $cli=ClientesExpo::where('cid_expedi',$recibo->cid_expediente)->first();
         $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
         $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
-        return $pdf->stream($folio.'.pdf');
+        return $pdf->stream($folio.'.pdf',array("Attachment" => false));
+
 
     }
 

@@ -19,6 +19,11 @@ class ClientesExpoController extends Controller
      */
     public function index()
     {
+        $tc= Tcambio::select('tcambio')->where('fecha',date("y-m-d"))->get();
+        if($tc->isEmpty())
+        {
+            return view('principal.no_tipo_cambio');
+        }
         $registros = ClientesExpo::all()->sortByDesc('folexpo');
         $ejecutivos= DB::table('users')->get();
         return view('principal.registros_capturados',compact('registros','ejecutivos'));
@@ -177,12 +182,10 @@ class ClientesExpoController extends Controller
                 $success = false;
                 $error = $e->getMessage();
                 DB::rollback();
-                return  redirect()->route('clientes_expo.index')->with('message2', 'Error al guardar Cambio'.$e.' ');
+                return  redirect()->route('clientes_expo.index')->with('message2', 'Error al guardar Cambio'.$error.' ');
             }
         if ($success) {
             return  redirect()->route('clientes_expo.index')->with('message1', 'Cambio Guardado');
-
-
         }
     }
 

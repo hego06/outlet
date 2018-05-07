@@ -52,6 +52,9 @@ class ExpedienteController extends Controller
 	if($cliente->cid_expedi == ''){
 		$expediente = $this->numeracion('EXPEDIENTE');
 	}
+       $error = null;
+        DB::beginTransaction();
+        try {
 	
 	DB::table('expediente')->insert(
 		[
@@ -75,7 +78,36 @@ class ExpedienteController extends Controller
 			'dfechasalida' => $fsalida,
 			'pax' => $pax,
 			'inicempleado' => $iniciales,
-			'nomempleado' => $ejecutivo
+			'nomempleado' => $ejecutivo,
+            'comision'=>0,
+            'ingresoext'=>0,
+            'com_ag'=>0,
+            'comipaq'=>0,
+            'comit'=>0,
+            'comia'=>0,
+            'comic'=>0,
+            'comiesp'=>0,
+            'exccomi'=>0,
+            'totcobranza'=>0,
+            'scomisionable'=>0,
+            'ncomisionable'=>0,
+            'impcomage'=>0,
+            'impcomejec'=>0,
+            'totopeaer'=>0,
+            'totopeter'=>0,
+            'totopenav'=>0,
+            'cgosadmcmxn'=>0,
+            'cgosadmcusd'=>0,
+            'cgosadmmmxn'=>0,
+            'cgosadmmusd'=>0,
+            'utilidadneta'=>0,
+            'utilidadbruta'=>0,
+            'cargosadmc'=>0,
+            'cargosadmm'=>0,
+            'precierre'=>0,
+            'aplic'=>'S'
+
+
 		]
 	);
 
@@ -92,7 +124,8 @@ class ExpedienteController extends Controller
 				'ctelefono' => $telefono,
 				'cext' => $cext,
 				'ctipotelefono' => $tipotel,
-				'cmail' => $cmail
+				'cmail' => $cmail,
+                'aplic'=>'S'
 			]
 		);
 
@@ -109,7 +142,8 @@ class ExpedienteController extends Controller
 			'cladaf' => $lada,
 			'ctelefonof' => $telefono,
 			'cextf' => $cext,
-			'ctipotelefonof' => $tipotel
+			'ctipotelefonof' => $tipotel,
+            'aplic'=>'S'
 		]
 	);
 
@@ -122,7 +156,8 @@ class ExpedienteController extends Controller
 			'nombre' => $cnombre,
 			'titulo' => 'MR',
 			'principal' => 1,
-			'cid_expediente' => $expediente
+			'cid_expediente' => $expediente,
+            'aplic'=>'S'
 		]
 	);
 
@@ -142,7 +177,8 @@ class ExpedienteController extends Controller
 			'f_modif' => $f_modif,
 			'cid_expediente' => $expediente,
 			'mail' => $cmail,
-			'consec' => '1'
+			'consec' =>1,
+            'aplic'=>'S'
 		]
 	);
 
@@ -152,9 +188,21 @@ class ExpedienteController extends Controller
 		->update(
 			['cid_expedi' => $expediente, 'status' => 'P', 'tproceso' => $dfecha]
 	);
+           DB::commit();
+            $success = true;
+        }
+        catch (\Exception $e) {
+            $success = false;
+            $error = $e->getMessage();
+            DB::rollback();
+        }
+        if ($success) {
+            echo 'HECHO';
+        }
 
-		echo 'HECHO';
+
 	}
+
 	
 	function numeracion($concepto){
 		$numeracion	= Tnumeracion::where('cconcepto', $concepto)->first();
