@@ -37,4 +37,5 @@ Route::post('mail/send', 'EnviaEmailController@send')->name('ligaBancaria.envia'
 //rutas cobro por tarjeta bancaria
 Route::post('cargos_b', 'CargosController@cargosB')->name('cargos_b');
 Route::post('banco_a', 'CargosController@bancoA')->name('banco_a');
+Route::post('datosB', 'CargosController@datosB')->name('datos_b');
 

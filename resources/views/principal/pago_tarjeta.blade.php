@@ -95,21 +95,21 @@
                         <tr>
                             <th>Titular</th>
                             <td>
-                                <input type="text" name="" value="" readonly>
+                                <input id="titular" type="text" name="" value="" readonly>
                             </td>
                             <th>Moneda:</th>
                             <td>
-                                <input type="text" name="" value="" readonly>
+                                <input type="text" id="moneda_cuenta" name="" value="" readonly>
                             </td>
                         </tr>
                         <tr>
                             <th>Fecha Op.</th>
                             <td>
-                                <input type="hidden" name="foperacion" value="{{$fecha2}}">{{$fecha2}}
+                                <input titular="fecha" type="hidden" name="foperacion" value="{{$fecha2}}">{{$fecha2}}
                             </td>
                             <th>No. Cuenta</th>
                             <td>
-                                <input type="text" name="" value="" readonly>
+                                <input type="text" id="cuenta" name="" value="" readonly>
                             </td>
                         </tr>
                         <tr id="datosBanco" hidden></tr>
@@ -224,9 +224,9 @@ function CargosB(terminal){
 		success: function(data){
 			$("#cargos").empty();
 			$("#cargos").append(data);
-            console.log(data);
+            console.log('cargos'+data);
 			bancoA(terminal);
-			
+            datosB(terminal);
 		}
 	});
 }
@@ -246,19 +246,25 @@ function bancoA(terminal){
 		}
 	});
 }
-//MUESTRA DATOS BANCARIOS
-// function datosB(terminal){
-// 	$.ajax({
-// 		type: "GET",
-// 		url: "php/datosB.php",
-// 		data: "terminal="+terminal,
-// 		dataType: "html",
-// 		success: function(data){
-// 			$("#datosBanco").empty();
-// 			$("#datosBanco").append(data);
-// 			$("#datosBanco").show('slow');
-// 		}
-// 	});
-// }
+
+function datosB(terminal){
+	$.ajax({
+		type: "POST",
+		url: "{{route('datos_b')}}",
+		data: {
+            '_token': '{{ csrf_token() }}',
+            'terminal':terminal
+        },
+        dataType: 'json',
+		success: function(data){
+            console.log('datos bancarios'+ data.moneda);
+			$("#titular").val(data.titular);
+            $("#cuenta").val(data.cuenta);
+            $("#nombre").val(data.nombre);
+            $("#moneda_cuenta").val(data.moneda);
+            $("#fecha").val(data.fecha);
+		}
+	});
+}
 </script>
 @endpush
