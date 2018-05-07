@@ -29,6 +29,3 @@ Route::get('descargar_pdf/{folio}','ProcesaPagocontroller@descargarPDF')->name('
 
 //ruta cancelar solicitud
 Route::post('cancelar_pago','ProcesaPagocontroller@cancelarSolicitud')->name('cancelar_pago.cancelarSolicitud');
-
-//ruta editar cliente
-Route::get('edit-registro/{registro}','ClientesExpoController@edit')->name('clientes_expo.edit');

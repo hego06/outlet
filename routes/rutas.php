@@ -4,7 +4,7 @@ Route::get('registros','ClientesExpoController@index')->name('clientes_expo.inde
 Route::get('nuevo-registro','ClientesExpoController@create')->name('clientes_expo.create');
 Route::post('nuevo-registro','ClientesExpoController@store')->name('clientes_expo.store');
 Route::get('show-registro/{registro}','ClientesExpoController@show')->name('clientes_expo.show');
-Route::post('edit-registro','ClientesExpoController@store')->name('clientes_expo.edit');
+Route::get('editar-registro/{registro}','ClientesExpoController@edit')->name('clientes_expo.edit');
 
 //Rutas tipo de cambio 
 

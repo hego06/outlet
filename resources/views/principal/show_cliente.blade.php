@@ -133,12 +133,17 @@
                         <label for="exampleInputPassword1" class="col-sm-4">Tipo</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="Tipo" name="ctipotel"  readonly>
-                                <option value="CELULAR">	CELULAR	</option>
-                                <option value="HOGAR">		HOGAR	</option>
+                                @if($cliente->ctipotel=='CELULAR')
+                                    <option value="CELULAR" selected>	CELULAR	</option>
+                                @elseif($cliente->ctipotel=='HOGAR')
+                                    <option value="HOGAR" selected>		HOGAR	</option>
+                                @elseif($cliente->ctipotel=='OFICINA')
                                 <option value="OFICINA">	OFICINA	</option>
+                                @elseif($cliente->ctipotel=='RADIO')
                                 <option value="RADIO">		RADIO	</option>
-                                <option value="RECADOS">	RECADOS	</option>
-                               
+                                @elseif($cliente->ctipotel=='RECADOS')
+                                    <option value="RECADOS">	RECADOS	</option>
+                                @endif
                             </select>
                         </div>
                     </div><br><br>
@@ -264,8 +269,11 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
                                             <select class="form-control" id="MonedaAnt" name="moneda" readonly>
-                                                <option value="MXN">PESOS - MXN</option>
-                                                <option value="USD">DÓLARES - USD</option>
+                                                @if($cliente->monedap=='MXN')
+                                                    <option value="MXN" selected>PESOS - MXN</option>
+                                                    @else
+                                                    <option value="USD" selected>DÓLARES - USD</option>
+                                                    @endif
                                             </select>
                                     </div>
                                 </div>
