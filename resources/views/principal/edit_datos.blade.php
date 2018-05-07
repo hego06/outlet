@@ -67,7 +67,7 @@
             crossorigin="anonymous"></script>
     <section class="content">
         <div class="row">
-            <form role="form" action="{{route('clientes_expo.store')}}" method="post">
+            <form role="form" action="{{route('clientes_expo.update')}}" method="post">
             @csrf
             <!-- left column -->
                 <div class="col-md-12">
@@ -77,8 +77,9 @@
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label class="col-sm-5">Tipo de Cambio: {{$cliente->tc}} </label>
+                                <label class="col-sm-5">Tipo de Cambio: {{$tcambio->tcambio}} </label>
                             </div>
+
                             <div class="form-group">
                                 <!-- Rounded switch -->
                                 <label class="switch">
@@ -88,7 +89,6 @@
                                 <label>GUARDAR REGISTRO COMO COTIZACIÓN</label>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -99,22 +99,23 @@
                         </div>
                         <div class="box-body">
                             <div class="form-group">
+                                <input type="hidden" name="folexpo" value="{{$cliente->folexpo}}">
                                 <label for="exampleInputEmail1" class="col-sm-4" >Nombre(s)</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="{{$cliente->cnombre}}" >
+                                    <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="{{$cliente->cnombre}}">
                                 </div>
                             </div>
                             <br><br>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4" name="capellidop">Apellido Paterno</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="AP" name="capellidop" placeholder="Apellido Paterno" required="required" value="{{$cliente->capellidop}}" >
+                                    <input type="text" class="form-control" id="AP" name="capellidop" placeholder="Apellido Paterno" required="required" value="{{$cliente->capellidop}}">
                                 </div>
                             </div><br><br>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4" >Apellido Materno</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="AM" name="capellidom" placeholder="Apellido Materno" value="{{$cliente->capellidom}}" >
+                                    <input type="text" class="form-control" id="AM" name="capellidom" placeholder="Apellido Materno"  value="{{$cliente->capellidom}}">
                                 </div>
                             </div><br><br>
                             <div class="form-group">
@@ -128,31 +129,27 @@
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                        <input type="tel" class="form-control" id="Tel" name="ctelefono" placeholder="Teléfono" required="required" value="{{$cliente->ctelefono}}" >
+                                        <input type="tel" class="form-control" id="Tel" name="ctelefono" placeholder="Teléfono" required="required" value="{{$cliente->ctelefono}}">
                                     </div>
                                 </div>
                             </div><br><br>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Ext.</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" id="Ext" name="cext" placeholder="Ext" value="{{$cliente->cext}}" >
+                                    <input type="number" class="form-control" id="Ext" name="cext" placeholder="Ext" value="{{$cliente->cext}}">
                                 </div>
                             </div><br><br>
                             <div class="form-group">
                                 <label for="exampleInputPassword1" class="col-sm-4">Tipo</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="Tipo" name="ctipotel"  >
-                                        @if($cliente->ctipotel=='CELULAR')
-                                            <option value="CELULAR" selected>	CELULAR	</option>
-                                        @elseif($cliente->ctipotel=='HOGAR')
-                                            <option value="HOGAR" selected>		HOGAR	</option>
-                                        @elseif($cliente->ctipotel=='OFICINA')
-                                            <option value="OFICINA">	OFICINA	</option>
-                                        @elseif($cliente->ctipotel=='RADIO')
-                                            <option value="RADIO">		RADIO	</option>
-                                        @elseif($cliente->ctipotel=='RECADOS')
-                                            <option value="RECADOS">	RECADOS	</option>
-                                        @endif
+                                    <select class="form-control" id="Tipo" name="ctipotel">
+                                        {{$cliente->ctipocel}}
+                                        <option value="CELULAR">	CELULAR	</option>
+                                        <option value="HOGAR">		HOGAR	</option>
+                                        <option value="OFICINA">	OFICINA	</option>
+                                        <option value="RADIO">		RADIO	</option>
+                                        <option value="RECADOS">	RECADOS	</option>
+
                                     </select>
                                 </div>
                             </div><br><br>
@@ -161,7 +158,7 @@
                                 <div class="col-sm-8" >
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                        <input type="email" class="form-control" id="Email" name="cmail" placeholder="Email" required="required" value="{{$cliente->cmail}}" >
+                                        <input type="email" class="form-control" id="Email" name="cmail" placeholder="Email" required="required" value="{{$cliente->cmail}}">
                                     </div>
                                 </div>
                             </div>
@@ -188,9 +185,9 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Clave MT</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="MT" name="cid_destin" placeholder="MT" value="{{$cliente->cid_destin}}" >
+                                            <input type="text" class="form-control" id="mt" name="cid_destin" placeholder="MT">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-info btn-flat">
+                                                <button id="buscaMT" name="buscaMT" onclick="BuscaMT(2)" type="button" class="btn btn-info btn-flat">
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </span>
@@ -201,8 +198,10 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Destino</label>
 
-                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino" value="{{$cliente->destino}}" >
-
+                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino"
+                                               required list="cid_destino" onkeyup="BuscaMT(1)" autocomplete="off"
+                                               onpaste="return false;" onblur="verificaDest(this); monedaP();" value="{{$cliente->destino}}">
+                                        <datalist id="cid_destino"></datalist>
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +214,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="input-sm form-control" id="Fsalida" name="fsalida" value="{{$cliente->fsalida}}" >
+                                            <input type="text" class="input-sm form-control" id="Fsalida" name="fsalida" min="{{$fecha}}" value="{{$cliente->fsalida}}">
                                         </div>
                                     </div>
                                     <!-- /.input group -->
@@ -223,13 +222,13 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="col-sm-4">No. Pasajeros</label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="Nopas" name="numpax" placeholder="No. Pasajeros" min="1" required="required" value="{{$cliente->numpax}}" >
+                                        <input type="number" class="form-control" id="Nopas" name="numpax" placeholder="No. Pasajeros" min="1" required="required" value="{{$cliente->numpax}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="col-sm-4">Comentarios</label>
                                     <div class="col-sm-8">
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa" value="{{$cliente->observa}}" >{{$cliente->observa}}</textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa">{{$cliente->observa}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -256,14 +255,14 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe Total del Paquete</label>
-                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="{{$cliente->totpaquete}}"  >
+                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="{{$cliente->totpaquete}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" >Moneda del Paquete</label>
-                                        <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" >
-                                        <input type="text" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" disabled>
+                                        <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="USD">
+                                        <input type="text" class="form-control" placeholder="USD" value="DÓLARES-USD" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -271,18 +270,16 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe del Anticipo</label>
-                                        <input type="text" class="form-control" id="Anticipo" name="impteapag" placeholder="Anticipo" value="{{$cliente->impteapag}}"  >
+                                        <input type="text" class="form-control" id="anticipo" name="impteapag" placeholder="Anticipo">
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
-                                        <select class="form-control" id="MonedaAnt" name="moneda" >
-                                            @if($cliente->monedap=='MXN')
-                                                <option value="MXN" selected>PESOS - MXN</option>
-                                            @else
-                                                <option value="USD" selected>DÓLARES - USD</option>
-                                            @endif
+                                        <select class="form-control" id="monedaAnt" name="moneda">
+                                            {{$cliente->monedap}}
+                                            <option value="MXN">PESOS - MXN</option>
+                                            <option value="USD">DÓLARES - USD</option>
                                         </select>
                                     </div>
                                 </div>
@@ -291,11 +288,11 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" rows="3" id="Letra" name="letras" value="{{$cliente->letras}}" >{{$cliente->letras}}</textarea>
-                                </div>
+                                    <input type="text" readonly class="form-control" id="impteletra" name="letras">
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
+
                             </div>
                         </div>
                     </div>
@@ -311,7 +308,6 @@
 @push('scripts')
     <script>
         $(document).ready(function(){
-
             $('#Anticipo').click(function () {
 
                 var num = $('input:text[name=impteapag]').val();
@@ -320,5 +316,94 @@
                 $('#Letras').val($("#Anticipo").val());
             })
         });
+
+
+        //BUSCA MT
+        function BuscaMT(tipo){
+            var mt;
+            var destino;
+            if(tipo == 2){ //BUSCA CLAVE MT
+                mt = $("#mt").val();
+                alert(mt);
+                if(mt!=''){
+                    $.ajax({
+                        type: "POST",
+                        url: "{{route('paquete.busqueda')}}",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "mt": mt,
+                            "busqueda": tipo
+                        },
+                        success: function(data){
+                            if(data == 'NO'){
+                                alert('MT NO ENCONTRADO');
+                                $("#destino").val('');
+                                $("#mt").val('');
+                                $("#mt").focus();
+                            }else{
+                                $("#destino").focus();
+                                $("#destino").val(data);
+                            }
+                            console.log(data);
+                        }
+                    });
+                }else{
+                    alert('INGRESE CLAVE MT PARA REALIZAR LA BÚSQUEDA DEL DESTINO');
+                    $("#mt").focus();
+                }
+            }
+            if(tipo == 1){ //BUSCA DESTINO INGRESADO
+                destino = $("#destino").val();
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('paquete.busqueda')}}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "destino": destino,
+                        "busqueda":tipo
+                    },
+                    success: function(data){
+                        $("#cid_destino").empty();
+                        $("#cid_destino").append(data);
+                    }
+                });
+            }
+        }
+
+        $(document).on('change','#anticipo, #monedaAnt', function() {
+            ajaxConvertir();
+        });
+
+        $("#anticipo").bind('keyup keypress change',function (e) {
+            ajaxConvertir();
+        });
+
+        function ajaxConvertir()
+        {
+            var anticipo	= $("#anticipo").val();
+            var destino 	= $("#destino").val();
+            var moneda = $("#monedaAnt").val();
+            if(anticipo!='' || destino !=''){
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('numeroLetra.convertidor')}}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "anticipo": anticipo,
+                        "moneda": moneda
+                    },
+                    success: function(data){
+                        $('#impteletra').val(data);
+                        console.log(data);
+                    }
+                });
+            }else{
+                alert('PRIMERO INGRESE UN DESTINO');
+                $("#destino").focus();
+                $("#impteletra").text('');
+                $("#anticipo").empty();
+                return false;
+            }
+        }
     </script>
 @endpush

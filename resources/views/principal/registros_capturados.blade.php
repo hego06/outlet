@@ -11,6 +11,18 @@
             <strong>Success!</strong> {{Session::get('flash_message')}}
         </div>
     @endif
+    @if(Session::has('message1'))
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> {{Session::get('message1')}}
+        </div>
+    @endif
+    @if(Session::has('message2'))
+        <div class="alert alert-warning alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> {{Session::get('message2')}}
+        </div>
+    @endif
 <div class="row">
   <div class="col-xs-12">
     
@@ -70,14 +82,16 @@
                   <tr>
                     <td>{{$registro->folexpo}}</td>
                     <td>{{$registro->cid_expedi}}</td>
-                    <td>{{Auth()->User()->name}}</td>
+                    <td>{{$registro->nvendedor}}</td>
                     <td>{{$registro->fechahora}}</td>
                     <td>{{$registro->monedap}}</td>
                     <td>{{$registro->status}}</td>
                     <td>{{$registro->cnombre}} {{$registro->capellidop}} {{$registro->capellidom}}</td>
                     <td>{{$registro->destino}}</td>
                     <td>
-                        <a href="{{route('clientes_expo.edit', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
+                        @if($registro->status!='P')
+                            <a href="{{route('clientes_expo.edit', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
+                        @endif
                         <a href="{{route('clientes_expo.show', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
                         <a href="{{route('procesa_pago.show', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-folder-open"></i></a>
                     </td>

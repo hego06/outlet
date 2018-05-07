@@ -15,7 +15,6 @@
 Route::post('busqueda-paquete','TdestpackController@busqueda')->name('paquete.busqueda');
 Route::post('convertidor', 'ConvertidorNumeroLetra@convertidor')->name('numeroLetra.convertidor');
 
-
 //rutas de ventas
 Route::get('ventas_reporte','VentasController@index')->name('ventas_reporte.index');
 Route::get('ventas_ver/{registro}','VentasController@show')->name('ventas_reporte.show');
@@ -29,3 +28,6 @@ Route::get('descargar_pdf/{folio}','ProcesaPagocontroller@descargarPDF')->name('
 
 //ruta cancelar solicitud
 Route::post('cancelar_pago','ProcesaPagocontroller@cancelarSolicitud')->name('cancelar_pago.cancelarSolicitud');
+
+//ruta editar
+Route::post('editar-registro','ClientesExpoController@update')->name('clientes_expo.update');

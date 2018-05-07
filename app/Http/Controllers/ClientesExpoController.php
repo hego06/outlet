@@ -105,9 +105,11 @@ class ClientesExpoController extends Controller
      */
     public function edit($fol)
     {
-        $cliente = ClientesExpo::where('folexpo',$fol)->first();
-
-        return view('principal.edit_cliente', compact('cliente'));
+        $now = new \DateTime();
+        $fecha=$now->format('Y-n-d');
+        $tcambio=Tcambio::where('fecha',date("y-m-d"))->first();
+        $cliente=ClientesExpo::where('folexpo',$fol)->first();
+        return view('principal.edit_datos', compact('fecha','tcambio','cliente'));
     }
 
     /**
@@ -117,9 +119,71 @@ class ClientesExpoController extends Controller
      * @param  \App\ClientesExpo  $clientesExpo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClientesExpo $clientesExpo)
+    public function update(Request $request)
     {
-        //
+        if(isset($request->status)){
+            $request->status='X';
+        }else{
+            $request->status='E';
+        }
+        $cdestpack 	= explode("§", strtoupper($request->destino));
+        $destino = trim($cdestpack[0]);
+        $cid_destin = trim($cdestpack[1]);
+        $area=Tdestpack::where('cid_destpack',$cid_destin)->first();
+        $idarea=$area->nid_area;
+        $depto=TArea::where('nid_area',$idarea)->first();
+        $iddepto=$depto->nid_depto;
+        $tc=Tcambio::where('fecha', date("y-m-d"))->first();
+
+        $error = null;
+        DB::beginTransaction();
+        try {
+            ClientesExpo::where('folexpo', $request->folexpo)->update([
+                'fechahora' => date('Y-m-d H:i:s', time()),
+                'hora' => date('h:i:s', time()),
+                'ftc' => date('Y-m-d', time()),
+                'cnombre' => $request->cnombre,
+                'capellidop' => $request->capellidop,
+                'capellidom' => $request->capellidom,
+                'clada' => $request->clada,
+                'ctelefono' => $request->ctelefono,
+                'cext' => $request->cext,
+                'ctipotel' => $request->ctipotel,
+                'cmail' => $request->cmail,
+                'fsalida' => $request->fsalida,
+                'numpax' => $request->numpax,
+                'observa' => $request->observa,
+                'totpaquete' => $request->totpaquete,
+                'monedap' => $request->monedap,
+                'impteapag' => $request->impteapag,
+                'moneda' => $request->moneda,
+                'cid_emplea' => Auth()->user()->id,
+                'nvendedor' => Auth()->user()->nvendedor,
+                'ciniciales'=> Auth()->user()->ciniciales,
+                'fecha' => date('Y-m-d H:i:s', time()),
+                'status' => $request->status,
+                'cid_destin' => $cid_destin,
+                'destino' => $destino,
+                'nid_depto' =>$iddepto,
+                'nid_area' =>$idarea,
+                'letras' => $request->letras,
+                'tc' => $tc->tcambio,
+                'aplic' => ''
+            ]);
+            DB::commit();
+            $success = true;
+        }
+        catch (\Exception $e) {
+                $success = false;
+                $error = $e->getMessage();
+                DB::rollback();
+                return  redirect()->route('clientes_expo.index')->with('message2', 'Error al guardar Cambio'.$e.' ');
+            }
+        if ($success) {
+            return  redirect()->route('clientes_expo.index')->with('message1', 'Cambio Guardado');
+
+
+        }
     }
 
     /**
