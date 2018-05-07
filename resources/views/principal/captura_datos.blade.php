@@ -77,7 +77,7 @@
                     <!-- form start -->
                     <div class="box-body">
                         <div class="form-group">
-                        <label class="col-sm-5">Tipo de Cambio: </label>
+                        <label class="col-sm-5">Tipo de Cambio: {{$tcambio->tcambio}} </label>
                         </div>
 
                         <div class="form-group">

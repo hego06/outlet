@@ -77,16 +77,7 @@
                     <!-- form start -->
                     <div class="box-body">
                         <div class="form-group">
-                        <label class="col-sm-5">Tipo de Cambio: </label>
-                        </div>
-
-                        <div class="form-group">
-                            <!-- Rounded switch -->
-                            <label class="switch">
-                                <input type="checkbox" id="cotizacion" name="status" checked>
-                                <span class="slider round"></span>
-                            </label>
-                            <label>GUARDAR REGISTRO COMO COTIZACIÓN</label>
+                        <label class="col-sm-5">Tipo de Cambio: {{$cliente->tc}} </label>
                         </div>
                     </div>
                 </div>
@@ -142,12 +133,17 @@
                         <label for="exampleInputPassword1" class="col-sm-4">Tipo</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="Tipo" name="ctipotel"  readonly>
-                                <option value="CELULAR">	CELULAR	</option>
-                                <option value="HOGAR">		HOGAR	</option>
+                                @if($cliente->ctipotel=='CELULAR')
+                                    <option value="CELULAR" selected>	CELULAR	</option>
+                                @elseif($cliente->ctipotel=='HOGAR')
+                                    <option value="HOGAR" selected>		HOGAR	</option>
+                                @elseif($cliente->ctipotel=='OFICINA')
                                 <option value="OFICINA">	OFICINA	</option>
+                                @elseif($cliente->ctipotel=='RADIO')
                                 <option value="RADIO">		RADIO	</option>
-                                <option value="RECADOS">	RECADOS	</option>
-                               
+                                @elseif($cliente->ctipotel=='RECADOS')
+                                    <option value="RECADOS">	RECADOS	</option>
+                                @endif
                             </select>
                         </div>
                     </div><br><br>
@@ -224,7 +220,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Comentarios</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa" value="{{$cliente->observa}}" readonly>Esto es un comentario</textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa" value="{{$cliente->observa}}" readonly>{{$cliente->observa}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -251,7 +247,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe Total del Paquete</label>
-                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="1000" readonly>
+                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="{{$cliente->totpaquete}}" readonly >
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
@@ -266,15 +262,18 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe del Anticipo</label>
-                                            <input type="text" class="form-control" id="Anticipo" name="impteapag" placeholder="Anticipo" value="100" readonly>
+                                            <input type="text" class="form-control" id="Anticipo" name="impteapag" placeholder="Anticipo" value="{{$cliente->impteapag}}" readonly >
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
                                             <select class="form-control" id="MonedaAnt" name="moneda" readonly>
-                                                <option value="MXN">PESOS - MXN</option>
-                                                <option value="USD">DÓLARES - USD</option>
+                                                @if($cliente->monedap=='MXN')
+                                                    <option value="MXN" selected>PESOS - MXN</option>
+                                                    @else
+                                                    <option value="USD" selected>DÓLARES - USD</option>
+                                                    @endif
                                             </select>
                                     </div>
                                 </div>
@@ -283,7 +282,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly  class="form-control" id="Letra" name="letras" value="letra" readonly>
+                                    <textarea class="form-control" rows="3" id="Letra" name="letras" value="{{$cliente->letras}}" readonly>{{$cliente->letras}}</textarea>
                                 </div>
                             </div>
                             <!-- /.box-body -->

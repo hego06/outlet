@@ -77,7 +77,7 @@
                     <td>{{$registro->cnombre}} {{$registro->capellidop}} {{$registro->capellidom}}</td>
                     <td>{{$registro->destino}}</td>
                     <td>
-                        <a href="{{route('clientes_expo.edit', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
+                        <a href="{{route('clientes_expo.edit', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
                         <a href="{{route('clientes_expo.show', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
                         <a href="{{route('procesa_pago.show', $registro)}}" class="btn btn-xs btn-info"><i class="fa fa-folder-open"></i></a>
                     </td>

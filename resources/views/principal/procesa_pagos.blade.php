@@ -147,9 +147,9 @@
                                 <th>Cancelar</th>
                             </tr>
                                 <tr>
-                                @foreach($solicitudes as $solicitud)
-                            <tr>
+                                @foreach($solicitudes as  $solicitud)
 
+                            <tr>
                                 <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->cid_solicitud}}</a></td>
                                 <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->fechaemitido}}</a></td>
                                 <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->folio}}</a></td>
@@ -157,10 +157,11 @@
                                 <td><a href="{{ asset('pdf/'.$solicitud->folio.'.pdf') }}" alt="Abrir PDF" target="_blank">{{$solicitud->moneda}}</a></td>
                                 <td align="center"> <a href="{{route('descargar_Pdf.descargarPDF',$solicitud->folio)}}"><i class="fa fa-cloud-download fa-2x" aria-hidden="true"></i></a></td>
                                 @if($solicitud->estatus=='EM')
-                                <td align="center"><i class="fa fa-times-circle fa-2x" aria-hidden="true" onclick='cancelaR(solicitud,)'></i></td>
 
-                                    <a href="{{route('cancelar_pago.cancelarSolicitud',$solicitud->folio)}}"></a>
+                                    <td align="center"><button class="btn btn-default"  onclick='cancelaR("{{$solicitud->folio}}","{{$cliente->folexpo}}","{{$solicitud->cid_solicitud}}")'><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></button></td>
                                 @endif
+
+
 
                             </tr>
                                     @endforeach
@@ -235,7 +236,7 @@
 				url: "{{route('expediente.genera')}}", 
 				data: {
                     "_token": "{{ csrf_token() }}",
-                    "folExpo": {{$cliente->folexpo}}
+                    "folExpo": "{{$cliente->folexpo}}"
                 },
 				success: function(data){
                     console.log(data);
@@ -287,10 +288,25 @@
         if (answer){
             var motivo	= prompt("Motivo de cancelación(Obligatorio): ");
             if(motivo!=undefined && motivo){
-                var datos = "folexpo="+folexpo+"&recibo="+recibo+"&motivo="+motivo+"&solicitud="+solicitud;
-                window.location=('php/cancela_recibo.php?'+datos);
+                //var datos = "folexpo="+folexpo+"&recibo="+recibo+"&motivo="+motivo+"&solicitud="+solicitud;
+                $.ajax({
+                    type: "POST",
+                    url: "{{route('cancelar_pago.cancelarSolicitud')}}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "folexpo":folexpo,
+                        "motivo":motivo,
+                        "recibo":recibo,
+                        "solicitud":solicitud
+                    },
+                    success:function (cancelarR) {
+                        location.reload();
+                    }
+                });
+               // window.location=('php/cancela_recibo.php?'+datos);
             }
         }
     }
+    //);
 </script>
 @endpush

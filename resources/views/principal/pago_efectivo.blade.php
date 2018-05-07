@@ -172,11 +172,6 @@
                         console.log(data);
                     }
                 });
-
-
-
-
-
         }
         </script>
 @endpush
