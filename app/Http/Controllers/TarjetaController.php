@@ -9,6 +9,7 @@ use App\ClientesExpo;
 use App\Vtasoperador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Recibodig;
 
 class TarjetaController extends Controller
 {
@@ -205,21 +206,38 @@ class TarjetaController extends Controller
 
         // //VERIFICAR QUE NO EXISTA EL MOVIMIENTO
         $buscavtasop = Vtasoperador::where('cid_solicitud',$cid_solicitud)->first();
-        if (!$$buscavtasop){
+        if (!$buscavtasop){
             //DAR DE ALTA EN OPERADORES  EL MOVIMIENTO
             $insertvtasop = Vtasoperador::create([
                 'tipo'=>'T',
                 'operador'=> $banco,
                 'descriserv'=> $cconcepto,
                 'importe'=> $cantidad,
-                'moneda'=> $moneda,
+                'moneda'=> '000',                                                 //verifivar de donde viene este dato
                  'importeusd'=> $cantidad,
                 'fecha'=> $dfecha,
                 'cid_expediente'=> $expediente,
                 'cid_operador'=> 'BCO',
                 'idexpe'=> '000000000000000',
                 'fill'=> 'B',
-                'cid_solcitud'=> $cid_solicitud
+                'cid_solicitud'=> $cid_solicitud,
+                'documento' => '',
+                'f_capconf' => '2018-01-01 00:00:00',
+                'observa' => '',
+                'f_pagada' => '2018-01-01 00:00:00',
+                'numfac' => '',
+                'imptefact' => '0.0',
+                'monedafact' => '0',
+                'fprog_pag' => '2018-01-01 00:00:00',
+                'tcpago' => '0.0',
+                'ope_pago' => '',
+                'cid_cotizacion' => '',                                             //verificar
+                'estatus' => '0',
+                'cid_bloqueo' => '',
+                'descriservc' => '',
+                'importec' => '0.0',
+                'importeusdc' => '0.0',
+                'statuspag' => '0'
                 ]);
 
             $cantidad_d 	= 0;
@@ -242,7 +260,7 @@ class TarjetaController extends Controller
             $cantidad_d 	= $cantidad_o - $cantidad ;
         }
 
-        $insertrecibo	= Recibodig::create([
+        DB::table('recibodig')->insert([
             'folio' => $nrecibo,
             'nombre' => $cliente,
             'telefono' => $telefono,
@@ -269,12 +287,31 @@ class TarjetaController extends Controller
             'cid_empleado' => $id,
             'cancelado' => '0',
             'elaboro' => $elaboro,
+            'direccion' => '',
+            'colonia' => '',
+            'mundel' => '',
+            'estado' => '',
+            'codigop' => '',
+            'rfc' => '',
+            'notas' => '',
+            'motivocanc' =>'',
+            'sustituidox' => '',
+            'sustituidom' => '',
+            'enviado' => '',
+            'pdf' => '',
+            'legvar1' => '',
+            'legvar2'  => '',
+            'fhrevisado' => '1000-10-10 00:00:00',
+            'revisado' => '',
+            'auto_rec' => '',
+            'obser_grales' => '',
+            'motivo_rechaza' => '',
+            'quiencancela'  => '',
+            'aplic' => '',
+            'fcancela' => '1000-10-10',
         ]);
 
-        $foliorecibo = encode_this("folio=".$nrecibo."&folexpo=".$folexpo);
-	    return view("Location: recibo_imprime.php?".$foliorecibo);
-
-        dd($insertventas);
+        return  redirect()->route('crear.PDF',array('expediente'=>$nrecibo));
     }
 
     function numeracion($concepto){

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class Recibodig extends Model
 {
     protected $table = 'recibodig';
+    protected $guarded = [];
     public $timestamps = false;
 
     public function getMontoAttribute($monto){

@@ -273,5 +273,31 @@ function datosB(terminal){
 		}
 	});
 }
+
+    // $(document).on('change','#importe_t', function() { 
+    //     ajaxConvertir(); 
+    //     });
+    $("#importe_t").bind('keypress keyup',function (e) {
+        ajaxConvertir();
+    });
+    function ajaxConvertir()
+    {
+        var anticipo	= $("#importe_t").val();
+        var moneda = $("#monedaAnt").val();
+        $.ajax({
+            type: "POST",
+            url: "{{route('numeroLetra.convertidor')}}",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "anticipo": anticipo,
+                "moneda": moneda
+            },
+            success: function(data){
+                $('#impteletra').val(data+"MXN");
+                console.log(data);
+            }
+        });
+
+    }
 </script>
 @endpush
