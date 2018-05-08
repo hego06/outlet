@@ -101,8 +101,9 @@ class ProcesaPagoController extends Controller
         $cli=ClientesExpo::where('cid_expedi',$recibo->cid_expediente)->first();
         $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
         $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
-        return $pdf->stream($folio.'.pdf',array("Attachment" => false));
-
+        return $pdf->stream($folio.'.pdf');
+    }
+    public function verPDF(){
 
     }
 
