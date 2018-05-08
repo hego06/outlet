@@ -296,11 +296,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
                     <div>
                         <button class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </section>
