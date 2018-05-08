@@ -15,11 +15,13 @@ class TdestpackController extends Controller
     public function busqueda(Request $request)
     {
         $parametros = $request->all();
-        
+
         $tipo= $parametros['busqueda'];
+
 
         if($tipo == 2)
         {
+            $mt=$parametros['mt'];
             $paquete = Tdestpack::
             where('cid_destpack','LIKE','%'.$mt.'%')
             ->where('bactiva','S')
@@ -56,4 +58,5 @@ class TdestpackController extends Controller
         }
 
     }
+
 }

@@ -16,5 +16,20 @@ class ClientesExpo extends Model
     {
         $this->attributes['fsalida'] = Carbon::parse($fechaSalida)->format('Y-m-d');
     }
+    public function getStatusAttribute($status)
+    {
+        if($status=='X'){
+            $estatus='COTIZACIÓN';
+        }
+        else if($status=='E'){
+            $estatus='PENDIENTE';
+        }else if($status=='P'){
+            $estatus='PROCESADA';
+        }else{
+            $estatus='LIGA BANCARIA';
+        }
+        return $estatus;
+
+    }
 }
 

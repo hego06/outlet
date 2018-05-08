@@ -67,7 +67,7 @@
             crossorigin="anonymous"></script>
     <section class="content">
         <div class="row">
-            <form role="form" action="{{route('clientes_expo.store')}}" method="post">
+            <form role="form" action="{{route('clientes_expo.update')}}" method="post">
             @csrf
             <!-- left column -->
                 <div class="col-md-12">
@@ -77,7 +77,7 @@
                         <!-- form start -->
                         <div class="box-body">
                             <div class="form-group">
-                                <label class="col-sm-5">Tipo de Cambio: {{$cliente->tc}} </label>
+                                <label class="col-sm-5">Tipo de Cambio: {{$tc->tcambio}} </label>
                             </div>
                             <div class="form-group">
                                 <!-- Rounded switch -->
@@ -99,6 +99,7 @@
                         </div>
                         <div class="box-body">
                             <div class="form-group">
+                                <input type="hidden" name="folexpo" value="{{$cliente->folexpo}}">
                                 <label for="exampleInputEmail1" class="col-sm-4" >Nombre(s)</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="{{$cliente->cnombre}}" >
@@ -141,18 +142,13 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1" class="col-sm-4">Tipo</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="Tipo" name="ctipotel"  >
-                                        @if($cliente->ctipotel=='CELULAR')
+                                    <select class="form-control" id="Tipo" name="ctipotel">
+                                        {{$cliente->ctipocel}}
                                             <option value="CELULAR" selected>	CELULAR	</option>
-                                        @elseif($cliente->ctipotel=='HOGAR')
                                             <option value="HOGAR" selected>		HOGAR	</option>
-                                        @elseif($cliente->ctipotel=='OFICINA')
                                             <option value="OFICINA">	OFICINA	</option>
-                                        @elseif($cliente->ctipotel=='RADIO')
                                             <option value="RADIO">		RADIO	</option>
-                                        @elseif($cliente->ctipotel=='RECADOS')
                                             <option value="RECADOS">	RECADOS	</option>
-                                        @endif
                                     </select>
                                 </div>
                             </div><br><br>
@@ -188,9 +184,9 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Clave MT</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="MT" name="cid_destin" placeholder="MT" value="{{$cliente->cid_destin}}" >
+                                            <input type="text" class="form-control" id="mt" name="cid_destin" placeholder="MT" value="{{$cliente->cid_destin}}">
                                             <span class="input-group-btn">
-                                                <button type="button" class="btn btn-info btn-flat">
+                                                <button id="buscaMT" name="buscaMT" onclick="BuscaMT(2)" type="button" class="btn btn-info btn-flat">
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </span>
@@ -201,8 +197,10 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Destino</label>
 
-                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino" value="{{$cliente->destino}}" >
-
+                                        <input type="text" class="form-control" id="destino" name="destino" placeholder="Destino"
+                                               required list="cid_destino" onkeyup="BuscaMT(1)" autocomplete="off"
+                                               onpaste="return false;" onblur="verificaDest(this); monedaP();" value="{{$cliente->destino}}">
+                                        <datalist id="cid_destino"></datalist>
                                     </div>
                                 </div>
                             </div>
@@ -262,8 +260,8 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" >Moneda del Paquete</label>
-                                        <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" >
-                                        <input type="text" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="DÓLARES-USD" disabled>
+                                        <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="USD" >
+                                        <input type="text" class="form-control"  placeholder="USD" value="DÓLARES-USD" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -278,11 +276,9 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
                                         <select class="form-control" id="MonedaAnt" name="moneda" >
-                                            @if($cliente->monedap=='MXN')
-                                                <option value="MXN" selected>PESOS - MXN</option>
-                                            @else
-                                                <option value="USD" selected>DÓLARES - USD</option>
-                                            @endif
+                                                {{$cliente->monedap}}
+                                                <option value="MXN" >PESOS - MXN</option>
+                                                <option value="USD">DÓLARES - USD</option>
                                         </select>
                                     </div>
                                 </div>
@@ -291,7 +287,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" rows="3" id="Letra" name="letras" value="{{$cliente->letras}}" >{{$cliente->letras}}</textarea>
+                                    <textarea class="form-control" rows="3" id="Letra" name="letras">{{$cliente->letras}}</textarea>
                                 </div>
                             </div>
                             <!-- /.box-body -->
@@ -320,5 +316,92 @@
                 $('#Letras').val($("#Anticipo").val());
             })
         });
+        //BUSCA MT
+        function BuscaMT(tipo){
+            var mt;
+            var destino;
+            if(tipo == 2){ //BUSCA CLAVE MT
+                mt = $("#mt").val();
+                alert(mt);
+                if(mt!=''){
+                    $.ajax({
+                        type: "POST",
+                        url: "busqueda-paquete",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "mt": mt,
+                            "busqueda": tipo
+                        },
+                        success: function(data){
+                            if(data == 'NO'){
+                                alert('MT NO ENCONTRADO');
+                                $("#destino").val('');
+                                $("#mt").val('');
+                                $("#mt").focus();
+                            }else{
+                                $("#destino").focus();
+                                $("#destino").val(data);
+                            }
+                            console.log(data);
+                        }
+                    });
+                }else{
+                    alert('INGRESE CLAVE MT PARA REALIZAR LA BÚSQUEDA DEL DESTINO');
+                    $("#mt").focus();
+                }
+            }
+            if(tipo == 1){ //BUSCA DESTINO INGRESADO
+                destino = $("#destino").val();
+                $.ajax({
+                    type: "POST",
+                    url: "busqueda-paquete",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "destino": destino,
+                        "busqueda":tipo
+                    },
+                    success: function(data){
+                        $("#cid_destino").empty();
+                        $("#cid_destino").append(data);
+                    }
+                });
+            }
+        }
+
+        $(document).on('change','#anticipo, #monedaAnt', function() {
+            ajaxConvertir();
+        });
+
+        $("#anticipo").bind('keyup keypress change',function (e) {
+            ajaxConvertir();
+        });
+
+        function ajaxConvertir()
+        {
+            var anticipo	= $("#anticipo").val();
+            var destino 	= $("#destino").val();
+            var moneda = $("#monedaAnt").val();
+            if(anticipo!='' || destino !=''){
+                $.ajax({
+                    type: "POST",
+                    url: "convertidor",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "anticipo": anticipo,
+                        "moneda": moneda
+                    },
+                    success: function(data){
+                        $('#impteletra').val(data);
+                        console.log(data);
+                    }
+                });
+            }else{
+                alert('PRIMERO INGRESE UN DESTINO');
+                $("#destino").focus();
+                $("#impteletra").text('');
+                $("#anticipo").empty();
+                return false;
+            }
+        }
     </script>
 @endpush
