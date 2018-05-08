@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
     @stack('styles')
-  <style type="text/css">
+  <style>
     body{
       background: url('http://lax.megatravel.com.mx/expo/img/logo_mt.png')center;
       background-repeat: no-repeat;;
@@ -75,11 +75,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>EX</b>18</span>
+      <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>EXPO</b>2018</span>
+      <span class="logo-lg"><b>EXPO</b>2018</span>
     </a>
 
     <!-- Header Navbar -->
