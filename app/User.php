@@ -14,6 +14,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    // protected $table = 'templeados';
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -26,4 +28,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->contrasena;
+    }
+
+    // public function getCcontrasenaAttribute($value)
+    // {
+    //     if( \Hash::needsRehash($value) ) {
+    //             $value = \Hash::make($value);
+    //     }
+
+    //     return  $value;
+    // }
 }

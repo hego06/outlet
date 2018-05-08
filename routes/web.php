@@ -13,14 +13,16 @@
 
 
 Route::group(['middleware' => 'auth'],function(){
+
     require_once "rutas.php";
     require_once "rutas2.php";
 
     Route::get('/', function () {
         return view('principal.layout');
     });
-    
+
 });
+
 
 Auth::routes();
 
