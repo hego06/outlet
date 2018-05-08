@@ -72,7 +72,7 @@ desired effect
 <div class="wrapper">
 
   <header class="main-header">
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <span class="logo-mini"><b>E</b>XPO</span>
       <span class="logo-lg"><b>EXPO</b>2018</span>
     </a>
