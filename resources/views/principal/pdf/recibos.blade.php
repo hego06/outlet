@@ -17,7 +17,7 @@
                 font-size: 16px;
             }
             .t2{
-                font-size: 10px;
+                font-size: 9px;
             }
             .t3{
                 font-size: 14px;
