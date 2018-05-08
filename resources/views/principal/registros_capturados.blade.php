@@ -89,7 +89,7 @@
                     <td>{{$registro->cnombre}} {{$registro->capellidop}} {{$registro->capellidom}}</td>
                     <td>{{$registro->destino}}</td>
                     <td>
-                        @if($registro->status!='P')
+                        @if($registro->status!='PROCESADA')
                             <a href="{{route('clientes_expo.edit', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-pencil"></i></a>
                         @endif
                         <a href="{{route('clientes_expo.show', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
