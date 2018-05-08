@@ -65,40 +65,29 @@ desired effect
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <!-- Main Header -->
   <header class="main-header">
-
-    <!-- Logo -->
     <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
+      <span class="logo-mini"><b>E</b>XPO</span>
       <span class="logo-lg"><b>EXPO</b>2018</span>
     </a>
 
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
-      <!-- Sidebar toggle button-->
+    <nav class="navbar navbar-static-top">
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu open">
+          <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
               <span class="hidden-xs">Cuenta</span>
             </a>
             <ul class="dropdown-menu">
-              <!-- User image -->
               <li class="user-header">
                 <p>
                   {{Auth::user()->nvendedor}}
                   <small>{{Auth::user()->email}}</small>
                 </p>
               </li>
-              <!-- Menu Body -->
-              <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
                   <form method="POST" action="{{route('logout')}}">
@@ -149,10 +138,6 @@ desired effect
       @yield('title')
         <small>@yield('description')</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
     </section>
 
     <!-- Main content -->

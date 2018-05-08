@@ -201,12 +201,10 @@ class TarjetaController extends Controller
                     'num' => '0'
                 ]);
             $cantidad_d	= $cantidad_o - $cantidad;
-        
         }
 
         // //VERIFICAR QUE NO EXISTA EL MOVIMIENTO
         $buscavtasop = Vtasoperador::where('cid_solicitud',$cid_solicitud)->first();
-
         if (!$$buscavtasop){
             //DAR DE ALTA EN OPERADORES  EL MOVIMIENTO
             $insertvtasop = Vtasoperador::create([
@@ -241,7 +239,6 @@ class TarjetaController extends Controller
                 'fill' => 'B',
                 'cid_solicitud'	=> $cid_solicitud 
             ]);
-
             $cantidad_d 	= $cantidad_o - $cantidad ;
         }
 
