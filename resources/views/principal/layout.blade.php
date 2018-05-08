@@ -122,6 +122,7 @@ desired effect
       </div>
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
+        <img src="http://lax.megatravel.com.mx/expo/img/logo_mt.png" width="150">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{route('clientes_expo.store')}}"><i class="fa fa-clipboard"></i> <span>Registro de Información</span></a></li>
