@@ -49,7 +49,7 @@ class TarjetaController extends Controller
 		$valida_t		= $request->valido;
         $importe_t		= $request->importe_t;
         // $letras_t		= $request->impteletra;
-        $letras_t		= "importe en letra";
+        $letras_t		= $request->impteletra;
 		$procede_t		= $request->procedencia;
 		$mov_t			= $request->movimiento;
 		$titular 		= $request->titular;

@@ -162,7 +162,7 @@ desired effect
     <div class="pull-right hidden-xs">
     </div>
     <!-- Default to the left -->
-    <strong> Mega Travel Operadora, S.A. de C.V. México 1999 -2018</strong>
+    <strong>© Mega Travel Operadora, S.A. de C.V. México 1999 -2018</strong>
   </footer>
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->

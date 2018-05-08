@@ -64,22 +64,39 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-4">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th colspan="2">INGRESOS TARJETA BANCARIA</th>
-                                    <th colspan="2">INGRESOS EFECTIVO</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <th>MXN</th>
                                     <th>USD</th>
+                                </tr>
+
+                                    <tr>
+                                        <td>{{$ingresoTMXN}}</td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-4">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th colspan="2">INGRESOS EFECTIVO</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+
                                     <th>MXN</th>
                                     <th>USD</th>
-                                    <th>MONEDA</th>
-                                    <th></th>
                                 </tr>
 
                                 </tbody>

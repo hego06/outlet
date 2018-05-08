@@ -269,7 +269,7 @@ function datosB(terminal){
             $("#moneda_cuenta").val(data.moneda);
             $("#moneda_c").val(data.moneda_c);
             $("#fecha").val(data.fecha);
-            $("#nbanco").val(data.nbanco);
+            $("#nbanco").val(data.nombre);
 		}
 	});
 }
