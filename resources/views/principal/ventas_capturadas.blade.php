@@ -68,7 +68,7 @@
                                 <td>{{$registro->fechahora}}</td>
                                 <td>{{$registro->folexpo}}</td>
                                 <td>{{$registro->cid_expedi}}</td>
-                                <td>{{Auth()->User()->name}}</td>
+                                <td>{{$registro->nvendedor}}</td>
                                 <td>{{$registro->numpax}}</td>
                                 <td>{{$registro->cnombre}} {{$registro->capellidop}} {{$registro->capellidom}}</td>
                                 <td>{{$registro->destino}}</td>
