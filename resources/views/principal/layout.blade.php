@@ -28,6 +28,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="{{asset('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
     @stack('styles')
+  <style>
+    body{
+      background: url('http://lax.megatravel.com.mx/expo/img/logo_mt.png')center;
+      background-repeat: no-repeat;;
+    }
+  </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
