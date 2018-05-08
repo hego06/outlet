@@ -34,12 +34,11 @@ class User extends Authenticatable
         return $this->contrasena;
     }
 
-    // public function getCcontrasenaAttribute($value)
-    // {
-    //     if( \Hash::needsRehash($value) ) {
-    //             $value = \Hash::make($value);
-    //     }
-
-    //     return  $value;
-    // }
+    public function getContrasenaAttribute($value)
+    {
+        if( \Hash::needsRehash($value) ) {
+                $value = \Hash::make($value);
+        }
+        return  $value;
+    }
 }
