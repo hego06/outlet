@@ -3,6 +3,8 @@
 @push('styles')
 @endpush
 @section('content')
+<form  method= "POST" action="{{route('tarjeta.store')}}">
+    @csrf
     <div class="row">
         <div class="col-sm-6">
             <div class="box box-info">
@@ -43,6 +45,9 @@
                             <td colspan="3">{{$cliente->nvendedor}}</td>
                         </tr>
                     </table>
+                    <input type="hidden" name="elaboro" id="elaboro" value="{{Auth()->User()->id}}">
+                    <input type="hidden" name="folexpo" id="folexpo" value="{{$cliente->folexpo}}">
+                    <input type="hidden" name="expediente" id="expediente" value="{{$cliente->cid_expedi}}">
                 </div>
             </div>
         </div>
@@ -95,11 +100,13 @@
                         <tr>
                             <th>Titular</th>
                             <td>
-                                <input id="titular" type="text" name="" value="" readonly>
+                                <input id="titular" type="text" name="titular" value="" readonly>
+                                <input id="nbanco" type="text" name="nbanco" value="" readonly>
                             </td>
                             <th>Moneda:</th>
                             <td>
-                                <input type="text" id="moneda_cuenta" name="" value="" readonly>
+                                <input type="hidden" id="moneda_cuenta" name="moneda_cuenta" value="" readonly>
+                                <input type="text" id="moneda_c" name="moneda_c" value="" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -109,7 +116,7 @@
                             </td>
                             <th>No. Cuenta</th>
                             <td>
-                                <input type="text" id="cuenta" name="" value="" readonly>
+                                <input type="text" id="cuenta" name="cuenta" value="" readonly>
                             </td>
                         </tr>
                         <tr id="datosBanco" hidden></tr>
@@ -209,7 +216,7 @@
             </div>
         </div>
     </div>
-
+</form>
 @endsection
 @push('scripts')
 <script>
@@ -257,12 +264,12 @@ function datosB(terminal){
         },
         dataType: 'json',
 		success: function(data){
-            console.log('datos bancarios'+ data.moneda);
 			$("#titular").val(data.titular);
             $("#cuenta").val(data.cuenta);
-            $("#nombre").val(data.nombre);
             $("#moneda_cuenta").val(data.moneda);
+            $("#moneda_c").val(data.moneda_c);
             $("#fecha").val(data.fecha);
+            $("#nbanco").val(data.nbanco);
 		}
 	});
 }

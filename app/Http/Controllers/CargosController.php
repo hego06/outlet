@@ -82,6 +82,7 @@ class CargosController extends Controller
             ['titular'=> $titular, 
             'nombre'=>$nbanco, 
             'moneda'=>$moneda, 
+            'moneda_c'=>$moneda_, 
             'fecha'=>$fechaop, 
             'cuenta'=>$n_cuenta];
     
