@@ -41,9 +41,8 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'nvendedor';
+        return 'cnombre';
     }
-
 
     // public function authenticate()
     // {

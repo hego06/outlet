@@ -15,26 +15,28 @@ class User extends Authenticatable
      * @var array
      */
 
-    // protected $table = 'templeados';
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    protected $table = 'templeados';
+    protected $primaryKey = 'cid_empleado';
+
+    // protected $fillable = [
+    //     'name', 'email', 'password',
+    // ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password', 'remember_token',
+    // ];
 
     public function getAuthPassword()
     {
-        return $this->contrasena;
+        return $this->ccontrasenia;
     }
 
-    public function getContrasenaAttribute($value)
+    public function getCcontraseniaAttribute($value)
     {
         if( \Hash::needsRehash($value) ) {
                 $value = \Hash::make($value);

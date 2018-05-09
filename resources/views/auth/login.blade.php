@@ -53,7 +53,7 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
-                                        <input id="nvendedor" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="nvendedor" value="{{ old('email') }}" required autofocus>
+                                        <input id="cnombre" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="cnombre" value="{{ old('email') }}" required autofocus>
                                         <span class="fa fa-user form-control-feedback"></span>
                                         @if ($errors->has('email'))
                                             <span class="invalid-feedback">
