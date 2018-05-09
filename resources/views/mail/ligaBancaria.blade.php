@@ -23,7 +23,7 @@
 
                             <td width='233' align='right' style='font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-size:11px;color:#333'>Av. Chapultepec No. 536, Piso 7 <br>Col. Roma Norte. Del. Cuauhtémoc
                                 <br>C.P. 06700 Ciudad de México. México.
-                                <br><br><strong>$fecha_</strong>
+                                <br><br><strong>{{$fecha}}</strong>
                             </td>
                         </tr>
 
@@ -39,7 +39,7 @@
                                     <br>
                                     <strong>Referencia:</strong>{{$cliente->folexpo}}<br>
                                     <strong>Paquete: </strong>{{$cliente->cid_destin}} - {{$cliente->destino}}<br>
-                                    <strong>Pax: </strong> {{$cliente->pax}}<br>
+                                    <strong>Pax: </strong> {{$cliente->numpax}}<br>
                                     <br><br>
                                     <strong>Importe a Pagar en esta Operación:</strong>{{$cliente->impteapag}}<br>
                                     {{$cliente->letras}}

@@ -9,8 +9,8 @@ Route::get('editar-registro/{registro}','ClientesExpoController@edit')->name('cl
 //Rutas tipo de cambio 
 
 Route::get('nuevo-tipo-cambio','TipoCambioController@create')->name('tipo_cambio.create');
-Route::post('nuevo-tipo-cambio','TipoCambioController@store')->name('tipo_cambio.store');
-Route::post('update-tipo-cambio','TipoCambioController@update')->name('tipo_cambio.update');
+Route::post('nuevo-tipo-cambio','TipoCambioController@store')->name('tipo_cambio.store')->middleware('admin');
+Route::post('update-tipo-cambio','TipoCambioController@update')->name('tipo_cambio.update')->middleware('admin');
 Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.show');
 
 //rutas procesa pago

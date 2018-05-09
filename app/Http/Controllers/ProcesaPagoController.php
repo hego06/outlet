@@ -129,7 +129,7 @@ class ProcesaPagoController extends Controller
         [
             'cancelado'	=> 1,
             'motivocanc'=> $request->motivo,
-            'quiencancela'=> Auth()->user()->id,
+            'quiencancela'=> Auth()->user()->cid_empleado,
             'fcancela'=> $fecha
 
         ]

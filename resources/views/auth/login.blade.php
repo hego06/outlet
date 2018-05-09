@@ -50,7 +50,6 @@
                         <div class="form-group has-feedback">
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Correo') }}</label>
-
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
                                         <input id="cnombre" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="cnombre" value="{{ old('email') }}" required autofocus>

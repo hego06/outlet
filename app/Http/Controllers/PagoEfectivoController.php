@@ -120,9 +120,9 @@ class PagoEfectivoController extends Controller
                 'encrip'=>$encrip,
                 'legvar1'=>'',
                 'legvar2'=>'',
-                'cid_empleado'=>Auth()->user()->id,
+                'cid_empleado'=>Auth()->user()->cid_empleado,
                 'cancelado'=>0,
-                'elaboro'=>Auth()->user()->nvendedor,
+                'elaboro'=>Auth()->user()->cnombre,
                 'pdf'=>'S',
                 'aplic'=>'S'
             ]
