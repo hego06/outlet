@@ -126,10 +126,10 @@ desired effect
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{route('clientes_expo.store')}}"><i class="fa fa-clipboard"></i> <span>Registro de Información</span></a></li>
-        <li><a href="{{route('clientes_expo.index')}}"><i class="fa fa-file-text-o"></i> <span>Registros Capturados</span></a></li>
-        <li><a href="{{route('tipo_cambio.create')}}"><i class="fa fa-money"></i> <span>Tipo de cambio</span></a></li>
-        <li><a href="{{route('solicitudes_pago.index')}}"><i class="fa fa-newspaper-o"></i> <span>Solicitudes de Pago</span></a></li>
-        <li><a href="{{route('ventas_reporte.index')}}"><i class="fa fa-area-chart"></i> <span>Ventas</span></a></li>
+        <li class="active"><a href="{{route('clientes_expo.index')}}"><i class="fa fa-file-text-o"></i> <span>Registros Capturados</span></a></li>
+        <li class="active"><a href="{{route('tipo_cambio.create')}}"><i class="fa fa-money"></i> <span>Tipo de cambio</span></a></li>
+        <li class="active"><a href="{{route('solicitudes_pago.index')}}"><i class="fa fa-newspaper-o"></i> <span>Solicitudes de Pago</span></a></li>
+        <li class="active"><a href="{{route('ventas_reporte.index')}}"><i class="fa fa-area-chart"></i> <span>Ventas</span></a></li>
        <!-- <li><a href="{{route('ingresos_reporte.index')}}"><i class="fa fa-bank"></i> <span>Ingresos</span></a></li>-->
       </ul>
       <!-- /.sidebar-menu -->
