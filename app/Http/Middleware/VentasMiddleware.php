@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminMiddleware
+class VentasMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class AdminMiddleware
     {
         $dpto = Auth()->user()->nid_depto;
 
-        if ($dpto =='10' || $dpto=='13')
+        if ($dpto =='23' || $dpto=='9' || $dpto =='10' || $dpto=='13')
         {
             return $next($request);
         }

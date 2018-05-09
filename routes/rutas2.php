@@ -16,8 +16,8 @@ Route::post('busqueda-paquete','TdestpackController@busqueda')->name('paquete.bu
 Route::post('convertidor', 'ConvertidorNumeroLetra@convertidor')->name('numeroLetra.convertidor');
 
 //rutas de ventas
-Route::get('ventas_reporte','VentasController@index')->name('ventas_reporte.index');
-Route::get('ventas_ver/{registro}','VentasController@show')->name('ventas_reporte.show');
+Route::get('ventas_reporte','VentasController@index')->name('ventas_reporte.index')->middleware('ventas');
+Route::get('ventas_ver/{registro}','VentasController@show')->name('ventas_reporte.show')->middleware('ventas');
 
 //rutas ingresos
 Route::get('ingresos_reporte','IngresosController@index')->name('ingresos_reporte.index');

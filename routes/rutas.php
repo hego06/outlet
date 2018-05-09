@@ -8,26 +8,25 @@ Route::get('editar-registro/{registro}','ClientesExpoController@edit')->name('cl
 
 //Rutas tipo de cambio 
 
-Route::get('nuevo-tipo-cambio','TipoCambioController@create')->name('tipo_cambio.create');
+Route::get('nuevo-tipo-cambio','TipoCambioController@create')->name('tipo_cambio.create')->middleware('admin');
 Route::post('nuevo-tipo-cambio','TipoCambioController@store')->name('tipo_cambio.store')->middleware('admin');
 Route::post('update-tipo-cambio','TipoCambioController@update')->name('tipo_cambio.update')->middleware('admin');
 Route::get('show-tipo-cambio','TipoCambioController@show')->name('tipo_cambio.show');
 
 //rutas procesa pago
 
-
-Route::get('procesa-pago/{registro}','ProcesaPagoController@show')->name('procesa_pago.show');
-Route::get('solicitudes-pago','ProcesaPagoController@index')->name('solicitudes_pago.index');
+Route::get('procesa-pago/{registro}','ProcesaPagoController@show')->name('procesa_pago.show')->middleware('admin');
+Route::get('solicitudes-pago','ProcesaPagoController@index')->name('solicitudes_pago.index')->middleware('admin');
 
 //rutas pago en efectivo
-Route::get('efectivo-pago/{registro}','PagoEfectivoController@create')->name('efectivo_pago.create');
-Route::post('efectivo-pagos','PagoEfectivoController@store')->name('pago_efectivo.store');
+Route::get('efectivo-pago/{registro}','PagoEfectivoController@create')->name('efectivo_pago.create')->middleware('admin');
+Route::post('efectivo-pagos','PagoEfectivoController@store')->name('pago_efectivo.store')->middleware('admin');
 
 //rutas pago con tarjeta
-Route::get('tarjeta-pago/{registro}','PagoTarjetaController@create')->name('tarjeta_pago.create');
+Route::get('tarjeta-pago/{registro}','PagoTarjetaController@create')->name('tarjeta_pago.create')->middleware('admin');
 
 //ruta genera expediente
-Route::post('genera-expediente','ExpedienteController@generaExpediente')->name('expediente.genera');
+Route::post('genera-expediente','ExpedienteController@generaExpediente')->name('expediente.genera')->middleware('admin');
 
 
 //ruta Liga bancaria
