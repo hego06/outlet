@@ -141,6 +141,11 @@ desired effect
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
+    @if (session('block'))
+    <div class="alert alert-danger fade alert-dismissible">
+        {{ session('block') }}
+    </div>
+    @endif
       <h1>
       @yield('title')
         <small>@yield('description')</small>
@@ -193,6 +198,10 @@ desired effect
           startDate: 'd/n/Y',
           autoclose: true
       })
+  });
+
+  $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+    $(".alert-dismissible").alert('close');
   });
 </script>
 @stack('scripts')
