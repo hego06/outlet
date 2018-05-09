@@ -101,26 +101,26 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" >Nombre(s)</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" value="norberto">
+                            <input type="text" class="form-control" id="Nombre" name="cnombre" placeholder="Nombre(s)" required="required" >
                         </div>
                     </div>
                     <br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" name="capellidop">Apellido Paterno</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="AP" name="capellidop" placeholder="Apellido Paterno" required="required" value="hernandez">
+                            <input type="text" class="form-control" id="AP" name="capellidop" placeholder="Apellido Paterno" required="required" >
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4" >Apellido Materno</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="AM" name="capellidom" placeholder="Apellido Materno" value="gonzalez">
+                            <input type="text" class="form-control" id="AM" name="capellidom" placeholder="Apellido Materno" >
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4">Lada</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Lada" name="clada" placeholder="Lada" required="required" value="044">
+                            <input type="text" class="form-control" id="Lada" name="clada" placeholder="Lada" required="required" >
                         </div>
                     </div><br><br>
                     <div class="form-group">
@@ -128,14 +128,14 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            <input type="tel" class="form-control" id="Tel" name="ctelefono" placeholder="Teléfono" required="required" value="09090">
+                            <input type="tel" class="form-control" id="Tel" name="ctelefono" placeholder="Teléfono" required="required" >
                             </div>
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="col-sm-4">Ext.</label>
                         <div class="col-sm-8">
-                            <input type="number" class="form-control" id="Ext" name="cext" placeholder="Ext" value="89">
+                            <input type="number" class="form-control" id="Ext" name="cext" placeholder="Ext" >
                         </div>
                     </div><br><br>
                     <div class="form-group">
@@ -156,7 +156,7 @@
                         <div class="col-sm-8" >
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" id="Email" name="cmail" placeholder="Email" required="required" value="example@ex.com">
+                                <input type="email" class="form-control" id="Email" name="cmail" placeholder="Email" required="required" >
                             </div>
                         </div>
                     </div>
@@ -220,13 +220,13 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">No. Pasajeros</label>
                                 <div class="col-sm-8">
-                                    <input type="number" class="form-control" id="Nopas" name="numpax" placeholder="No. Pasajeros" min="1" required="required" value="3">
+                                    <input type="number" class="form-control" id="Nopas" name="numpax" placeholder="No. Pasajeros" min="1" required="required" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Comentarios</label>
                                 <div class="col-sm-8">
-                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa">Esto es un comentario</textarea>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="Comentarios" name="observa"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -253,7 +253,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe Total del Paquete</label>
-                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" value="1000">
+                                        <input type="text" class="form-control" id="Total" name="totpaquete" placeholder="Importe Total" >
                                     </div>
                                 </div>
                                 <div class="col-sm-5">

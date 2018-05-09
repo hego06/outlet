@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
             table{
-                font-size: 9px;
+                font-size: 8.5px;
                 font-family: Helvetica;
             }
             hr{
@@ -14,13 +14,13 @@
                 border-style: inset;
             }
             .t1{
-                font-size: 16px;
+                font-size: 15px;
             }
             .t2{
-                font-size: 10px;
+                font-size: 8.5px;
             }
             .t3{
-                font-size: 14px;
+                font-size: 13px;
                 font-weight: bolder;
                 font-family:Courier New ,Courier, monospace;
 
