@@ -103,9 +103,6 @@ class ProcesaPagoController extends Controller
         $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
         return $pdf->stream($folio.'.pdf');
     }
-    public function verPDF(){
-
-    }
 
     public function descargarPDF($folio){
         return response()->download(public_path('pdf/'.$folio.'.pdf'));

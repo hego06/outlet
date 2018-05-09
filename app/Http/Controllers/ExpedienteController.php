@@ -88,6 +88,7 @@ class ExpedienteController extends Controller
             'comic'=>0,
             'comiesp'=>0,
             'exccomi'=>0,
+            'f_exccomi'=>date('Y-m-d H:i:s'),
             'totcobranza'=>0,
             'scomisionable'=>0,
             'ncomisionable'=>0,
@@ -105,7 +106,24 @@ class ExpedienteController extends Controller
             'cargosadmc'=>0,
             'cargosadmm'=>0,
             'precierre'=>0,
-            'aplic'=>'S'
+            'aplic'=>'S',
+            'cid_cotizacion'=>'',
+            'controlcliente'=>'',
+            'fhcierre'=>date('Y-m-d H:i:s'),
+            'concepto'=>'',
+            'tipocte'=>'',
+            'nummt'=>'',
+            'paquete'=>'',
+            'ctesmult'=>'',
+            'cartaagrade'=>'',
+            'fcontrol'=>'',
+            'exprevisado'=>'',
+            'observ_valida'=>'',
+            'quienvalida'=>'',
+            'regoficina'=>'',
+            'statusexp'=>'',
+            'fhrecibido'=>date('Y-m-d H:i:s'),
+            'fhvalida'=>date('Y-m-d H:i:s'),
 
 
 		]
@@ -126,6 +144,7 @@ class ExpedienteController extends Controller
 				'ctipotelefono' => $tipotel,
 				'cmail' => $cmail,
                 'aplic'=>'S'
+
 			]
 		);
 
@@ -143,7 +162,9 @@ class ExpedienteController extends Controller
 			'ctelefonof' => $telefono,
 			'cextf' => $cext,
 			'ctipotelefonof' => $tipotel,
-            'aplic'=>'S'
+            'aplic'=>'S',
+            'cmailfunc2'=>'',
+            'cladaf'=>''
 		]
 	);
 
@@ -178,7 +199,8 @@ class ExpedienteController extends Controller
 			'cid_expediente' => $expediente,
 			'mail' => $cmail,
 			'consec' =>1,
-            'aplic'=>'S'
+            'aplic'=>'S',
+            'cid_cotiza'=>''
 		]
 	);
 
@@ -195,6 +217,7 @@ class ExpedienteController extends Controller
             $success = false;
             $error = $e->getMessage();
             DB::rollback();
+            echo $error;
         }
         if ($success) {
             echo 'HECHO';

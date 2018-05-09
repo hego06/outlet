@@ -73,6 +73,12 @@ class ClientesExpoController extends Controller
         $datos['hora'] = date('h:i:s', time());
         $datos['fecha'] = date('Y-m-d', time());
         $datos['ftc'] = date('Y-m-d', time());
+        if(isset($datos['capellidom'])){
+
+        }else{
+            $datos['capellidom']='';
+        }
+
 
         $cdestpack 		= explode("§", strtoupper($datos['destino']));
         $datos['destino'] = trim($cdestpack[0]);
@@ -87,6 +93,14 @@ class ClientesExpoController extends Controller
         $datos['ciniciales'] = Auth()->user()->ciniciales;
         $datos['nvendedor'] = Auth()->user()->cnombre;
         $datos['mailejec'] = Auth()->user()->email;
+        $datos['motivocanc']='';
+        $datos['quiencancela']='';
+        $datos['cid_cotiza']='';
+        $datos['cid_expedi']='';
+        $datos['tproceso']=date('Y-m-d', time());
+        $datos['aplic']='S';
+        $datos['archivo']=0;
+        $datos['lamm']='';
 
         ClientesExpo::create($datos);
 
@@ -146,6 +160,7 @@ class ClientesExpoController extends Controller
         $depto=TArea::where('nid_area',$idarea)->first();
         $iddepto=$depto->nid_depto;
         $tc=Tcambio::where('fecha', date("y-m-d"))->first();
+        $empleado=Auth()->user()->cnombre.Auth()->user()->capellidop;
 
         $error = null;
         DB::beginTransaction();
@@ -170,7 +185,7 @@ class ClientesExpoController extends Controller
                 'impteapag' => $request->impteapag,
                 'moneda' => $request->moneda,
                 'cid_emplea' => Auth()->user()->cid_empleado,
-                'nvendedor' => Auth()->user()->nempleado,
+                'nvendedor' =>$empleado,
                 'ciniciales'=> Auth()->user()->ciniciales,
                 'fecha' => date('Y-m-d H:i:s', time()),
                 'status' => $request->status,
