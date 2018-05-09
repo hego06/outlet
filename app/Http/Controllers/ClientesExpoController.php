@@ -24,8 +24,15 @@ class ClientesExpoController extends Controller
         {
             return view('principal.no_tipo_cambio');
         }
-        $registros = ClientesExpo::all()->sortByDesc('folexpo');
-        $ejecutivos= DB::table('users')->get();
+        if(Auth()->user()->nid_depto == 10 || Auth()->user()->nid_depto == 13)
+        {
+            $registros = ClientesExpo::all()->sortByDesc('folexpo');
+        }
+        else{
+            $registros = ClientesExpo::where('cid_emplea', Auth()->user()->cid_empleado);
+        }
+
+        $ejecutivos= DB::table('templeados')->get();
         return view('principal.registros_capturados',compact('registros','ejecutivos'));
     }
 
@@ -76,9 +83,9 @@ class ClientesExpoController extends Controller
 
         
         $datos['tc'] = Tcambio::select('tcambio')->where('fecha',$datos['fecha'])->get()->pluck('tcambio')[0];
-        $datos['cid_emplea'] = Auth()->user()->id;
+        $datos['cid_emplea'] = Auth()->user()->cid_empleado;
         $datos['ciniciales'] = Auth()->user()->ciniciales;
-        $datos['nvendedor'] = Auth()->user()->nvendedor;
+        $datos['nvendedor'] = Auth()->user()->cnombre;
         $datos['mailejec'] = Auth()->user()->email;
 
         ClientesExpo::create($datos);
@@ -162,8 +169,8 @@ class ClientesExpoController extends Controller
                 'monedap' => $request->monedap,
                 'impteapag' => $request->impteapag,
                 'moneda' => $request->moneda,
-                'cid_emplea' => Auth()->user()->id,
-                'nvendedor' => Auth()->user()->nvendedor,
+                'cid_emplea' => Auth()->user()->cid_empleado,
+                'nvendedor' => Auth()->user()->nempleado,
                 'ciniciales'=> Auth()->user()->ciniciales,
                 'fecha' => date('Y-m-d H:i:s', time()),
                 'status' => $request->status,

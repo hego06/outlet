@@ -50,7 +50,7 @@
                         <select class="form-control" id="ejecutivo" name="ejecutivo">
                             <option value="0">Selecciona Ejecutivo</option>
                             @foreach($ejecutivos as $ejecutivo)
-                            <option value="{{$ejecutivo->id}}">{{$ejecutivo->nvendedor}}</option>
+                            <option value="{{$ejecutivo->cid_empleado}}">{{$ejecutivo->cnombre}}</option>
                                 @endforeach
                         </select>
 

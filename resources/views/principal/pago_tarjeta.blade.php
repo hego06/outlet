@@ -45,7 +45,7 @@
                             <td colspan="3">{{$cliente->nvendedor}}</td>
                         </tr>
                     </table>
-                    <input type="hidden" name="elaboro" id="elaboro" value="{{Auth()->User()->id}}">
+                    <input type="hidden" name="elaboro" id="elaboro" value="{{Auth()->user()->cid_empleado}}">
                     <input type="hidden" name="folexpo" id="folexpo" value="{{$cliente->folexpo}}">
                     <input type="hidden" name="expediente" id="expediente" value="{{$cliente->cid_expedi}}">
                 </div>

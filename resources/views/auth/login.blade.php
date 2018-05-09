@@ -50,7 +50,6 @@
                         <div class="form-group has-feedback">
                             <div class="form-group row">
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
-
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
                                         <select class="form-control" name="ciniciales">
