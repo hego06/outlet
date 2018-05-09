@@ -20,7 +20,7 @@ Route::get('ventas_reporte','VentasController@index')->name('ventas_reporte.inde
 Route::get('ventas_ver/{registro}','VentasController@show')->name('ventas_reporte.show')->middleware('ventas');
 
 //rutas ingresos
-Route::get('ingresos_reporte','IngresosController@index')->name('ingresos_reporte.index');
+Route::get('ingresos_reporte','IngresosController@index')->name('ingresos_reporte.index')->middleware('ventas');
 
 //rutas PDF
 Route::get('genera_pdf/{folio}','ProcesaPagocontroller@PDF')->name('crear.PDF');

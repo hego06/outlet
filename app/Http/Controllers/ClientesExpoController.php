@@ -145,7 +145,17 @@ class ClientesExpoController extends Controller
         $fecha=$now->format('Y-n-d');
         $tcambio=Tcambio::where('fecha',date("y-m-d"))->first();
         $cliente=ClientesExpo::where('folexpo',$fol)->first();
-        return view('principal.edit_datos', compact('fecha','tcambio','cliente'));
+        if(Auth()->user()->nid_depto == 10 || Auth()->user()->nid_depto == 13)
+        {
+            return view('principal.edit_datos', compact('fecha','tcambio','cliente'));
+        }
+        else{
+            if($cliente['cid_emplea']==Auth()->user()->cid_empleado)
+            return view('principal.edit_datos', compact('fecha','tcambio','cliente'));
+
+            return redirect()->back();
+        }
+
     }
 
     /**
