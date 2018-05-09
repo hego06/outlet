@@ -40,7 +40,7 @@ class EnviaEmailController extends Controller
         $folio_c= $datosCliente->folexpo.'_'.$consecutivo;	
         $referencia	= "https://pay.megatravel.com.mx?ID=$folio_c&MT=$datosCliente->cid_destin&DD=$datosCliente->fsalida&TP=$datosCliente->impteapag&MON=$tipom&M=";
 
-        Mail::to('hego_06@hotmail.com')->send(new LigaBancaria($datosCliente, $referencia));
+        Mail::to($datosCliente->cmail)->send(new LigaBancaria($datosCliente, $referencia));
 
         //GENERAR CLIENTE -------------
 

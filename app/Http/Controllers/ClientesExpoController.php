@@ -78,6 +78,11 @@ class ClientesExpoController extends Controller
         }else{
             $datos['capellidom']='';
         }
+        if(isset($datos['cext'])){
+
+        }else{
+            $datos['cext']='';
+        }
 
 
         $cdestpack 		= explode("§", strtoupper($datos['destino']));
@@ -169,31 +174,31 @@ class ClientesExpoController extends Controller
                 'fechahora' => date('Y-m-d H:i:s', time()),
                 'hora' => date('h:i:s', time()),
                 'ftc' => date('Y-m-d', time()),
-                'cnombre' => $request->cnombre,
-                'capellidop' => $request->capellidop,
-                'capellidom' => $request->capellidom,
-                'clada' => $request->clada,
-                'ctelefono' => $request->ctelefono,
-                'cext' => $request->cext,
-                'ctipotel' => $request->ctipotel,
-                'cmail' => $request->cmail,
+                'cnombre' =>strtoupper($request->cnombre),
+                'capellidop' =>strtoupper( $request->capellidop),
+                'capellidom' => strtoupper($request->capellidom),
+                'clada' =>$request->clada,
+                'ctelefono' =>$request->ctelefono,
+                'cext' => strtoupper($request->cext),
+                'ctipotel' =>strtoupper( $request->ctipotel),
+                'cmail' =>strtoupper( $request->cmail),
                 'fsalida' => $request->fsalida,
                 'numpax' => $request->numpax,
-                'observa' => $request->observa,
+                'observa' =>strtoupper( $request->observa),
                 'totpaquete' => $request->totpaquete,
                 'monedap' => $request->monedap,
-                'impteapag' => $request->impteapag,
+                'impteapag' => strtoupper($request->impteapag),
                 'moneda' => $request->moneda,
                 'cid_emplea' => Auth()->user()->cid_empleado,
-                'nvendedor' =>$empleado,
-                'ciniciales'=> Auth()->user()->ciniciales,
+                'nvendedor' =>strtoupper($empleado),
+                'ciniciales'=> strtoupper(Auth()->user()->ciniciales),
                 'fecha' => date('Y-m-d H:i:s', time()),
-                'status' => $request->status,
+                'status' =>strtoupper( $request->status),
                 'cid_destin' => $cid_destin,
                 'destino' => $destino,
                 'nid_depto' =>$iddepto,
                 'nid_area' =>$idarea,
-                'letras' => $request->letras,
+                'letras' => strtoupper($request->letras),
                 'tc' => $tc->tcambio,
                 'aplic' => ''
             ]);
