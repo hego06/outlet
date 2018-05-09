@@ -49,16 +49,14 @@
                         @csrf
                         <div class="form-group has-feedback">
                             <div class="form-group row">
-                                <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Correo') }}</label>
+                                <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
-                                        <input id="cnombre" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="cnombre" value="{{ old('email') }}" required autofocus>
-                                        <span class="fa fa-user form-control-feedback"></span>
-                                        @if ($errors->has('email'))
-                                            <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                        @endif
+                                        <select class="form-control" name="ciniciales">
+                                            @foreach($usuarios as $u)
+                                                    <option value="{{$u->ciniciales}}">{{$u->cnombre}} {{$u->capellidop}}</option>
+                                                @endforeach
+                                        </select>
                                     </div>
 
                                 </div>
