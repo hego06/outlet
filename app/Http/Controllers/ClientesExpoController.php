@@ -29,7 +29,7 @@ class ClientesExpoController extends Controller
             $registros = ClientesExpo::all()->sortByDesc('folexpo');
         }
         else{
-            $registros = ClientesExpo::where('cid_emplea', Auth()->user()->cid_empleado);
+            $registros = ClientesExpo::where('cid_emplea', Auth()->user()->cid_empleado)->get();
         }
 
         $ejecutivos= DB::table('templeados')->get();
@@ -82,6 +82,11 @@ class ClientesExpoController extends Controller
 
         }else{
             $datos['cext']='';
+        }
+        if(isset($datos['observa'])){
+
+        }else{
+            $datos['observa']='';
         }
 
 
@@ -156,6 +161,16 @@ class ClientesExpoController extends Controller
             $request->status='X';
         }else{
             $request->status='E';
+        }
+        if(isset($request->capellidom)){
+
+        }else{$request->capellidom='';
+
+        }
+        if(isset($request->observa)){
+
+        }else{
+            $request->observa='';
         }
         $cdestpack 	= explode("§", strtoupper($request->destino));
         $destino = trim($cdestpack[0]);
