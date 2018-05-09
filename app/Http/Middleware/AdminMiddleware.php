@@ -15,8 +15,6 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $dpto = Auth()->user()->nid_depto;
-
         if ($dpto =='10' || $dpto=='13')
         {
             return $next($request);

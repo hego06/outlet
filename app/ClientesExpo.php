@@ -31,5 +31,29 @@ class ClientesExpo extends Model
         return $estatus;
 
     }
+    public function setCnombreAttribute($cnombre)
+    {
+        $this->attributes['cnombre'] = strtoupper($cnombre);
+    }
+    public function setCapellidopAttribute($capellidop)
+    {
+        $this->attributes['capellidop'] = strtoupper($capellidop);
+    }
+    public function setCapellidomAttribute($capellidom)
+    {
+        $this->attributes['capellidom'] = strtoupper($capellidom);
+    }
+    public function setCmailAttribute($cmail)
+    {
+        $this->attributes['cmail'] = strtoupper($cmail);
+    }
+    public function setObservaAttribute($observa)
+    {
+        $this->attributes['observa'] = strtoupper($observa);
+    }
+    public function setLetrasAttribute($letras)
+    {
+        $this->attributes['letras'] = strtoupper($letras);
+    }
 }
 
