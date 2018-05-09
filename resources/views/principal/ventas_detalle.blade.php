@@ -34,7 +34,7 @@
                                     <td>{{$registros->fechahora}}</td>
                                     <td>{{$registros->folexpo}}</td>
                                     <td>{{$registros->cid_expedi}}</td>
-                                    <td>{{Auth()->User()->name}}</td>
+                                    <td>{{$registros->nvendedor}}</td>
                                     <td>{{$registros->numpax}}</td>
                                     <td>{{$registros->cnombre}} {{$registros->capellidop}} {{$registros->capellidom}}</td>
                                     <td>{{$registros->destino}}</td>
@@ -92,13 +92,19 @@
                     <table class="table table-condensed">
                         <tbody>
                         <tr>
-                            <th colspan="2">Totales por Forma de Pago</th>
+                            <th colspan="4">Totales por Forma de Pago</th>
                         </tr>
                         <tr>
-                            <th>Efectivo:</th>
-                            <td>{{$efectivo}}</td>
-                            <th>Tarjeta:</th>
-                            <td>{{$tarjeta}}</td>
+                            <th colspan="2">Efectivo:</th>
+
+                            <th colspan="2">Tarjeta:</th>
+
+                        </tr>
+                        <tr>
+                            <td>MXN:{{$efectivoMXN}}</td>
+                            <td>USD:{{$efectivoUSD}}</td>
+                            <td>MXN:{{$tarjetaMXN}}</td>
+                            <td>USD:{{$tarjetaUSD}}</td>
                         </tr>
 
                         </tbody>

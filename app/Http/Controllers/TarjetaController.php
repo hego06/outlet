@@ -49,7 +49,7 @@ class TarjetaController extends Controller
 		$valida_t		= $request->valido;
         $importe_t		= $request->importe_t;
         // $letras_t		= $request->impteletra;
-        $letras_t		= "importe en letra";
+        $letras_t		= $request->impteletra;
 		$procede_t		= $request->procedencia;
 		$mov_t			= $request->movimiento;
 		$titular 		= $request->titular;
@@ -114,7 +114,9 @@ class TarjetaController extends Controller
         else{
             $cantidad = $cargoad;
         }
-
+        $error = null;
+        DB::beginTransaction();
+        try {
         $insertsolicitud = Solicitudes::create([
             'cid_solicitud'=>$cid_solicitud,
             'cid_expediente'=>$expediente,
@@ -181,6 +183,9 @@ class TarjetaController extends Controller
                 'id_serv'=>'4',
                 'id_cons'=>'43',
                 'num'=>'0',
+                'cid_cotiza'=>'',
+                'com_e_cruc'=>0.00,
+                'tc_cruc'=>0.00
             ]);
         }
         else{
@@ -199,7 +204,10 @@ class TarjetaController extends Controller
                     'fecha' => $dfecha,
                     'id_serv' => '4',
                     'id_cons' => '43',
-                    'num' => '0'
+                    'num' => '0',
+                    'cid_cotiza'=>'',
+                    'com_e_cruc'=>0.00,
+                    'tc_cruc'=>0.00
                 ]);
             $cantidad_d	= $cantidad_o - $cantidad;
         }
@@ -248,7 +256,7 @@ class TarjetaController extends Controller
                 'tipo' => 'T',
                 'operadpr' => $banco,
                 'descriserv' => '',
-                'moneda' => $moneda,
+                'moneda' => $moneda_t,
                 'importeusd' => '',
                 'fecha' =>	$dfecha,
                 'cid_expediente' => $expediente,
@@ -310,8 +318,19 @@ class TarjetaController extends Controller
             'aplic' => '',
             'fcancela' => '1000-10-10',
         ]);
-
-        return  redirect()->route('crear.PDF',array('expediente'=>$nrecibo));
+            DB::commit();
+            $success = true;
+        }
+        catch (\Exception $e) {
+            $success = false;
+            $error = $e->getMessage();
+            DB::rollback();
+          echo $error;
+           // return  redirect()->action('ProcesaPagoController@show', compact('folexpo'))->with('message2', 'Error al crear el Recibo'.$error.'');
+        }
+        if ($success) {
+            return  redirect()->route('crear.PDF',array('expediente'=>$nrecibo));
+        }
     }
 
     function numeracion($concepto){

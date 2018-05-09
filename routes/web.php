@@ -17,7 +17,7 @@ Route::group(['middleware' => 'auth'],function(){
     require_once "rutas2.php";
 
     Route::get('/', function () {
-        return view('principal.layout');
+        return view('principal.inicio');
     });
     
 });

@@ -72,7 +72,7 @@ desired effect
 <div class="wrapper">
 
   <header class="main-header">
-    <a href="#" class="logo">
+    <a href="/" class="logo">
       <span class="logo-mini"><b>E</b>XPO</span>
       <span class="logo-lg"><b>EXPO</b>2018</span>
     </a>
@@ -122,6 +122,7 @@ desired effect
       </div>
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
+        <img src="http://lax.megatravel.com.mx/expo/img/logo_mt.png" width="150">
         <li class="header">MENU</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="{{route('clientes_expo.store')}}"><i class="fa fa-clipboard"></i> <span>Registro de Información</span></a></li>
@@ -162,7 +163,7 @@ desired effect
     <div class="pull-right hidden-xs">
     </div>
     <!-- Default to the left -->
-    <strong> Mega Travel Operadora, S.A. de C.V. México 1999 -2018</strong>
+    <strong>© Mega Travel Operadora, S.A. de C.V. México 1999 -2018</strong>
   </footer>
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
