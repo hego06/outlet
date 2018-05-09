@@ -90,7 +90,7 @@ desired effect
             <ul class="dropdown-menu">
               <li class="user-header">
                 <p>
-                  {{Auth::user()->nvendedor}}
+                  {{Auth::user()->cnombre}} {{Auth::user()->capellidop}} {{Auth::user()->capellidom}} - {{Auth::user()->ciniciales}}
                   <small>{{Auth::user()->email}}</small>
                 </p>
               </li>
@@ -130,7 +130,7 @@ desired effect
         <li><a href="{{route('tipo_cambio.create')}}"><i class="fa fa-money"></i> <span>Tipo de cambio</span></a></li>
         <li><a href="{{route('solicitudes_pago.index')}}"><i class="fa fa-newspaper-o"></i> <span>Solicitudes de Pago</span></a></li>
         <li><a href="{{route('ventas_reporte.index')}}"><i class="fa fa-area-chart"></i> <span>Ventas</span></a></li>
-        <li><a href="{{route('ingresos_reporte.index')}}"><i class="fa fa-bank"></i> <span>Ingresos</span></a></li>
+       <!-- <li><a href="{{route('ingresos_reporte.index')}}"><i class="fa fa-bank"></i> <span>Ingresos</span></a></li>-->
       </ul>
       <!-- /.sidebar-menu -->
     </section>
