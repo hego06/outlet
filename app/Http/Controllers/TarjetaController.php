@@ -129,7 +129,29 @@ class TarjetaController extends Controller
             'estatus'=>'EM',
             'folio'=>$nrecibo,
             'moneda'=>$moneda_t,
-            'importe'=>$importe_t
+            'importe'=>$importe_t,
+            'comentario'=>'',
+            'dispersion'=>0,
+            'lote'=>'',
+            'consolid'=>'',
+            'ctesmult'=>'',
+            'fechacan'=>date('Y-m-d H:i:s'),
+            'totingresar'=>0.00,
+            'totpaq'=>0.00,
+            'totcob'=>0.00,
+            'tcc'=>0.00,
+            'totcom'=>0.00,
+            'totopea'=>0.00,
+            'totopet'=>0.00,
+            'totopec'=>0.00,
+            'tc_cruc'=>0.00,
+            'fact_sat'=>'',
+            'consecutivo'=>'',
+            'nomarcshop'=>'',
+            'recibop'=>'',
+            'idmovbco'=>'',
+            'fsol_fact_sat'=>date('Y-m-d H:i:s'),
+            'aplic'=>'S'
             ]);
 
         $insertdtarjetab = DB::table('dtarjetab')->insert([
@@ -163,7 +185,11 @@ class TarjetaController extends Controller
             'fechaop' => $fechaop,
             'nid_cargo' => $nid_cargo,
             'auttarj' => $autoriza_t,
-            'cid_expediente' => $expediente
+            'cid_expediente' => $expediente,
+            'mienbro'=>'',
+            'seismeses'=>0,
+            'status'=>'',
+            'aplic'=>'S'
         ]);
             
         $buscasoli 	= Ventas::where('cid_solicitud',$cid_solicitud)->first();

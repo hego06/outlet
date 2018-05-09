@@ -87,7 +87,28 @@ class PagoEfectivoController extends Controller
                 'dispersion'=>0,
                 'folio'=>$nrecibo,
                 'moneda'=>$moneda,
-                'importe'=>$monto
+                'importe'=>$monto,
+                'lote'=>'',
+                'consolid'=>'',
+                'ctesmult'=>'',
+                'fechacan'=>date('Y-m-d H:i:s'),
+                'totingresar'=>0.00,
+                'totpaq'=>0.00,
+                'totcob'=>0.00,
+                'tcc'=>0.00,
+                'totcom'=>0.00,
+                'totopea'=>0.00,
+                'totopet'=>0.00,
+                'totopec'=>0.00,
+                'tc_cruc'=>0.00,
+                'fact_sat'=>'',
+                'consecutivo'=>'',
+                'nomarcshop'=>'',
+                'recibop'=>'',
+                'idmovbco'=>'',
+                'fsol_fact_sat'=>date('Y-m-d H:i:s'),
+                'aplic'=>'S'
+
 
             ]
         );
@@ -124,7 +145,25 @@ class PagoEfectivoController extends Controller
                 'cancelado'=>0,
                 'elaboro'=>Auth()->user()->cnombre,
                 'pdf'=>'S',
-                'aplic'=>'S'
+                'aplic'=>'S',
+                'direccion' => '',
+                'colonia' => '',
+                'mundel' => '',
+                'estado' => '',
+                'codigop' => '',
+                'rfc' => '',
+                'notas' => '',
+                'motivocanc' =>'',
+                'sustituidox' => '',
+                'sustituidom' => '',
+                'enviado' => '',
+                'fhrevisado' => '1000-10-10 00:00:00',
+                'revisado' => '',
+                'auto_rec' => '',
+                'obser_grales' => '',
+                'motivo_rechaza' => '',
+                'quiencancela'  => '',
+                'fcancela' => '1000-10-10',
             ]
         );
 
