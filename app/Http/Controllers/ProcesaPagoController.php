@@ -99,7 +99,7 @@ class ProcesaPagoController extends Controller
     }
     public function PDF($folio){
         $recibo = Recibodig::where('folio', $folio)->first();
-        $emp=User::where('ciniciales',$recibo->elaboro)->first();
+        $emp=User::where('ciniciales',$recibo->iniciales)->first();
         $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo','emp'));
         $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
         return $pdf->stream($folio.'.pdf');
