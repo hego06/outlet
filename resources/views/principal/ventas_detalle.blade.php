@@ -152,4 +152,6 @@
             });
             $('#rangofechas').daterangepicker()
         });
+        </script>
+
 @endpush
