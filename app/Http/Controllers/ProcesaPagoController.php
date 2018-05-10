@@ -6,6 +6,7 @@ use App\ClientesExpo;
 use App\Recibodig;
 use App\Solicitudes;
 use App\Tcambio;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -98,8 +99,8 @@ class ProcesaPagoController extends Controller
     }
     public function PDF($folio){
         $recibo = Recibodig::where('folio', $folio)->first();
-        $cli=ClientesExpo::where('cid_expedi',$recibo->cid_expediente)->first();
-        $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo'));
+        $emp=User::where('ciniciales',$recibo->elaboro)->first();
+        $pdf = PDF::loadView('principal.pdf.recibos', compact('recibo','emp'));
         $pdf ->save(public_path('pdf'). '/'. $folio.'.pdf');
         return $pdf->stream($folio.'.pdf');
     }

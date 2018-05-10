@@ -259,7 +259,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1" >Moneda del Paquete</label>
-                                            <input type="hidden" class="form-control" id="MonedaPack" name="monedap" placeholder="USD" value="USD">
+                                            <input type="hidden" class="form-control" id="MonedaPack" name="moneda" placeholder="USD" value="USD">
                                             <input type="text" class="form-control" placeholder="USD" value="DÓLARES-USD" disabled>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@
                                 <div class="col-sm-5">
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Moneda del Anticipo</label>
-                                            <select class="form-control" id="monedaAnt" name="moneda">
+                                            <select class="form-control" id="monedaAnt" name="monedap">
                                                 <option value="MXN">PESOS - MXN</option>
                                                 <option value="USD">DÓLARES - USD</option>
                                             </select>
