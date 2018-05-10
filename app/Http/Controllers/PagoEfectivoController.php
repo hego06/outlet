@@ -143,7 +143,7 @@ class PagoEfectivoController extends Controller
                 'legvar2'=>'',
                 'cid_empleado'=>Auth()->user()->cid_empleado,
                 'cancelado'=>0,
-                'elaboro'=>Auth()->user()->ciniciales,
+                'elaboro'=>Auth()->user()->cid_empleado,
                 'pdf'=>'S',
                 'aplic'=>'S',
                 'direccion' => '',
