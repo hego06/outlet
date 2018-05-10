@@ -11,8 +11,13 @@ use Illuminate\Http\Request;
 class VentasController extends Controller
 {
    public function index(){
-       $registros=ClientesExpo::where('status','P')->get();
        $ejecutivos=User::all();
+
+       $registros=ClientesExpo::where('status','P')->get();
+    //    $registros->map(function ($registro) {
+    //         $registro['pagos'] = Recibodig::select('concepto','monto','moneda')->where('cid_expediente',$registro['cid_expedi'])->get();
+    //         return $registro;
+    //     });
        return view('principal.ventas_capturadas',compact('registros','ejecutivos'));
    }
    public function show($registro){

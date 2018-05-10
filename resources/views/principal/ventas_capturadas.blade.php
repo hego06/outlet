@@ -59,7 +59,9 @@
                             <th>F. SALIDA</th>
                             <th>PRECIO PAQUETE</th>
                             <th>MONEDA</th>
-                            <th></th>
+                            <th>CONCEPTO</th>
+                            <th>MONTO</th>
+                            <th>MONEDA</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,7 +77,15 @@
                                 <td>{{$registro->fsalida}}</td>
                                 <td>{{$registro->totpaquete}}</td>
                                 <td>{{$registro->moneda}}</td>
-                                <td> <a href="{{route('ventas_reporte.show', $registro->cid_expedi)}}" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a></td>
+                                @foreach($registro->pagos as $pago)
+                                <tr>
+                                    <td colspan="10"></td>
+                                    <td>{{$pago->concepto}}</td>
+                                    <td>{{$pago->monto}}</td>
+                                    <td>{{$pago->moneda}}</td>
+                                </tr>
+                                @endforeach
+                
                             </tr>
                         @endforeach
                         </tbody>
