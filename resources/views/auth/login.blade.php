@@ -52,7 +52,7 @@
                                 <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
                                 <div class="col-md-6">
                                     <div class="form-group has-feedback">
-                                        <select class="form-control" name="ciniciales">
+                                        <select name="ciniciales">
                                             @foreach($usuarios as $u)
                                                     <option value="{{$u->ciniciales}}">{{$u->cnombre}} {{$u->capellidop}}</option>
                                                 @endforeach
