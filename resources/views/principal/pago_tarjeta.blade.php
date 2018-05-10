@@ -293,7 +293,7 @@ function datosB(terminal){
                 "moneda": moneda
             },
             success: function(data){
-                $('#impteletra').val(data+"MXN");
+                $('#impteletra').val(data);
                 console.log(data);
             }
         });

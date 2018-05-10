@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use NumerosEnLetras;
 use Illuminate\Http\Request;
 
 class ConvertidorNumeroLetra extends Controller
@@ -10,9 +9,8 @@ class ConvertidorNumeroLetra extends Controller
     public function convertidor(Request $request)
     {
         $monto = $request->anticipo;
-        $moneda = $request->moneda;
 
-        switch ($moneda){ //TIPO DE MONEDA RECIBIDA
+        switch ($request->moneda){ //TIPO DE MONEDA RECIBIDA
             case 'MXN':
                 $moneda=' MXN';
                 $monpag	= 'PESOS';
@@ -21,6 +19,9 @@ class ConvertidorNumeroLetra extends Controller
                 $moneda=' USD';
                 $monpag	= 'DÓLARES';
                 break;
+            default:
+                $monpag	= 'PESOS';
+                $moneda=' MXN';
         }
 
         return $this->convertir($monto, $monpag).$moneda;
@@ -29,19 +30,12 @@ class ConvertidorNumeroLetra extends Controller
     function unidad($numuero){
 
         switch ($numuero)
-    
         {
-    
             case 9:
-    
             {
-    
                 $numu = "NUEVE";
-    
                 break;
-    
             }
-    
             case 8:
     
             {
