@@ -59,9 +59,7 @@
                             <th>F. SALIDA</th>
                             <th>PRECIO PAQUETE</th>
                             <th>MONEDA</th>
-                            <th>CONCEPTO</th>
-                            <th>MONTO</th>
-                            <th>MONEDA</th>
+                            
                         </tr>
                         </thead>
                         <tbody>
@@ -77,16 +75,24 @@
                                 <td>{{$registro->fsalida}}</td>
                                 <td>{{$registro->totpaquete}}</td>
                                 <td>{{$registro->moneda}}</td>
+                                <tr>
+                                    <td colspan="7"></td>
+                                    <th>CONCEPTO</th>
+                                    <th>MONTO</th>
+                                    <th>MONEDA</th>
+                                </tr>
                                 @foreach($registro->pagos as $pago)
                                 <tr>
-                                    <td colspan="10"></td>
-                                    <td>{{$pago->concepto}}</td>
-                                    <td>{{$pago->monto}}</td>
-                                    <td>{{$pago->moneda}}</td>
+                                    <tr>
+                                        <td colspan="7"></td>
+                                        <td>{{$pago->concepto}}</td>
+                                        <td>{{$pago->monto}}</td>
+                                        <td>{{$pago->moneda}}</td>
+                                    </tr>
                                 </tr>
                                 @endforeach
-                
                             </tr>
+                            <tr><th colspan="10"></th></tr>
                         @endforeach
                         </tbody>
                     </table>
