@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <!-- Rounded switch -->
                             <label class="switch">
-                                <input type="checkbox" id="cotizacion" name="status" checked>
+                                <input type="checkbox" id="cotiza" name="status" checked>
                                 <span class="slider round"></span>
                             </label>
                             <label>GUARDAR REGISTRO COMO COTIZACIÓN</label>
@@ -295,7 +295,7 @@
                         </div>
                      </div>
                 <div>
-                    <button class="btn btn-primary">Guardar</button>
+                    <button class="btn btn-primary" onclick="guardaCotiza()">Guardar</button>
                 </div>
             </div>
 
@@ -403,5 +403,14 @@
 			return false;
 		}
     }
+        function guardaCotiza(){
+            if(document.getElementById('cotiza').checked == true){
+                var confirma = confirm('Este registro será guardado como cotización, ¿desea continuar?');
+                if(confirma == false){
+                    document.getElementById('cotiza').checked = false;
+                    return false;
+                }
+            }
+        }
     </script>
 @endpush
