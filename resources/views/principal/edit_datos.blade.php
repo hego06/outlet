@@ -270,7 +270,7 @@
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Importe del Anticipo</label>
-                                        <input type="text" class="form-control" id="anticipo" name="impteapag" placeholder="Anticipo">
+                                        <input type="text" class="form-control" id="anticipo" name="impteapag" placeholder="Anticipo" value="{{$cliente->impteapag}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
@@ -288,7 +288,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-4">Importe con Letra</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control" id="impteletra" name="letras">
+                                    <input type="text" readonly class="form-control" id="impteletra" name="letras" value="{{$cliente->letras}}">
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">

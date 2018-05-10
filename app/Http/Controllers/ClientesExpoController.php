@@ -151,7 +151,7 @@ class ClientesExpoController extends Controller
         }
         else{
             if($cliente['cid_emplea']==Auth()->user()->cid_empleado)
-            return view('principal.edit_datos', compact('fecha','tcambio','cliente'));
+                return view('principal.edit_datos', compact('fecha','tcambio','cliente'));
 
             return redirect()->back();
         }

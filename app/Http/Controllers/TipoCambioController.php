@@ -27,7 +27,7 @@ class TipoCambioController extends Controller
     public function store(Request $request)
     {
         $fechaHoy = Carbon::now()->toDateString();
-        $tc_actual = Tcambio::where('fecha', Carbon::now())->get();
+        $tc_actual = Tcambio::where('fecha', date('y-m-d'))->get();
         $datos = $request->all();
         $datos['fecha'] = $fechaHoy;
         if($tc_actual->isEmpty())
