@@ -502,7 +502,7 @@ class ConvertidorNumeroLetra extends Controller
     
             if ($nummero >= 2000 && $nummero <10000){
     
-                $numm = unidad(Floor($nummero/1000))." MIL ".($this->centena($nummero%1000));
+                $numm = $this->unidad(Floor($nummero/1000))." MIL ".($this->centena($nummero%1000));
     
             }
     
