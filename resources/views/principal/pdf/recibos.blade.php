@@ -120,7 +120,7 @@ background: url(http://lax.megatravel.com.mx/img/cancelado.png) center no-repeat
                         <th align='left'>&nbsp;EJECUTIVO DE VENTAS.:</th>
                     </tr>
                     <tr>
-                        <td colspan='3' align='center'>{{$recibo->iniciales}}</td>
+                        <td colspan='3' align='center'>{{$emp->cnombre}} {{$emp->capellidop}}-{{$recibo->iniciales}}</td>
                     </tr>
                     </tbody>
                 </table>

@@ -114,15 +114,20 @@
                                 <th>Fecha de Tipo de Cambio</th>
                                 <td colspan="2"><input type="hidden" name="fechatc" value="{{$tc->fecha}}">{{$tc->fecha}}</td>
                                 <th colspan="2">Tipo de Cambio</th>
-                                <td><input type="hidden" name="intercam" value="{{$tc->tcambio}}">{{$tc->tcambio}}</td>
+                                <td><input type="hidden" name="intercam" id="tc_e" value="{{$tc->tcambio}}">{{$tc->tcambio}}</td>
                             </tr>
                             <tr>
                                 <th>Importe a Pagar</th>
-                                <td><input class="form-control input-sm soloN" type="text" name="imptepag_e" id="anticipo" required="required" value="" autocomplete="off"></td>
+                                <td><input class="form-control input-sm soloN" type="text" name="imptepag_e" id="anticipo" required="required" value=""  autocomplete="off"></td>
                                 <td colspan="4">&nbsp;</td>
                             </tr>
                             <tr>
                                 <td colspan="6"> <input type="text" readonly  class="form-control" id="impteletra" name="letras_e"></td>
+                            </tr>
+                            <tr hidden="true" class="importeUSD" id="importeUSD" name="importeUSD">
+                                <th>Importe USD</th>
+                                <td><input class="form-control input-sm soloN" type="text" name="impte_usd" id="impte_usd" value="" readonly></td>
+                                <td colspan="4">&nbsp;</td>
                             </tr>
                         </table>
                     </div>
@@ -173,5 +178,46 @@
                     }
                 });
         }
+        $("#monedaAnt").change(function (e){
+            var m_efectivo 	= $("#monedaAnt").val(); //Moneda del pago
+            if(m_efectivo == 'MXN'){ //PESOS
+                $("#importeUSD").attr("hidden", false); //MUESTRA INPUT PARA CONVERSIÓN
+            }
+            if(m_efectivo == 'USD' || m_efectivo == ''){ //DÓLARES O VACÍO
+                $("#importeUSD").attr("hidden", true); 	//OCULTA INPUT PARA CONVERSIÓN
+            }
+        });
+        $(document).on('change','#anticipo', function() {
+            dolares();
+            $("#anticipo").bind('keyup keypress change',function (e) {
+                dolares();
+            });
+        });
+        function dolares() {
+            var m_efectivo 	= $("#monedaAnt").val(); //Moneda del pago
+            if(m_efectivo == 'MXN'){ //PESOS
+                $("#importeUSD").attr("hidden", false);
+                var monto = $("#anticipo").val();//Monto a pagar
+                var tc 		= $("#tc_e").val();
+                tc 		= parseFloat(tc);
+                monto 	= parseFloat(monto);
+                var total	= monto/tc;
+                total 	= total.toFixed(2);
+                if(isNaN(monto)){
+                    monto 	= 0;
+                }
+                if(isNaN(total)){
+                    total = 0;
+                }
+                $("#impte_usd").val(total);//MUESTRA INPUT PARA CONVERSIÓN
+            }
+            if(m_efectivo == 'USD' || m_efectivo == ''){ //DÓLARES O VACÍO
+                $("#importeUSD").attr("hidden", true); 	//OCULTA INPUT PARA CONVERSIÓN
+
+
+            }
+        }
+
+
         </script>
 @endpush
