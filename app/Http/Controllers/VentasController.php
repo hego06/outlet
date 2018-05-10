@@ -15,7 +15,10 @@ class VentasController extends Controller
 
        $registros=ClientesExpo::where('status','P')->get();
        $registros->map(function ($registro) {
-            $registro['pagos'] = Recibodig::select('concepto','monto','moneda')->where('cid_expediente',$registro['cid_expedi'])->get();
+            $registro['pagos'] = Recibodig::select('concepto','monto','moneda')
+            ->where('cid_expediente',$registro['cid_expedi'])
+            ->where('cancelado',0)
+            ->get();
             return $registro;
         });
        return view('principal.ventas_capturadas',compact('registros','ejecutivos'));
