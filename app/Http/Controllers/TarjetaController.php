@@ -332,7 +332,7 @@ class TarjetaController extends Controller
             'sustituidox' => '',
             'sustituidom' => '',
             'enviado' => '',
-            'pdf' => '',
+            'pdf' => 'S',
             'legvar1' => '',
             'legvar2'  => '',
             'fhrevisado' => '1000-10-10 00:00:00',
@@ -342,7 +342,7 @@ class TarjetaController extends Controller
             'motivo_rechaza' => '',
             'quiencancela'  => '',
             'aplic' => '',
-            'fcancela' => '1000-10-10',
+            'fcancela' => '1000-10-10'
         ]);
             DB::commit();
             $success = true;

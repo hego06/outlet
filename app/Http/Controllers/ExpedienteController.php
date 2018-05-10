@@ -23,7 +23,8 @@ class ExpedienteController extends Controller
 	$cext 		= trim($cliente->cext);
 	$tipotel 	= trim($cliente->ctipotel);
 	$cmail 		= trim($cliente->cmail);
-	$cid_destin = trim($cliente->cid_destin);
+	$cid_dest = explode("-", trim($cliente->cid_destin));
+	$cid_destin=$cid_dest[0];
 	$destino 	= trim($cliente->destino);
 
 	$totalpaq 	= trim($cliente->totpaquete);
@@ -163,8 +164,7 @@ class ExpedienteController extends Controller
 			'cextf' => $cext,
 			'ctipotelefonof' => $tipotel,
             'aplic'=>'S',
-            'cmailfunc2'=>'',
-            'cladaf'=>''
+            'cmailfunc2'=>''
 		]
 	);
 
