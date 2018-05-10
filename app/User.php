@@ -43,4 +43,13 @@ class User extends Authenticatable
         }
         return  $value;
     }
+
+    public function setAttribute($key, $value)
+    {
+        $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+        if (!$isRememberTokenAttribute)
+        {
+        parent::setAttribute($key, $value);
+        }
+    }
 }

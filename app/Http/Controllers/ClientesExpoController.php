@@ -19,6 +19,9 @@ class ClientesExpoController extends Controller
      */
     public function index()
     {
+        // $value = Tdestpack::where('cid_destpack','65004')->first();
+        // dd(mb_detect_encoding($value['cdestpack']));
+
         $tc= Tcambio::select('tcambio')->where('fecha',date("y-m-d"))->get();
         if($tc->isEmpty())
         {

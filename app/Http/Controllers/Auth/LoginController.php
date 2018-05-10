@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -51,4 +52,10 @@ class LoginController extends Controller
     //         return redirect()->intended('/');
     //     }
     // }
+
+    public function showLoginForm()
+    {
+        $usuarios = User::all();
+        return view('auth.login',compact('usuarios'));
+    }
 }

@@ -64,7 +64,7 @@
                         </thead>
                         <tbody>
                         @foreach($registros as $registro)
-                            <tr>
+                            <tr class="success">
                                 <td>{{$registro->fechahora}}</td>
                                 <td>{{$registro->folexpo}}</td>
                                 <td>{{$registro->cid_expedi}}</td>
