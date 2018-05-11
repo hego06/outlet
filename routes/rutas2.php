@@ -31,3 +31,6 @@ Route::post('cancelar_pago','ProcesaPagocontroller@cancelarSolicitud')->name('ca
 
 //ruta editar
 Route::post('editar-registro','ClientesExpoController@update')->name('clientes_expo.update');
+
+//ruta excel
+Route::get('crear-excel','ExcelController@exportVentas')->name('ventas.excel');
