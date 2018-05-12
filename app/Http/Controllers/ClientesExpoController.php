@@ -20,13 +20,14 @@ class ClientesExpoController extends Controller
     public function index()
     {
         // $value = Tdestpack::where('cid_destpack','65004')->first();
-        // dd(mb_detect_encoding($value['cdestpack']));
+        // echo ($value['cdestpack']);
 
         $tc= Tcambio::select('tcambio')->where('fecha',date("y-m-d"))->get();
         if($tc->isEmpty())
         {
             return view('principal.no_tipo_cambio');
         }
+
         if(Auth()->user()->nid_depto == 10 || Auth()->user()->nid_depto == 13)
         {
             $registros = ClientesExpo::all()->sortByDesc('folexpo');
@@ -242,16 +243,12 @@ class ClientesExpoController extends Controller
         if ($success) {
             return  redirect()->route('clientes_expo.index')->with('message1', 'Cambio Guardado');
         }
+    }   
+
+    function busqueda(Request $request)
+    {
+        return $request->all();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ClientesExpo  $clientesExpo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ClientesExpo $clientesExpo)
-    {
-        //
-    }
+
 }

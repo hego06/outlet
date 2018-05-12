@@ -355,6 +355,7 @@
             $.ajax({
                 type: "POST",
                 url: "busqueda-paquete",
+                contentType: "application/x-www-form-urlencoded; charset=ISO-8859-15",
                 data: {
                 "_token": "{{ csrf_token() }}",
                 "destino": destino,

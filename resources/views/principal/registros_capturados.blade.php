@@ -3,7 +3,7 @@
 @push('styles')
     <!-- daterange picker -->
     <link rel="stylesheet" href="adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-    @endpush
+@endpush
 @section('content')
     @if(Session::has('flash_message'))
         <div class="alert alert-success alert-dismissible fade in">
@@ -47,7 +47,7 @@
                 <div class="form-group col-sm-6">
                     <label>Ejecutivo: </label>
 
-                        <select class="form-control" id="ejecutivo" name="ejecutivo">
+                        <select class="form-control" name="ejecutivo" id="ejecutivo" onchange="reporteEjec()">
                             <option value="0">Selecciona Ejecutivo</option>
                             @foreach($ejecutivos as $ejecutivo)
                             <option value="{{$ejecutivo->cid_empleado}}">{{$ejecutivo->cnombre}}</option>
@@ -77,7 +77,7 @@
                   <th>ACCIONES</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="registrosEjec">
                 @foreach($registros as $registro)
                   <tr>
                     <td>{{$registro->folexpo}}</td>
@@ -117,14 +117,34 @@
             "infoFiltered": "(filtered from _MAX_ total records)",
             "sSearch": "Buscar",
             "paginate": {
-              "previous": "Anterior",
-              "next": "Siguiente"
+            "previous": "Anterior",
+            "next": "Siguiente"
             }
         }
     });
-    $('#rangofechas').daterangepicker()
+    $('#rangofechas').daterangepicker({dateFormat: 'yy-mm-dd'});
   });
 
+    function reporteEjec(){
+        var fecha1 	= $('#rangofechas').data('daterangepicker').startDate._d;
+        var fecha2 	= $('#rangofechas').data('daterangepicker').endDate._d;
+        var ejec 	= $("#ejecutivo").val();
+        $.ajax({
+            type: "POST",
+            url: "{{route('clientes_expo.busqueda')}}",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'f1': fecha1,
+                'f2': fecha2,
+                'ejec': ejec+'&tipo=N'
+            },
+            success: function(data){
+                console.log(data);
+                // $("#registrosEjec").empty();
+                // $("#registrosEjec").append(data);
+            }
+        });
+    }
 </script>
 <!-- date-range-picker -->
 <script src="adminlte/bower_components/moment/min/moment.min.js"></script>

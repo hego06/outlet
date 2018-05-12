@@ -5,7 +5,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <?php header('Content-Type: text/html; charset=UTF-8'); ?>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>OUTLET</title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -192,7 +193,7 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-<script>
+<script charset="UTF-8">
   $(function () {
       $('#Fsalida').datepicker({
           startDate: 'd/n/Y',
