@@ -68,5 +68,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                       <h2><p>Reporte de<br>
+                               Ventas</p></h2>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-area-chart"></i>
+                    </div>
+                    <a href="{{route('ventas_reporte.index')}}" class="small-box-footer">
+                        Ir <i class="fa fa-arrow-circle-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
