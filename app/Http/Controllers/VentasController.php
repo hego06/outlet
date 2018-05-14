@@ -21,7 +21,18 @@ class VentasController extends Controller
             ->get();
             return $registro;
         });
-       return view('principal.ventas_capturadas',compact('registros','ejecutivos'));
+       $ventas=ClientesExpo::where('status','P')->selectRaw('count(*) as Ventas')
+            ->first();
+        $pax=ClientesExpo::where('status','P')->sum('numpax');
+        $USDVe=ClientesExpo::where('status','P')->where('moneda','USD')->sum('totpaquete');
+        $USDVe=number_format($USDVe,2);
+        $MXNVe=ClientesExpo::where('status','P')->where('moneda','MXN')->sum('totpaquete');
+         $MXNVe=number_format($MXNVe,2);
+         $USDIg=Recibodig::where('cancelado',0)->where('moneda','USD')->sum('monto');
+          $USDIg=number_format($USDIg,2);
+        $MXNIg=Recibodig::where('cancelado',0)->where('moneda','MXN')->sum('monto');
+         $MXNIg=number_format($MXNIg,2);
+       return view('principal.ventas_capturadas',compact('registros','ejecutivos', 'ventas','pax','USDVe','MXNVe','USDIg','MXNIg'));
    }
    public function show($registro){
        $registros=ClientesExpo::where('cid_expedi',$registro)->first();

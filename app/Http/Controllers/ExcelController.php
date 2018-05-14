@@ -18,8 +18,19 @@ class ExcelController extends Controller
 		   $ejecutivos=User::all();
 
 	       $registros=ClientesExpo::where('status','P')->get();
+	       $ventas=ClientesExpo::where('status','P')->selectRaw('count(*) as Ventas')
+            ->first();
+		        $pax=ClientesExpo::where('status','P')->sum('numpax');
+		        $USDVe=ClientesExpo::where('status','P')->where('moneda','USD')->sum('totpaquete');
+		        $USDVe=number_format($USDVe,2);
+		        $MXNVe=ClientesExpo::where('status','P')->where('moneda','MXN')->sum('totpaquete');
+		        $MXNVe=number_format($MXNVe,2);
+		        $USDIg=Recibodig::where('cancelado',0)->where('moneda','USD')->sum('monto');
+		        $USDIg=number_format($USDIg,2);
+		        $MXNIg=Recibodig::where('cancelado',0)->where('moneda','MXN')->sum('monto');
+		        $MXNIg=number_format($MXNIg,2);
 
-		    $excel->sheet('Ventas', function($sheet) use($registros) {
+		    $excel->sheet('Ventas', function($sheet) use($registros, $ventas,$pax, $USDVe, $USDIg, $MXNVe, $MXNIg) {
 
 		   
 		    $sheet->row(2, ['','','','','REPORTE DE VENTAS']);
@@ -52,8 +63,12 @@ class ExcelController extends Controller
 		    	}
 		    	$j=$i;
 		    }
+		    $sheet->row($j+12,['Total de Ventas','Total de Pasajeros','Total USD Ventas','Total MXN Ventas','Total USD Ingresos','Total MXN Ingresos']);
+		    $sheet->row($j+13,[$ventas->Ventas, $pax,$USDVe,$MXNVe,$USDIg,$MXNIg]);
 
-		});
+		}
+
+	);
 
 		})->export('xlsx');
 

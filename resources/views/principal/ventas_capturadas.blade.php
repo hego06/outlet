@@ -93,6 +93,34 @@
                 </div>
                 <!-- /.box-body -->
             </div>
+            <div class="box box-info">
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Total de Ventas</th>
+                            <th> Total de Pasajeros</th>
+                            <th> Total USD Ventas</th>
+                            <th> Total MXN Ventas</th>
+                            <th> Total USD Ingresos</th>
+                            <th> Total MXN Ingresos</th>
+                        </tr>
+                        <tr>
+                            <td>{{$ventas->Ventas}}</td>
+                            <td>{{$pax}}</td>
+                            <td>{{$USDVe}}</td>
+                            <td>{{$MXNVe}}</td>
+                            <td>{{$USDIg}}</td>
+                            <td>{{$MXNIg}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="box box-success col-sm-1">
+                <div class="box-title">Descargar Excel</div>
+                <div class="box-body">
+                    <a href="{{route('ventas.excel')}}"><i class="fa fa-file-excel-o" style="font-size:48px; color:green"></i></a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
