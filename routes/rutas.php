@@ -32,6 +32,7 @@ Route::post('genera-expediente','ExpedienteController@generaExpediente')->name('
 
 //ruta Liga bancaria
 Route::post('mail/send', 'EnviaEmailController@send')->name('ligaBancaria.envia');
+Route::get('link-create/{fol}', 'GeneraLigaController@create')->name('genera_link.create');
 
 
 //rutas cobro por tarjeta bancaria

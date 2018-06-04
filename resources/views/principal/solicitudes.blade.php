@@ -73,7 +73,11 @@
                                 <td>{{$registro->destino}}</td>
                                 <td>
                                     <a href="{{route('procesa_pago.show', $registro->folexpo)}}" class="btn btn-xs btn-info"><i class="fa fa-suitcase"></i></a>
-                                    </td>
+                                    @if($registro->cid_expedi !='')
+                                        <a href="{{route('genera_link.create', $registro->cid_expedi)}}" class="btn btn-xs btn-success"><i class="fa fa-link"></i></a>
+                                    @endif
+                                </td>
+
 
                             </tr>
                         @endforeach
